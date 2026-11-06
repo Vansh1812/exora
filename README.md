@@ -83,3 +83,64 @@
 ```bash
 git clone https://github.com/Vansh1812/exora2.0.git
 cd exora2.0
+npm install
+3. Run Development Server
+Bash
+npm run dev
+Open your browser at http://localhost:3000 or http://localhost:5173.
+4. Build for Production
+Bash
+npm run build
+The optimized production bundle will be output to the dist/ directory.
+5. Preview Production Build
+Bash
+npm run preview
+📁 Project Architecture
+Code
+exora2.0/
+├── public/
+│   └── assets/aistudio/       # Original event briefs and documentation
+├── src/
+│   ├── components/
+│   │   ├── glyphs/            # Handcrafted inline SVG track glyphs (< 1KB each)
+│   │   ├── AbstractMask.tsx   # Custom vector mask with parallax-tracking eyes
+│   │   ├── BootScreen.tsx     # Terminal decryption boot sequence
+│   │   ├── Cursor.tsx         # Desktop tactical reticle crosshair cursor
+│   │   ├── DoomVersusPlan.tsx # Paradigm shift split slider & impact cards
+│   │   ├── EasterEggModal.tsx # Secret Latverian protocol modal
+│   │   ├── ExoraFAQ.tsx       # Hairline FAQ accordion
+│   │   ├── ExoraPrizes.tsx    # 3-tier podium reward cards
+│   │   ├── Hero.tsx           # Hero section, Doom Clock, and redaction reveals
+│   │   ├── MissionSection.tsx # Case brief, bento pillars, and stats
+│   │   ├── Navbar.tsx         # Floating pill nav with clearance indicator
+│   │   ├── RegistrationModal.tsx # Squad enrollment & direct GCal export
+│   │   ├── SinuousTimeline.tsx # Scroll-drawn SVG timeline
+│   │   ├── TrackPanel.tsx     # Classified track dossier panel with scanline sweep
+│   │   ├── TrackTabs.tsx      # Desktop accessible file drawer tabs
+│   │   └── TracksSection.tsx  # Master tracks section + featured wildcard
+│   ├── data/
+│   │   └── tracks.ts          # Track dossiers, problem statements & villain briefs
+│   ├── hooks/
+│   │   ├── useCountdown.ts    # Precision tick timer for Doom Clock
+│   │   ├── useMouseParallax.ts# Smooth lerp pointer tracking & ambient drift
+│   │   ├── useReducedMotion.ts# System accessibility preference detection
+│   │   ├── useReveal.ts       # IntersectionObserver scroll reveal
+│   │   └── useScrollProgress.ts # Throttled scroll telemetry
+│   ├── eventConfig.ts         # Central source of truth for dates, prizes & copy
+│   ├── index.css              # Global styles, scanline keyframes & reduced-motion rules
+│   ├── App.tsx                # App root & lazy-loaded suspense boundaries
+│   └── main.tsx               # Entry point
+├── index.html                 # SEO metadata & Google Fonts
+├── package.json
+├── tsconfig.json
+└── vite.config.ts
+📅 Operational Schedule
+Phase	Milestone	Date & Venue	Mode	Eliminatory?
+Phase 1	PPT Idea Submission Window	9 Nov – 24 Nov 2026	Online	Yes (Top 40–50 advance)
+Phase 1	Shortlist Announcement	25 Nov 2026	Portal	Results declared
+Phase 2	24-Hour Hackathon Kickoff	28 Nov 2026	Online	No (All advance to Phase 3)
+Phase 2	Round 1 Mentoring	28 Nov 2026, 4:00 PM+	Online	Non-eliminatory technical guidance
+Phase 3	Grand Finale & Offline Sprint	28 Nov 2026, 9:00 AM	Thoughtworks Gurugram	In-person
+Phase 3	Round 2 Mentoring	28 Nov 2026, 9:00 AM – 12:00 PM	Thoughtworks Gurugram	Yes (Eliminatory review)
+Phase 3	Final Stage Jury Presentations	28 Nov 2026, 12:00 PM – 5:00 PM	Thoughtworks Gurugram	Final judging & rewards
+
