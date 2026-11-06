@@ -116,7 +116,7 @@ export default function App() {
 
         {/* Section 3: Impact (Doom's Plan vs Our Plan - scroll wipe & keyboard slider) */}
         <Suspense fallback={<DossierSectionSkeleton label="DOOM VS OUR PLAN" />}>
-          <DoomVersusPlan />
+          <DoomVersusPlan onOpenRegisterModal={() => setIsRegisterModalOpen(true)} />
         </Suspense>
 
         <SectionShutter />
