@@ -1,0 +1,389 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-base: #0b0d0c;
+    --green-oxidized: #2f4a3a;
+    --green-oxidized-dark: #1b2e23;
+    --green-oxidized-bright: #3f634e;
+    --green-glow: rgba(47, 74, 58, 0.45);
+    --gold-accent: #c9a227;
+    --gold-accent-hover: #ddb435;
+    --gold-glow: rgba(201, 162, 39, 0.25);
+    --steel-text: #8e9e96;
+    --steel-heading: #e2e8e5;
+    --steel-muted: #52635a;
+    --steel-border: #1f2e26;
+    --steel-border-light: #2c4236;
+  }
+
+  html {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    background-color: #0b0d0c;
+    color: #8e9e96;
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Fraunces', Georgia, serif;
+  }
+
+  code, kbd, samp, pre, .font-mono {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+  }
+}
+
+/* Film Grain Texture Overlay */
+.film-grain {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Subtle scanlines / Dossier grid pattern with slow pulsing opacity */
+@keyframes dossierGridPulse {
+  0%, 100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+.dossier-grid {
+  position: relative;
+}
+
+.dossier-grid::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  background-image: 
+    linear-gradient(to right, rgba(47, 74, 58, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(47, 74, 58, 0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
+  animation: dossierGridPulse 7s ease-in-out infinite;
+}
+
+/* Rivet Corner Accents */
+.rivet-corner {
+  position: relative;
+}
+.rivet-corner::before,
+.rivet-corner::after {
+  content: '';
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #4a5c52;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.8), 0 0 0 1px #1a2720;
+}
+.rivet-corner::before {
+  top: 6px;
+  left: 6px;
+}
+.rivet-corner::after {
+  top: 6px;
+  right: 6px;
+}
+
+/* Rubber Stamp Styling */
+.dossier-stamp {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  padding: 0.25rem 0.65rem;
+  border-width: 1.5px;
+  border-style: solid;
+  border-radius: 2px;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+  user-select: none;
+}
+
+.stamp-classified {
+  color: #c9a227;
+  border-color: #c9a227;
+  background-color: rgba(201, 162, 39, 0.08);
+}
+
+.stamp-declassified {
+  color: #4ade80;
+  border-color: #2f4a3a;
+  background-color: rgba(47, 74, 58, 0.18);
+}
+
+.stamp-restricted {
+  color: #f87171;
+  border-color: rgba(248, 113, 113, 0.6);
+  background-color: rgba(248, 113, 113, 0.08);
+}
+
+/* Duotone Green Photo Filter via CSS */
+.filter-duotone-green {
+  filter: grayscale(100%) sepia(100%) hue-rotate(90deg) saturate(2) brightness(0.75) contrast(1.2);
+  transition: filter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.filter-duotone-green:hover {
+  filter: grayscale(80%) sepia(80%) hue-rotate(85deg) saturate(1.8) brightness(0.85) contrast(1.15);
+}
+
+/* Hollow Text Stroke */
+.text-stroke-hollow {
+  -webkit-text-stroke: 1.5px rgba(226, 232, 229, 0.28);
+  color: transparent;
+}
+.text-stroke-gold {
+  -webkit-text-stroke: 1.5px rgba(201, 162, 39, 0.4);
+  color: transparent;
+}
+
+/* Sinuous SVG Timeline Curve Glow */
+.timeline-curve-glow {
+  filter: drop-shadow(0 0 8px rgba(47, 74, 58, 0.8)) drop-shadow(0 0 2px rgba(201, 162, 39, 0.5));
+}
+
+/* Diagonal Laser Crosshairs (Inspired by Exora Hero) */
+.laser-crosshair-green {
+  background: linear-gradient(90deg, transparent, rgba(47, 74, 58, 0.6) 50%, transparent);
+}
+.laser-crosshair-gold {
+  background: linear-gradient(90deg, transparent, rgba(201, 162, 39, 0.5) 50%, transparent);
+}
+
+/* Doom Clock Countdown Shadows & Bevels */
+.doom-clock-container {
+  box-shadow:
+    0 25px 60px -12px rgba(0, 0, 0, 0.95),
+    0 0 45px -5px rgba(47, 74, 58, 0.65),
+    0 0 25px -5px rgba(201, 162, 39, 0.3),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.9);
+}
+
+.doom-digit-box {
+  box-shadow:
+    inset 0 2px 5px rgba(0, 0, 0, 0.9),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 6px 14px -2px rgba(0, 0, 0, 0.8),
+    0 0 10px rgba(47, 74, 58, 0.25);
+}
+
+.doom-digit-box-active {
+  box-shadow:
+    inset 0 2px 5px rgba(0, 0, 0, 0.9),
+    inset 0 1px 0 rgba(201, 162, 39, 0.45),
+    0 6px 16px -2px rgba(0, 0, 0, 0.85),
+    0 0 22px rgba(201, 162, 39, 0.38);
+}
+
+/* Marquee Animation for Collaborators */
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 25s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* =========================================================================
+   MOTION & INTERACTION LAYER (Global easing cubic-bezier(0.16, 1, 0.3, 1))
+   ========================================================================= */
+
+/* 1. RGB-Split Glitch (Triggered once on section header entry, ~150ms) */
+@keyframes rgbGlitch {
+  0% { transform: translate(0, 0); text-shadow: none; }
+  20% { transform: translate(-3px, 1px); text-shadow: 2px 0 rgba(239, 68, 68, 0.8), -2px 0 rgba(34, 197, 94, 0.8); }
+  45% { transform: translate(2px, -2px); text-shadow: -2px 0 rgba(201, 162, 39, 0.8), 2px 0 rgba(59, 130, 246, 0.8); }
+  75% { transform: translate(-1px, 1px); text-shadow: 1px 0 rgba(239, 68, 68, 0.6), -1px 0 rgba(34, 197, 94, 0.6); }
+  100% { transform: translate(0, 0); text-shadow: none; }
+}
+
+.animate-glitch {
+  animation: rgbGlitch 150ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 2. Redaction Removal Reveal (Black bars cover text, then slide away left-to-right) */
+@keyframes redactionBar {
+  0% { transform: scaleX(1); transform-origin: left; }
+  40% { transform: scaleX(1); transform-origin: right; }
+  100% { transform: scaleX(0); transform-origin: right; }
+}
+
+.redaction-bar {
+  position: absolute;
+  inset: 0;
+  background-color: #0b0d0c;
+  z-index: 20;
+  animation: redactionBar 750ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 3. Screen / Panel Micro Shake (~150ms) */
+@keyframes microShake {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-3px, 2px); }
+  40% { transform: translate(3px, -2px); }
+  60% { transform: translate(-2px, -1px); }
+  80% { transform: translate(2px, 1px); }
+}
+
+.animate-screen-shake {
+  animation: microShake 150ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 4. Rubber Stamp Scale-Down Hit (1.15 to 1.0) */
+@keyframes stampHit {
+  0% { transform: scale(1.15); opacity: 0; }
+  60% { transform: scale(0.98); opacity: 0.95; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-stamp-hit {
+  animation: stampHit 280ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 5. Mask Eyes Stepped Flicker Ignite + Slow Glow Loop */
+@keyframes eyeIgnite {
+  0% { opacity: 0.2; }
+  15% { opacity: 0.85; }
+  30% { opacity: 0.3; }
+  45% { opacity: 0.95; }
+  60% { opacity: 0.45; }
+  75% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+@keyframes eyeGlowLoop {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 1; }
+}
+
+.animate-eye-ignite {
+  animation: eyeIgnite 850ms steps(5) forwards, eyeGlowLoop 4s ease-in-out infinite 850ms;
+}
+
+/* 6. Clock Digit Tick Flip & Seconds Glow Pulse */
+@keyframes digitTick {
+  0% { transform: translateY(-3px); opacity: 0.65; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.animate-digit-tick {
+  animation: digitTick 160ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes secondsGlow {
+  0%, 100% { text-shadow: 0 0 4px rgba(201, 162, 39, 0.3); }
+  50% { text-shadow: 0 0 12px rgba(201, 162, 39, 0.9); }
+}
+
+.animate-seconds-pulse {
+  animation: secondsGlow 1s ease-in-out infinite;
+}
+
+/* 7. Metallic Sheen Sweep on Register Button Hover */
+@keyframes metallicSheen {
+  0% { transform: translateX(-150%) skewX(-25deg); opacity: 0; }
+  50% { opacity: 0.45; }
+  100% { transform: translateX(250%) skewX(-25deg); opacity: 0; }
+}
+
+.button-metallic-sheen {
+  position: relative;
+  overflow: hidden;
+}
+
+.button-metallic-sheen::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  transform: translateX(-150%) skewX(-25deg);
+  pointer-events: none;
+}
+
+.button-metallic-sheen:hover::after {
+  animation: metallicSheen 650ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 8. Static Noise Flash Feedback (200ms) */
+@keyframes staticNoiseFlash {
+  0% { opacity: 0.85; }
+  40% { opacity: 0.4; }
+  80% { opacity: 0.7; }
+  100% { opacity: 0; pointer-events: none; }
+}
+
+.animate-static-flash {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' fill='%23c9a227' opacity='0.3'/%3E%3C/svg%3E");
+  animation: staticNoiseFlash 200ms ease-out forwards;
+}
+
+/* 8.1 Track Panel Accent Scanline Sweep */
+@keyframes trackScanSweep {
+  0% { transform: translateY(-100%); opacity: 0; }
+  15% { opacity: 0.85; }
+  85% { opacity: 0.85; }
+  100% { transform: translateY(500px); opacity: 0; }
+}
+
+.animate-scan-sweep {
+  animation: trackScanSweep 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 9. Respect prefers-reduced-motion: disable all intense animations & show final state */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-marquee,
+  .animate-glitch,
+  .redaction-bar,
+  .animate-screen-shake,
+  .animate-stamp-hit,
+  .animate-digit-tick,
+  .animate-seconds-pulse,
+  .button-metallic-sheen::after,
+  .animate-static-flash,
+  .animate-scan-sweep,
+  .dossier-grid::before {
+    animation: none !important;
+    transform: none !important;
+    opacity: 0.5 !important;
+  }
+  .animate-eye-ignite {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+  .redaction-bar {
+    display: none !important;
+  }
+}
