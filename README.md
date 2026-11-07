@@ -3,9 +3,9 @@
 > **RESTRICTED MERIT // CLASSIFIED DOSSIER DOSSIER-EXORA-2026-V2**  
 > A premier 24-hour hackathon and engineering crucible organized by **Google Developer Groups (GDG)** in partnership with **Thoughtworks Technologies, Gurugram**.
 
-[![Event Date](https://img.shields.io/badge/Event%20Date-28%20November%202026-c9a227?style=for-the-badge&logo=google-calendar&logoColor=white)](https://unstop.com/o/gdg-exora-2)
+[![Event Date](https://img.shields.io/badge/Event%20Date-28%20November%202026-c9a227?style=for-the-badge&logo=google-calendar&logoColor=white)](https://unstop.com/o/iPHpWUc?lb=bjos6kym&utm_medium=Share&utm_source=ubfxqrcy86969&utm_campaign=Online_coding_challenge)
 [![Venue](https://img.shields.io/badge/Venue-Thoughtworks%20Technologies%2C%20Gurugram-2f4a3a?style=for-the-badge&logo=google-maps&logoColor=white)](https://maps.google.com)
-[![Clearance](https://img.shields.io/badge/Security%20Clearance-Classified%20Operatives-4ade80?style=for-the-badge)](https://unstop.com/o/gdg-exora-2)
+[![Clearance](https://img.shields.io/badge/Security%20Clearance-Classified%20Operatives-4ade80?style=for-the-badge)](https://unstop.com/o/iPHpWUc?lb=bjos6kym&utm_medium=Share&utm_source=ubfxqrcy86969&utm_campaign=Online_coding_challenge)
 
 ---
 
@@ -83,20 +83,35 @@
 ```bash
 git clone https://github.com/Vansh1812/exora2.0.git
 cd exora2.0
+```
+
+### 2. Install Dependencies
+```bash
 npm install
-3. Run Development Server
-Bash
+```
+
+### 3. Run Development Server
+```bash
 npm run dev
-Open your browser at http://localhost:3000 or http://localhost:5173.
-4. Build for Production
-Bash
+```
+Open your browser at `http://localhost:3000` or `http://localhost:5173`.
+
+### 4. Build for Production
+```bash
 npm run build
-The optimized production bundle will be output to the dist/ directory.
-5. Preview Production Build
-Bash
+```
+The optimized production bundle will be output to the `dist/` directory.
+
+### 5. Preview Production Build
+```bash
 npm run preview
-📁 Project Architecture
-Code
+```
+
+---
+
+## 📁 Project Architecture
+
+```
 exora2.0/
 ├── public/
 │   └── assets/aistudio/       # Original event briefs and documentation
@@ -134,13 +149,25 @@ exora2.0/
 ├── package.json
 ├── tsconfig.json
 └── vite.config.ts
-📅 Operational Schedule
-Phase	Milestone	Date & Venue	Mode	Eliminatory?
-Phase 1	PPT Idea Submission Window	9 Nov – 24 Nov 2026	Online	Yes (Top 40–50 advance)
-Phase 1	Shortlist Announcement	25 Nov 2026	Portal	Results declared
-Phase 2	24-Hour Hackathon Kickoff	28 Nov 2026	Online	No (All advance to Phase 3)
-Phase 2	Round 1 Mentoring	28 Nov 2026, 4:00 PM+	Online	Non-eliminatory technical guidance
-Phase 3	Grand Finale & Offline Sprint	28 Nov 2026, 9:00 AM	Thoughtworks Gurugram	In-person
-Phase 3	Round 2 Mentoring	28 Nov 2026, 9:00 AM – 12:00 PM	Thoughtworks Gurugram	Yes (Eliminatory review)
-Phase 3	Final Stage Jury Presentations	28 Nov 2026, 12:00 PM – 5:00 PM	Thoughtworks Gurugram	Final judging & rewards
+```
 
+---
+
+## 📅 Operational Schedule
+
+| Phase | Milestone | Date & Venue | Mode | Eliminatory? |
+| :--- | :--- | :--- | :--- | :--- |
+| **Phase 1** | PPT Idea Submission Window | 8 Nov – 22 Nov 2026 | Online | **Yes** (Top 40–50 advance) |
+| **Phase 1** | Shortlist Announcement | 25 Nov 2026 | Portal | Results declared |
+| **Phase 2** | 24-Hour Hackathon Kickoff | 26 Nov 2026 | Online | **No** (All advance to Phase 3) |
+| **Phase 2** | Round 1 Mentoring | 26 Nov 2026, 4:00 PM+ | Online | Non-eliminatory technical guidance |
+| **Phase 3** | Grand Finale & Offline Sprint | 28 Nov 2026, 9:00 AM | Thoughtworks Gurugram | In-person |
+| **Phase 3** | Round 2 Mentoring | 28 Nov 2026, 9:00 AM – 12:00 PM | Thoughtworks Gurugram | **Yes** (Eliminatory review) |
+| **Phase 3** | Final Stage Jury Presentations | 28 Nov 2026, 12:00 PM – 5:00 PM | Thoughtworks Gurugram | Final judging & rewards |
+
+---
+
+## ⚖️ License & Attribution
+
+Designed and developed for **GDG On Campus ABESEC** and **Thoughtworks Technologies**.  
+All rights reserved. Code released under the [MIT License](LICENSE).

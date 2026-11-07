@@ -107,16 +107,16 @@ export const EVENT_CONFIG = {
   dateFullString: "28 NOVEMBER 2026 // THOUGHTWORKS TECHNOLOGIES, GURUGRAM",
   timeDisplay: "24-HOUR HACKATHON // 28 NOVEMBER 2026",
   targetDate: "2026-11-28T09:00:00+05:30", // Countdown to 28 November 2026
-  registrationOpensDate: "9 November 2026",
-  registrationClosesDate: "24 November 2026",
-  pptDeadlineDate: "24 November 2026",
+  registrationOpensDate: "8 November 2026",
+  registrationClosesDate: "22 November 2026",
+  pptDeadlineDate: "22 November 2026",
   phase1ResultsDate: "25 November 2026",
-  phase2Date: "27 November 2026",
+  phase2Date: "26 November 2026",
   grandFinaleDate: "28 November 2026",
   venue: "Thoughtworks Technologies, Gurugram",
   venueAddress: "Building 14, Tower B, DLF Cyber City, Sector 25, Gurugram, Haryana 122002",
-  registrationUrl: "https://unstop.com/o/gdg-exora-2",
-  unstopUrl: "https://unstop.com/o/gdg-exora-2",
+  registrationUrl: "https://unstop.com/o/iPHpWUc?lb=bjos6kym&utm_medium=Share&utm_source=ubfxqrcy86969&utm_campaign=Online_coding_challenge",
+  unstopUrl: "https://unstop.com/o/iPHpWUc?lb=bjos6kym&utm_medium=Share&utm_source=ubfxqrcy86969&utm_campaign=Online_coding_challenge",
 
   // Hero Synopsis
   heroSynopsis: "A premier 24-hour hackathon hosted by Google Developer Groups at Thoughtworks Technologies, Gurugram. Where technical creativity meets entrepreneurial thinking.",
@@ -125,17 +125,17 @@ export const EVENT_CONFIG = {
   stats: [
     { value: "1,500+", label: "DEVELOPERS", subtext: "Aspirants pan-India" },
     { value: "28", label: "NOV 2026", subtext: "Thoughtworks Gurugram" },
-    { value: "FREE", label: "REGISTRATION", subtext: "Closes 24 Nov • PPT Mandatory" },
+    { value: "FREE", label: "REGISTRATION", subtext: "Closes 22 Nov • PPT Mandatory" },
     { value: "₹25,000+", label: "PRIZE POOL", subtext: "Direct cash rewards & grants" }
   ],
 
   // 01. Event at a Glance Table (From PDF Page 1)
   eventAtAGlance: [
-    { label: "REGISTRATION OPENS", value: "9 November 2026", detail: "Team enrollment window opens" },
-    { label: "REGISTRATION CLOSES", value: "24 November 2026", detail: "Portal lock at midnight" },
-    { label: "PPT SUBMISSION DEADLINE", value: "24 November 2026", detail: "Mandatory for Phase 1 screening" },
+    { label: "REGISTRATION OPENS", value: "8 November 2026", detail: "Team enrollment window opens" },
+    { label: "REGISTRATION CLOSES", value: "22 November 2026", detail: "Portal lock at midnight" },
+    { label: "PPT SUBMISSION DEADLINE", value: "22 November 2026", detail: "Mandatory for Phase 1 screening" },
     { label: "PHASE 1 RESULTS", value: "25 November 2026", detail: "Shortlisted teams announced" },
-    { label: "PHASE 2 (HACKATHON KICKOFF)", value: "27 November 2026", detail: "24-Hour Hackathon • Non-eliminatory" },
+    { label: "PHASE 2 (HACKATHON KICKOFF)", value: "26 November 2026", detail: "24-Hour Hackathon • Non-eliminatory" },
     { label: "GRAND FINALE (OFFLINE)", value: "28 November 2026", detail: "Thoughtworks Gurugram • Demos & Awards" }
   ],
 
@@ -146,18 +146,18 @@ export const EVENT_CONFIG = {
       phaseNumber: 1,
       title: "Phase 1 – Idea Submission & PPT Screening",
       subtitle: "Screening & Squad Qualification",
-      dateRange: "9–24 November 2026",
+      dateRange: "8–22 November 2026",
       mode: "Online",
-      duration: "15 Days Submission Window",
+      duration: "14 Days Submission Window",
       objective: "Identify promising ideas and shortlist top teams for the hackathon.",
       bulletPoints: [
-        "9–24 November: Team registration window open.",
-        "24 November: Deadline to submit the project idea PPT. PPT submission is mandatory for screening.",
+        "8–22 November: Team registration window open.",
+        "22 November: Deadline to submit the project idea PPT. PPT submission is mandatory for screening.",
         "25 November: Results declared for teams shortlisted from Phase 1.",
         "The screening panel rigorously evaluates all submitted ideas.",
         "Approximately 40–50 top teams will be shortlisted."
       ],
-      keyMilestones: "24 NOV • PPT submission closes | 25 NOV • Phase 1 shortlist announced",
+      keyMilestones: "22 NOV • PPT submission closes | 25 NOV • Phase 1 shortlist announced",
       outcome: "Only shortlisted teams proceed to Phase 2.",
       isEliminatory: true,
       statusBadge: "MANDATORY PPT SCREENING"
@@ -167,7 +167,7 @@ export const EVENT_CONFIG = {
       phaseNumber: 2,
       title: "Phase 2 – 24-Hour Hackathon",
       subtitle: "Implementation & Non-Eliminatory Mentoring",
-      dateRange: "28 November 2026",
+      dateRange: "26 November 2026",
       mode: "Online",
       duration: "24 Hours",
       objective: "Enable shortlisted teams to develop and improve their proposed solutions.",
@@ -178,7 +178,7 @@ export const EVENT_CONFIG = {
         "NON-ELIMINATORY ROUND: No teams are eliminated during Phase 2.",
         "Every shortlisted team participating in the hackathon remains eligible to proceed to Phase 3, irrespective of its performance in this round."
       ],
-      keyMilestones: "27 NOV • 24H Sprint Begins | 27 NOV AFTER 4:00 PM • First Mentoring Round",
+      keyMilestones: "26 NOV • 24H Sprint Begins | 26 NOV AFTER 4:00 PM • First Mentoring Round",
       outcome: "Every participating team advances to the Grand Finale at Thoughtworks.",
       isEliminatory: false,
       statusBadge: "NON-ELIMINATORY ROUND"
@@ -212,7 +212,7 @@ export const EVENT_CONFIG = {
       id: "mentor-round-1",
       roundName: "FIRST MENTORING ROUND",
       phase: "Phase 2 (Online Hackathon)",
-      date: "27 November 2026",
+      date: "26 November 2026",
       mode: "Online",
       timing: "After 4:00 PM IST",
       purpose: "Technical guidance and architectural feedback during active project development.",
@@ -274,10 +274,10 @@ export const EVENT_CONFIG = {
 
   // 07. Important Notes for Participants (From PDF Page 3)
   importantNotes: [
-    "PPT submission is mandatory for Phase 1 screening; deadline: 24 November 2026.",
+    "PPT submission is mandatory for Phase 1 screening; deadline: 22 November 2026.",
     "Phase 1 shortlisted-team results will be declared on 25 November 2026.",
     "Only the top 40–50 shortlisted teams proceed from Phase 1 to Phase 2.",
-    "Phase 2 on 28 November (24-Hour Hackathon) is strictly non-eliminatory.",
+    "Phase 2 on 26 November (24-Hour Hackathon) is strictly non-eliminatory.",
     "The second mentoring round on 28 November (9:00 AM–12:00 PM) is the eliminatory round.",
     "Final winners are determined through the offline judging round at Thoughtworks Technologies, Gurugram on 28 November."
   ],
@@ -318,18 +318,18 @@ export const EVENT_CONFIG = {
   timeline: [
     {
       id: "time-1",
-      time: "09 NOV 2026",
+      time: "08 NOV 2026",
       marker: "PHASE 1",
       title: "REGISTRATION OPENS",
       phase: "SQUAD ENROLLMENT",
       description: "Portal opens for all developer teams. Registration is 100% free and open to student builders pan-India.",
-      deliverable: "Team formation (1 to 4 members) & portal onboarding",
+      deliverable: "Team formation (2 to 4 members) & portal onboarding",
       side: "left",
       highlightBadge: "NOW OPEN"
     },
     {
       id: "time-2",
-      time: "24 NOV 2026",
+      time: "22 NOV 2026",
       marker: "DEADLINE",
       title: "PPT SUBMISSION DEADLINE",
       phase: "MANDATORY SCREENING",
@@ -351,7 +351,7 @@ export const EVENT_CONFIG = {
     },
     {
       id: "time-4",
-      time: "27 NOV 2026",
+      time: "26 NOV 2026",
       marker: "PHASE 2",
       title: "24-HOUR HACKATHON SPRINTS",
       phase: "ROUND 1 MENTORING",
@@ -433,22 +433,22 @@ export const EVENT_CONFIG = {
     {
       id: "faq-1",
       question: "What is the three-phase structure of Exora 2.0?",
-      answer: "Exora 2.0 runs in three distinct stages: Phase 1 (Idea Submission & PPT Screening from 9–24 Nov), Phase 2 (24-Hour Hackathon commencing 27 Nov with mentoring), and Phase 3 (Grand Finale & judging on 28 Nov at Thoughtworks Technologies, Gurugram)."
+      answer: "Exora 2.0 runs in three distinct stages: Phase 1 (Idea Submission & PPT Screening from 8–22 Nov), Phase 2 (24-Hour Hackathon commencing 26 Nov with mentoring), and Phase 3 (Grand Finale & judging on 28 Nov at Thoughtworks Technologies, Gurugram)."
     },
     {
       id: "faq-2",
       question: "Is PPT submission mandatory for screening?",
-      answer: "Yes, submitting the project idea PPT is strictly mandatory. The submission deadline is 24 November 2026. The screening panel evaluates all submitted decks to determine the shortlisted teams advancing to Phase 2, announced on 25 November."
+      answer: "Yes, submitting the project idea PPT is strictly mandatory. The submission deadline is 22 November 2026. The screening panel evaluates all submitted decks to determine the shortlisted teams advancing to Phase 2, announced on 25 November."
     },
     {
       id: "faq-3",
       question: "Can my team get eliminated during the 24-Hour Hackathon?",
-      answer: "No. The Phase 2 24-hour hackathon (28 November 2026) is strictly a non-eliminatory round! Every shortlisted team participating in the hackathon remains fully eligible to proceed to Phase 3, irrespective of its performance in Phase 2."
+      answer: "No. The Phase 2 24-hour hackathon (26 November 2026) is strictly a non-eliminatory round! Every shortlisted team participating in the hackathon remains fully eligible to proceed to Phase 3, irrespective of its performance in Phase 2."
     },
     {
       id: "faq-4",
       question: "What happens during the Mentoring Rounds?",
-      answer: "Round 1 takes place online on 27 November after 4:00 PM for active technical feedback. Round 2 takes place offline on 28 November morning at Thoughtworks Technologies, Gurugram for progress review and final project refinement before stage presentations."
+      answer: "Round 1 takes place online on 26 November after 4:00 PM for active technical feedback. Round 2 takes place offline on 28 November morning at Thoughtworks Technologies, Gurugram for progress review and final project refinement before stage presentations."
     },
     {
       id: "faq-5",
@@ -492,7 +492,7 @@ export const EVENT_CONFIG = {
   footerQuote: "“Build. Innovate. Exora. Turn your ideas into impactful solutions!”",
 
   socialLinks: [
-    { label: "UNSTOP", url: "https://unstop.com/o/gdg-exora-2" },
+    { label: "UNSTOP", url: "https://unstop.com/o/iPHpWUc?lb=bjos6kym&utm_medium=Share&utm_source=ubfxqrcy86969&utm_campaign=Online_coding_challenge" },
     { label: "COMMUNITY", url: "https://developers.google.com/community/gdg" },
     { label: "INSTAGRAM", url: "https://instagram.com/gdg_abesec" },
     { label: "LINKEDIN", url: "https://linkedin.com/company/gdg-abesec" },

@@ -15,7 +15,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
     const title = encodeURIComponent(EVENT_CONFIG.eventName + ' // Google Developer Groups');
     const details = encodeURIComponent(
       EVENT_CONFIG.heroSynopsis +
-      '\n\nPhases:\n- 24 Nov: PPT Submission Deadline\n- 25 Nov: Phase 1 Shortlist Results\n- 28 Nov: 24-Hour Hackathon & Grand Finale at ' +
+      '\n\nPhases:\n- 22 Nov: PPT Submission Deadline\n- 25 Nov: Phase 1 Shortlist Results\n- 26 Nov: Phase 2 — 24-Hour Hackathon & Live Mentoring\n- 28 Nov: Grand Finale at ' +
       EVENT_CONFIG.venue
     );
     const location = encodeURIComponent(EVENT_CONFIG.venue + ', ' + EVENT_CONFIG.venueAddress);
@@ -55,7 +55,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
         <div className="p-3.5 bg-[#14261b] border border-[#2f4a3a] rounded-xl flex items-start gap-2.5 mb-5 text-xs font-mono text-[#4ade80]">
           <AlertCircle className="w-4 h-4 text-[#c9a227] shrink-0 mt-0.5" />
           <div>
-            <span className="font-bold text-[#c9a227] uppercase">Mandatory Requirement:</span> PPT submission by <strong className="text-white">24 November</strong> is mandatory for Phase 1 screening. Shortlisted teams advance to Phase 2.
+            <span className="font-bold text-[#c9a227] uppercase">Mandatory Requirement:</span> PPT submission by <strong className="text-white">22 November</strong> is mandatory for Phase 1 screening. Shortlisted teams advance to Phase 2.
           </div>
         </div>
 
@@ -70,11 +70,11 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
             <ul className="space-y-1.5 text-[#8e9e96]">
               <li className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#c9a227]" />
-                <span><strong className="text-[#e2e8e5]">9–24 Nov:</strong> Registration Window (100% Free).</span>
+                <span><strong className="text-[#e2e8e5]">8–22 Nov:</strong> Registration Window (100% Free).</span>
               </li>
               <li className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#f87171]" />
-                <span><strong className="text-[#f87171]">24 Nov:</strong> PPT Submission Deadline (Mandatory).</span>
+                <span><strong className="text-[#f87171]">22 Nov:</strong> PPT Submission Deadline (Mandatory).</span>
               </li>
               <li className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]" />
@@ -82,7 +82,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
               </li>
               <li className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#38bdf8]" />
-                <span><strong className="text-[#38bdf8]">28 Nov:</strong> Phase 2 — 24-Hour Hackathon & Live Mentoring.</span>
+                <span><strong className="text-[#38bdf8]">26 Nov:</strong> Phase 2 — 24-Hour Hackathon & Live Mentoring.</span>
               </li>
               <li className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#c9a227]" />
@@ -97,7 +97,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
               <span>Squad Composition & Admittance:</span>
             </div>
             <ul className="space-y-1 text-[#8e9e96] list-disc list-inside">
-              <li>1 to 4 members per team (cross-college squads welcome).</li>
+              <li>2 to 4 members per team (cross-college squads welcome).</li>
               <li>100% Free registration — zero fees across all phases.</li>
               <li>Student identity verified during offline check-in on 28 November.</li>
             </ul>

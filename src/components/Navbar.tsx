@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { EVENT_CONFIG } from '../eventConfig';
+import { GdgLogoMark } from './GdgLogoMark';
 
 interface NavbarProps {
   onOpenRegisterModal: () => void;
@@ -7,6 +8,15 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ onOpenRegisterModal }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Close mobile menu on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMobileMenuOpen(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -19,30 +29,21 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenRegisterModal }) => {
 
   return (
     <div className="sticky top-4 z-40 w-full px-4 sm:px-6 pointer-events-none">
-      <header className="pointer-events-auto max-w-4xl mx-auto rounded-full border border-[#2f4a3a]/60 bg-[#0d120f]/85 backdrop-blur-md px-4 sm:px-6 py-2.5 shadow-[0_10px_35px_rgba(0,0,0,0.85)] flex items-center justify-between gap-4 transition-all">
-        {/* Left: Custom Latverian / GDG Geometric Insignia */}
+      {/* Floating Tactical Pill Header (Inspired by Exora & GDG Brand Identity) */}
+      <header className="pointer-events-auto max-w-4xl mx-auto rounded-full border border-[#2f4a3a]/70 bg-[#0a0f0d]/90 backdrop-blur-md px-4 sm:px-6 py-2 shadow-[0_12px_40px_rgba(0,0,0,0.85)] flex items-center justify-between gap-4 transition-all hover:border-[#c9a227]/40">
+        {/* Left: Official GDG < > Insignia */}
         <a
           href="#hero"
           onClick={(e) => handleNavClick(e, '#hero')}
-          className="flex items-center gap-2.5 font-display font-bold text-sm sm:text-base text-[#e2e8e5] hover:text-[#c9a227] transition-colors whitespace-nowrap shrink-0 group"
-          aria-label="Exora 2.0 Home"
+          className="flex items-center group shrink-0 select-none py-0.5"
+          aria-label={`${EVENT_CONFIG.eventName} Home`}
         >
-          <div className="w-8 h-8 rounded-full bg-[#141e18] border border-[#2f4a3a] group-hover:border-[#c9a227] flex items-center justify-center transition-colors">
-            <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none">
-              <path
-                d="M12 2L4 7v6c0 5 8 9 8 9s8-4 8-9V7l-8-5z"
-                fill="#1c2b22"
-                stroke="#c9a227"
-                strokeWidth="1.5"
-              />
-              <path d="M8 12h2.5m3 0H16" stroke="#4ade80" strokeWidth="1.5" strokeLinecap="round" />
-            </svg>
-          </div>
-          <span className="tracking-tight">{EVENT_CONFIG.eventName}</span>
+          {/* Authentic Google Developer Groups < > Brackets Logo */}
+          <GdgLogoMark className="w-10 h-7 sm:w-11 sm:h-8 transition-transform group-hover:scale-105" />
         </a>
 
-        {/* Center: Clean Uppercase Nav Links */}
-        <nav className="hidden md:flex items-center gap-5 sm:gap-6 text-[11px] font-mono tracking-widest uppercase text-[#8e9e96]">
+        {/* Center: Desktop Navigation Links */}
+        <nav className="hidden md:flex items-center gap-4 lg:gap-6 text-[11px] font-mono tracking-widest uppercase text-[#8e9e96]">
           <a
             href="#mission"
             onClick={(e) => handleNavClick(e, '#mission')}
@@ -94,86 +95,119 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenRegisterModal }) => {
           </a>
         </nav>
 
-        {/* Right: Register CTA Pill Button + Mobile Hamburger */}
+        {/* Right: Desktop Register CTA Button + Mobile 3-Line Hamburger Icon */}
         <div className="flex items-center gap-2.5 shrink-0">
+          {/* Desktop Gold CTA */}
           <button
             type="button"
             onClick={onOpenRegisterModal}
-            className="button-metallic-sheen px-4 sm:px-5 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider text-[#0b0d0c] bg-[#c9a227] hover:bg-[#ddb435] shadow-[0_0_15px_rgba(201,162,39,0.35)] transition-all active:scale-95 whitespace-nowrap"
+            className="hidden sm:inline-flex button-metallic-sheen px-5 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider text-[#0b0d0c] bg-[#c9a227] hover:bg-[#ddb435] shadow-[0_0_15px_rgba(201,162,39,0.35)] transition-all active:scale-95 whitespace-nowrap cursor-pointer"
           >
             REGISTER
           </button>
 
-          {/* Mobile menu button */}
+          {/* Elegant 3-Line Hamburger Menu Icon (Directly matches image_d1fdd409.png reference) */}
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-1.5 text-[#8e9e96] hover:text-[#e2e8e5] border border-[#2f4a3a]/60 rounded-full"
-            aria-label="Toggle menu"
+            className="md:hidden p-1.5 text-white hover:text-[#c9a227] transition-colors focus:outline-none flex items-center justify-center cursor-pointer"
+            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={mobileMenuOpen}
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg
+              className="w-5 h-5 text-white transition-transform"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
               {mobileMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                <>
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </>
               ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                <>
+                  <line x1="3" y1="6" x2="21" y2="6" />
+                  <line x1="3" y1="12" x2="21" y2="12" />
+                  <line x1="3" y1="18" x2="21" y2="18" />
+                </>
               )}
             </svg>
           </button>
         </div>
       </header>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer Dropdown */}
       {mobileMenuOpen && (
-        <div className="pointer-events-auto md:hidden mt-2 max-w-sm mx-auto rounded-2xl border border-[#2f4a3a] bg-[#0c110e]/95 backdrop-blur-md p-4 space-y-2 text-center font-mono text-xs uppercase tracking-wider text-[#8e9e96] shadow-2xl">
+        <div className="pointer-events-auto md:hidden mt-2 max-w-sm mx-auto rounded-2xl border border-[#2f4a3a] bg-[#0c120f]/95 backdrop-blur-md p-4 space-y-2 text-center font-mono text-xs uppercase tracking-wider text-[#8e9e96] shadow-[0_20px_50px_rgba(0,0,0,0.9)] rivet-corner">
+          <div className="pb-2 border-b border-[#1b2b22] text-[10px] text-[#c9a227] tracking-widest">
+            OPERATIONAL NAVIGATION
+          </div>
           <a
             href="#mission"
             onClick={(e) => handleNavClick(e, '#mission')}
-            className="block py-1.5 hover:text-[#c9a227]"
+            className="block py-2 rounded-lg hover:bg-[#142019] hover:text-[#c9a227] transition-colors"
           >
             ABOUT / THE MISSION
           </a>
           <a
             href="#tracks"
             onClick={(e) => handleNavClick(e, '#tracks')}
-            className="block py-1.5 hover:text-[#c9a227]"
+            className="block py-2 rounded-lg hover:bg-[#142019] hover:text-[#c9a227] transition-colors"
           >
             OPERATIONAL TRACKS
           </a>
           <a
             href="#timeline"
             onClick={(e) => handleNavClick(e, '#timeline')}
-            className="block py-1.5 hover:text-[#c9a227]"
+            className="block py-2 rounded-lg hover:bg-[#142019] hover:text-[#c9a227] transition-colors"
           >
             EVENT TIMELINE
           </a>
           <a
             href="#impact"
             onClick={(e) => handleNavClick(e, '#impact')}
-            className="block py-1.5 hover:text-[#c9a227]"
+            className="block py-2 rounded-lg hover:bg-[#142019] hover:text-[#c9a227] transition-colors"
           >
             DOOM VS OUR PLAN
           </a>
           <a
             href="#sponsors"
             onClick={(e) => handleNavClick(e, '#sponsors')}
-            className="block py-1.5 hover:text-[#c9a227]"
+            className="block py-2 rounded-lg hover:bg-[#142019] hover:text-[#c9a227] transition-colors"
           >
             SPONSORS & ALLIES
           </a>
           <a
             href="#rewards"
             onClick={(e) => handleNavClick(e, '#rewards')}
-            className="block py-1.5 hover:text-[#c9a227]"
+            className="block py-2 rounded-lg hover:bg-[#142019] hover:text-[#c9a227] transition-colors"
           >
             PRIZE REWARDS
           </a>
           <a
             href="#faq"
             onClick={(e) => handleNavClick(e, '#faq')}
-            className="block py-1.5 hover:text-[#c9a227]"
+            className="block py-2 rounded-lg hover:bg-[#142019] hover:text-[#c9a227] transition-colors"
           >
             FREQUENTLY ASKED
           </a>
+
+          <div className="pt-2 border-t border-[#1b2b22]">
+            <button
+              type="button"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onOpenRegisterModal();
+              }}
+              className="w-full py-2.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider text-[#0b0d0c] bg-[#c9a227] hover:bg-[#ddb435] shadow-[0_0_15px_rgba(201,162,39,0.35)] transition-all cursor-pointer"
+            >
+              REGISTER FOR EXORA 2.0
+            </button>
+          </div>
         </div>
       )}
     </div>

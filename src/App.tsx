@@ -11,7 +11,6 @@ import { EasterEggModal, useDoomEasterEgg } from './components/EasterEggModal';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { RegistrationModal } from './components/RegistrationModal';
-import { CustomizationGuideDrawer } from './components/CustomizationGuideDrawer';
 
 // Lazy-load below-the-fold sections
 const MissionSection = lazy(() =>
@@ -159,9 +158,6 @@ export default function App() {
         isOpen={isEasterEggOpen}
         onClose={() => setIsEasterEggOpen(false)}
       />
-
-      {/* Live Customization Drawer Helper */}
-      <CustomizationGuideDrawer />
     </div>
   );
 }
