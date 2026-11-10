@@ -81,7 +81,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenRegisterModal }) => {
           '--footer-gold': '#c9a227',
         } as React.CSSProperties
       }
-      className={`relative w-full overflow-hidden bg-gradient-to-b from-[#10201a] to-[#0b1511] border-t border-[#2f4a3a] text-[#cfd8d2] transition-opacity duration-700 ease-out motion-reduce:transition-none ${
+      className={`relative w-full bg-gradient-to-b from-[#10201a] to-[#0b1511] border-t border-[#2f4a3a] text-[#cfd8d2] transition-opacity duration-700 ease-out motion-reduce:transition-none ${
         inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6 motion-reduce:opacity-100 motion-reduce:translate-y-0'
       }`}
       aria-label="Terminal Dossier Footer"
@@ -110,7 +110,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenRegisterModal }) => {
       >
         <svg
           viewBox="0 0 1200 240"
-          className="w-full h-auto text-[#c9a227] opacity-[0.07] translate-y-8 sm:translate-y-12"
+          className="w-full h-auto text-[#c9a227] opacity-[0.1] translate-y-12 sm:translate-y-16"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -163,7 +163,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenRegisterModal }) => {
             </div>
 
             {/* One-Line Sign-Off in Villain Voice */}
-            <blockquote className="pt-2 border-l-2 border-[#2f4a3a] pl-3.5 text-xs font-mono text-[#8fa398] leading-relaxed max-w-md">
+            <blockquote className="pt-2 border-l-2 border-[#2f4a3a] pl-3.5 text-sm font-sans font-medium text-[#c4cec8] leading-relaxed max-w-md">
               &ldquo;Doom promises no spectacle without sacrifice. Ship working code before the clock strikes zero, or remain forgotten.&rdquo;
             </blockquote>
 
@@ -292,7 +292,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenRegisterModal }) => {
               <div className="flex flex-wrap items-center gap-2.5">
                 {/* GitHub */}
                 <a
-                  href="https://github.com/gdscabesec"
+                  href="https://github.com/Developer-Students-Club-ABESEC"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="GDG ABESEC GitHub"
@@ -305,7 +305,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenRegisterModal }) => {
 
                 {/* LinkedIn */}
                 <a
-                  href="https://linkedin.com/company/gdscabesec"
+                  href="https://www.linkedin.com/company/gdg-abesec/"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="GDG ABESEC LinkedIn"
@@ -318,7 +318,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenRegisterModal }) => {
 
                 {/* X / Twitter */}
                 <a
-                  href="https://twitter.com/gdscabesec"
+                  href="https://x.com/gdgabesec"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="GDG ABESEC X (Twitter)"
@@ -331,7 +331,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenRegisterModal }) => {
 
                 {/* Instagram */}
                 <a
-                  href="https://instagram.com/gdscabesec"
+                  href="https://www.instagram.com/gdg.abesec"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="GDG ABESEC Instagram"

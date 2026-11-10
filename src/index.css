@@ -1,36 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=JetBrains+Mono:wght@500;600;700&display=swap');
 @import "tailwindcss";
 
 @layer base {
   :root {
-    --bg-base: #0b0d0c;
-    --green-oxidized: #2f4a3a;
-    --green-oxidized-dark: #1b2e23;
-    --green-oxidized-bright: #3f634e;
-    --green-glow: rgba(47, 74, 58, 0.45);
-    --gold-accent: #c9a227;
-    --gold-accent-hover: #ddb435;
-    --gold-glow: rgba(201, 162, 39, 0.25);
-    --steel-text: #8e9e96;
-    --steel-heading: #e2e8e5;
-    --steel-muted: #52635a;
-    --steel-border: #1f2e26;
-    --steel-border-light: #2c4236;
-  }
+  --bg-base: #0b0d0c;
+
+  --green-oxidized: #2f4a3a;
+  --green-oxidized-dark: #1b2e23;
+  --green-oxidized-bright: #3f634e;
+  --green-glow: rgba(47, 74, 58, 0.45);
+
+  --gold-accent: #c9a227;
+  --gold-accent-hover: #ddb435;
+  --gold-glow: rgba(201, 162, 39, 0.25);
+
+  /* Improved readable text colors */
+  --steel-text: #c4cec8;
+  --steel-heading: #f1f3f0;
+  --steel-muted: #9baaa1;
+
+  --steel-border: #1f2e26;
+  --steel-border-light: #2c4236;
+
+  /* Typography */
+  --font-body: 'Inter', Arial, sans-serif;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
 
   html {
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
-    background-color: #0b0d0c;
-    color: #8e9e96;
-    scroll-behavior: smooth;
-  }
+  font-family: var(--font-body);
+  background-color: var(--bg-base);
+  color: var(--steel-text);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
 
-  h1, h2, h3, h4, .font-display {
-    font-family: 'Fraunces', Georgia, serif;
-  }
+
+  /* Display headings */
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--steel-heading);
+  line-height: 1.2;
+}
+
+/* Body text */
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--steel-text);
+}
+
+/* Paragraphs and lists */
+p, li {
+  line-height: 1.7;
+}
+
+/* Technical text */
+code, kbd, samp, pre, .font-mono {
+  font-family: var(--font-mono);
+}
 
   code, kbd, samp, pre, .font-mono {
     font-family: 'JetBrains Mono', ui-monospace, monospace;
   }
+  /* Buttons and form elements */
+button,
+input,
+textarea,
+select {
+  font-family: var(--font-body);
+}
+
+button {
+  font-weight: 600;
+}
+
+/* Text selection */
+::selection {
+  background-color: rgba(201, 162, 39, 0.3);
+  color: #ffffff;
+}
 }
 
 /* Film Grain Texture Overlay */
@@ -141,12 +196,18 @@
 
 /* Hollow Text Stroke */
 .text-stroke-hollow {
-  -webkit-text-stroke: 1.5px rgba(226, 232, 229, 0.28);
+  -webkit-text-stroke: 2.2px rgba(196, 206, 200, 0.8);
   color: transparent;
+  filter: drop-shadow(0 0 10px rgba(196, 206, 200, 0.16));
 }
 .text-stroke-gold {
   -webkit-text-stroke: 1.5px rgba(201, 162, 39, 0.4);
   color: transparent;
+}
+.mission-tagline {
+  -webkit-text-stroke: 1.5px rgba(196, 206, 200, 0.8);
+  color: transparent;
+  filter: drop-shadow(0 0 7px rgba(196, 206, 200, 0.15));
 }
 
 /* Sinuous SVG Timeline Curve Glow */

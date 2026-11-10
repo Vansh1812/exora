@@ -54,7 +54,7 @@ export const TracksSection: React.FC = () => {
         {/* ============================================================
             DESKTOP LAYOUT (lg:grid): FILE DRAWER WITH LEFT TABS & RIGHT PANEL
             ============================================================ */}
-        <div className="hidden lg:grid lg:grid-cols-12 gap-8 items-start mb-12">
+        <div className="hidden lg:grid lg:grid-cols-12 gap-8 items-stretch mb-12">
           {/* Left Column (5 cols): File Drawer Vertical Tabs */}
           <div className="lg:col-span-5">
             <TrackTabs
@@ -183,62 +183,6 @@ export const TracksSection: React.FC = () => {
               </div>
             );
           })}
-        </div>
-
-        {/* ============================================================
-            FEATURED STRIP: 5TH CARD (OPEN INNOVATION // WILDCARD)
-            Breaking the grid with dashed border and rotated WILDCARD stamp
-            ============================================================ */}
-        <div
-          onClick={() => setActiveTrackId('op-05')}
-          style={{
-            '--track-accent': wildcardTrack.accent,
-            boxShadow: activeTrackId === 'op-05' ? `0 0 35px ${wildcardTrack.accent}20` : undefined,
-          } as React.CSSProperties}
-          className="relative w-full border-2 border-dashed border-[#5EEAD4]/60 hover:border-[#5EEAD4] bg-[#0c1310] hover:bg-[#0f1714] p-6 sm:p-7 rounded-2xl transition-all cursor-pointer group rivet-corner"
-        >
-          {/* Rotated WILDCARD Stamp Badge in Top Right */}
-          <div className="absolute right-4 sm:right-6 top-4 sm:top-5 transform rotate-6 group-hover:rotate-0 transition-transform">
-            <span
-              className="inline-block px-3 py-1 font-mono text-[10px] sm:text-xs font-black uppercase tracking-widest border-2 border-[#5EEAD4] text-[#5EEAD4] bg-[#5EEAD4]/10 shadow-[0_0_12px_rgba(94,234,212,0.3)]"
-            >
-              ★ WILDCARD SECTOR
-            </span>
-          </div>
-
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pr-16 sm:pr-32">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-[#5EEAD4]/10 border border-[#5EEAD4]/50 flex items-center justify-center text-[#5EEAD4] shrink-0 group-hover:scale-105 transition-transform">
-                <TrackGlyph type="wildcard" className="w-6 h-6" accent="#5EEAD4" />
-              </div>
-
-              <div>
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="text-xs font-mono font-bold tracking-widest uppercase text-[#5EEAD4]">
-                    OP-05 // WILDCARD
-                  </span>
-                  <span className="text-[10px] font-mono text-[#52635a] uppercase hidden sm:inline">
-                    · UNCONSTRAINED DOMAIN
-                  </span>
-                </div>
-
-                <h3 className="font-display font-bold text-xl sm:text-2xl text-[#e2e8e5] group-hover:text-white transition-colors">
-                  Open Innovation & Experimental Systems
-                </h3>
-
-                <p className="font-mono text-xs sm:text-sm text-[#8e9e96] max-w-3xl mt-1 leading-relaxed">
-                  Have an unclassifiable breakthrough? Cross-disciplinary fusion, quantum computing, or decentralized autonomous swarms are welcome under the Wildcard banner.
-                </p>
-              </div>
-            </div>
-
-            <div className="shrink-0 self-start md:self-auto">
-              <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-mono font-bold uppercase tracking-wider text-[#0b0d0c] bg-[#5EEAD4] hover:bg-[#7ff3e1] shadow-[0_0_15px_rgba(94,234,212,0.4)] transition-all">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>DEPLOY WILDCARD</span>
-              </span>
-            </div>
-          </div>
         </div>
       </div>
     </section>

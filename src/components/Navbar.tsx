@@ -43,7 +43,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenRegisterModal }) => {
         </a>
 
         {/* Center: Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-4 lg:gap-6 text-[11px] font-mono tracking-widest uppercase text-[#8e9e96]">
+        <nav className="hidden md:flex items-center gap-4 lg:gap-6 text-[11px] font-mono font-semibold tracking-widest uppercase text-[#c4cec8]">
           <a
             href="#mission"
             onClick={(e) => handleNavClick(e, '#mission')}

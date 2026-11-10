@@ -46,14 +46,14 @@ export const MissionSection: React.FC = () => {
         </div>
 
         {/* 2-Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-stretch mb-16">
           {/* Left Column (5 cols): Steel Plate Slide-in */}
-          <div className="lg:col-span-5 space-y-6">
+          <div className="lg:col-span-5 space-y-6 lg:flex lg:flex-col lg:justify-between lg:h-full lg:space-y-0">
             <div>
               <h2 className="font-display text-4xl sm:text-5xl font-extrabold text-[#e2e8e5] tracking-tight leading-tight">
                 {EVENT_CONFIG.eventName}:
               </h2>
-              <div className="font-display text-3xl sm:text-4xl font-black tracking-tight text-stroke-hollow uppercase">
+              <div className="font-display text-3xl sm:text-4xl font-black tracking-tight text-stroke-hollow mission-tagline uppercase">
                 {EVENT_CONFIG.eventTaglineMain}
               </div>
             </div>

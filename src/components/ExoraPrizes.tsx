@@ -37,25 +37,25 @@ export const ExoraPrizes: React.FC = () => {
         {/* 3-Card Grid Matching image_63b7ae22.png */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch mb-12">
           {/* Card 1: Technical Excellence (Left) */}
-          <div className="border border-[#1f2e26] bg-[#0c100e] hover:border-[#2f4a3a] p-6 sm:p-8 rounded-2xl rivet-corner shadow-xl flex flex-col justify-between transition-all group">
+          <div className="border border-[#1f2e26] bg-[#0c100e] hover:border-[#4ade80]/60 p-6 sm:p-8 rounded-2xl rivet-corner shadow-xl hover:shadow-[0_12px_35px_rgba(74,222,128,0.12)] hover:-translate-y-2 flex flex-col justify-between transition-all duration-300 ease-out group">
             <div>
               <div className="text-4xl sm:text-5xl font-mono font-extrabold text-[#4ade80] tabular-nums mb-4 tracking-tight">
-                ₹7,500
+                ₹9,000
               </div>
               <h3 className="font-display font-bold text-base sm:text-lg text-[#e2e8e5] mb-2 tracking-tight uppercase">
-                TECHNICAL EXCELLENCE
+                2ND PRIZE
               </h3>
               <p className="text-xs sm:text-sm font-mono text-[#8e9e96] leading-relaxed">
-                Best overall engineering, system resilience, and build quality.
+                Awarded to the first runner-up for an exceptional project and strong technical execution.
               </p>
             </div>
             <div className="pt-6 mt-6 border-t border-[#1b2b22] text-[11px] font-mono text-[#52635a]">
-              DIRECT CASH CITATION + RUNNER-UP COMMENDATION
+              FIRST RUNNER-UP
             </div>
           </div>
 
           {/* Card 2: The Grand Unveil (Center - Elevated with TOP REWARD badge) */}
-          <div className="border-2 border-[#c9a227] bg-[#101713] p-6 sm:p-8 rounded-2xl rivet-corner shadow-[0_0_35px_rgba(201,162,39,0.2)] flex flex-col justify-between transition-all relative">
+          <div className="border-2 border-[#c9a227] bg-[#101713] p-6 sm:p-8 rounded-2xl rivet-corner shadow-[0_0_35px_rgba(201,162,39,0.2)] hover:shadow-[0_15px_45px_rgba(201,162,39,0.35)] hover:-translate-y-2 flex flex-col justify-between transition-all duration-300 ease-out relative">
             <div>
               <div className="text-center mb-3">
                 <span className="inline-block text-[10px] font-mono font-bold tracking-[0.2em] text-[#c9a227] uppercase">
@@ -64,38 +64,38 @@ export const ExoraPrizes: React.FC = () => {
               </div>
 
               <div className="text-5xl sm:text-6xl font-mono font-black text-[#c9a227] tabular-nums mb-4 text-center tracking-tight">
-                ₹11,000
+                ₹15,000
               </div>
 
               <h3 className="font-display font-bold text-lg sm:text-xl text-[#e2e8e5] mb-2 tracking-tight uppercase text-center">
-                THE GRAND UNVEIL
+                1ST PRIZE
               </h3>
 
               <p className="text-xs sm:text-sm font-mono text-[#e2e8e5]/90 leading-relaxed text-center">
-                Most innovative and impactful project built during the 24-hour hackathon. Awarded to the sovereign champion squad.
+                Awarded to the winning team for outstanding innovation, technical excellence, and overall project execution.
               </p>
             </div>
 
             <div className="pt-6 mt-6 border-t border-[#2f4a3a] text-center text-xs font-mono text-[#c9a227] font-semibold">
-              THE SOVEREIGN TROPHY + STARTUP INCUBATION SEAT
+              EXORA 2.0 CHAMPIONS
             </div>
           </div>
 
           {/* Card 3: Future Tech Award (Right) */}
-          <div className="border border-[#1f2e26] bg-[#0c100e] hover:border-[#2f4a3a] p-6 sm:p-8 rounded-2xl rivet-corner shadow-xl flex flex-col justify-between transition-all group">
+          <div className="border border-[#1f2e26] bg-[#0c100e] hover:border-[#38bdf8]/60 p-6 sm:p-8 rounded-2xl rivet-corner shadow-xl hover:shadow-[0_12px_35px_rgba(56,189,248,0.12)] hover:-translate-y-2 flex flex-col justify-between transition-all duration-300 ease-out group">
             <div>
               <div className="text-4xl sm:text-5xl font-mono font-extrabold text-[#38bdf8] tabular-nums mb-4 tracking-tight">
-                ₹4,800
+                ₹6,000
               </div>
               <h3 className="font-display font-bold text-base sm:text-lg text-[#e2e8e5] mb-2 tracking-tight uppercase">
-                FUTURE TECH AWARD
+                3RD PRIZE
               </h3>
               <p className="text-xs sm:text-sm font-mono text-[#8e9e96] leading-relaxed">
-                Best use of emerging technologies & industrial design.
+                Awarded to the second runner-up for an innovative project and impressive problem-solving approach.
               </p>
             </div>
             <div className="pt-6 mt-6 border-t border-[#1b2b22] text-[11px] font-mono text-[#52635a]">
-              DIRECT CASH CITATION + DEVELOPER SUITE
+              SECOND RUNNER-UP
             </div>
           </div>
         </div>
@@ -106,10 +106,7 @@ export const ExoraPrizes: React.FC = () => {
             <Gift className="w-5 h-5 text-[#c9a227] shrink-0" />
             <div>
               <div className="font-mono text-xs font-bold text-[#e2e8e5] uppercase">
-                ADDITIONAL SPECIAL COMMENDATIONS & BOUNTIES
-              </div>
-              <div className="text-[11px] font-mono text-[#52635a]">
-                All-Women Squad Award (₹3,000) · Best Hardware Prototype (₹3,000) · Hard-Copy Framed Certificates for Top 40
+                CERTIFICATES FOR ALL PARTICIPANTS
               </div>
             </div>
           </div>

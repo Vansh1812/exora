@@ -126,7 +126,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegisterModal, onTriggerEaster
         {/* Hollow Outline Secondary Headline with Redaction Removal Bar */}
         <div className="relative inline-block mb-8">
           <div className="redaction-bar" style={{ animationDelay: '150ms' }} />
-          <div className="font-display text-4xl sm:text-6xl md:text-8xl font-black tracking-tight text-stroke-hollow uppercase select-none -mt-2 sm:-mt-5">
+          <div className="font-display text-4xl sm:text-6xl md:text-8xl font-black tracking-tight text-stroke-hollow uppercase select-none -mt-2 sm:-mt-5 drop-shadow-[0_0_12px_rgba(184,197,189,0.25)]">
             {EVENT_CONFIG.eventTaglineMain}
           </div>
         </div>

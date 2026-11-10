@@ -111,7 +111,7 @@ export const EVENT_CONFIG = {
   registrationClosesDate: "22 November 2026",
   pptDeadlineDate: "22 November 2026",
   phase1ResultsDate: "25 November 2026",
-  phase2Date: "26 November 2026",
+  phase2Date: "27 November 2026",
   grandFinaleDate: "28 November 2026",
   venue: "Thoughtworks Technologies, Gurugram",
   venueAddress: "Building 14, Tower B, DLF Cyber City, Sector 25, Gurugram, Haryana 122002",
@@ -135,7 +135,7 @@ export const EVENT_CONFIG = {
     { label: "REGISTRATION CLOSES", value: "22 November 2026", detail: "Portal lock at midnight" },
     { label: "PPT SUBMISSION DEADLINE", value: "22 November 2026", detail: "Mandatory for Phase 1 screening" },
     { label: "PHASE 1 RESULTS", value: "25 November 2026", detail: "Shortlisted teams announced" },
-    { label: "PHASE 2 (HACKATHON KICKOFF)", value: "26 November 2026", detail: "24-Hour Hackathon • Non-eliminatory" },
+    { label: "PHASE 2 (HACKATHON KICKOFF)", value: "27 November 2026", detail: "24-Hour Hackathon • Non-eliminatory" },
     { label: "GRAND FINALE (OFFLINE)", value: "28 November 2026", detail: "Thoughtworks Gurugram • Demos & Awards" }
   ],
 
@@ -167,7 +167,7 @@ export const EVENT_CONFIG = {
       phaseNumber: 2,
       title: "Phase 2 – 24-Hour Hackathon",
       subtitle: "Implementation & Non-Eliminatory Mentoring",
-      dateRange: "26 November 2026",
+      dateRange: "27 November 2026",
       mode: "Online",
       duration: "24 Hours",
       objective: "Enable shortlisted teams to develop and improve their proposed solutions.",
@@ -178,7 +178,7 @@ export const EVENT_CONFIG = {
         "NON-ELIMINATORY ROUND: No teams are eliminated during Phase 2.",
         "Every shortlisted team participating in the hackathon remains eligible to proceed to Phase 3, irrespective of its performance in this round."
       ],
-      keyMilestones: "26 NOV • 24H Sprint Begins | 26 NOV AFTER 4:00 PM • First Mentoring Round",
+      keyMilestones: "27 NOV • 24H Sprint Begins | 26 NOV AFTER 4:00 PM • First Mentoring Round",
       outcome: "Every participating team advances to the Grand Finale at Thoughtworks.",
       isEliminatory: false,
       statusBadge: "NON-ELIMINATORY ROUND"
@@ -212,7 +212,7 @@ export const EVENT_CONFIG = {
       id: "mentor-round-1",
       roundName: "FIRST MENTORING ROUND",
       phase: "Phase 2 (Online Hackathon)",
-      date: "26 November 2026",
+      date: "27 November 2026",
       mode: "Online",
       timing: "After 4:00 PM IST",
       purpose: "Technical guidance and architectural feedback during active project development.",
@@ -277,7 +277,7 @@ export const EVENT_CONFIG = {
     "PPT submission is mandatory for Phase 1 screening; deadline: 22 November 2026.",
     "Phase 1 shortlisted-team results will be declared on 25 November 2026.",
     "Only the top 40–50 shortlisted teams proceed from Phase 1 to Phase 2.",
-    "Phase 2 on 26 November (24-Hour Hackathon) is strictly non-eliminatory.",
+    "Phase 2 on 27 November (24-Hour Hackathon) is strictly non-eliminatory.",
     "The second mentoring round on 28 November (9:00 AM–12:00 PM) is the eliminatory round.",
     "Final winners are determined through the offline judging round at Thoughtworks Technologies, Gurugram on 28 November."
   ],
@@ -351,7 +351,7 @@ export const EVENT_CONFIG = {
     },
     {
       id: "time-4",
-      time: "26 NOV 2026",
+      time: "27 NOV 2026",
       marker: "PHASE 2",
       title: "24-HOUR HACKATHON SPRINTS",
       phase: "ROUND 1 MENTORING",
@@ -433,7 +433,7 @@ export const EVENT_CONFIG = {
     {
       id: "faq-1",
       question: "What is the three-phase structure of Exora 2.0?",
-      answer: "Exora 2.0 runs in three distinct stages: Phase 1 (Idea Submission & PPT Screening from 8–22 Nov), Phase 2 (24-Hour Hackathon commencing 26 Nov with mentoring), and Phase 3 (Grand Finale & judging on 28 Nov at Thoughtworks Technologies, Gurugram)."
+      answer: "Exora 2.0 runs in three distinct stages: Phase 1 (Idea Submission & PPT Screening from 8–22 Nov), Phase 2 (24-Hour Hackathon commencing 27 Nov with mentoring), and Phase 3 (Grand Finale & judging on 28 Nov at Thoughtworks Technologies, Gurugram)."
     },
     {
       id: "faq-2",
@@ -443,12 +443,12 @@ export const EVENT_CONFIG = {
     {
       id: "faq-3",
       question: "Can my team get eliminated during the 24-Hour Hackathon?",
-      answer: "No. The Phase 2 24-hour hackathon (26 November 2026) is strictly a non-eliminatory round! Every shortlisted team participating in the hackathon remains fully eligible to proceed to Phase 3, irrespective of its performance in Phase 2."
+      answer: "No. The Phase 2 24-hour hackathon (27 November 2026) is strictly a non-eliminatory round! Every shortlisted team participating in the hackathon remains fully eligible to proceed to Phase 3, irrespective of its performance in Phase 2."
     },
     {
       id: "faq-4",
       question: "What happens during the Mentoring Rounds?",
-      answer: "Round 1 takes place online on 26 November after 4:00 PM for active technical feedback. Round 2 takes place offline on 28 November morning at Thoughtworks Technologies, Gurugram for progress review and final project refinement before stage presentations."
+      answer: "Round 1 takes place online on 27 November after 4:00 PM for active technical feedback. Round 2 takes place offline on 28 November morning at Thoughtworks Technologies, Gurugram for progress review and final project refinement before stage presentations."
     },
     {
       id: "faq-5",
@@ -487,15 +487,15 @@ export const EVENT_CONFIG = {
     }
   ] as OrganizerContact[],
 
-  contactEmail: "gdg.exora@gmail.com",
+  contactEmail: "dsc@abes.ac.in",
   contactLocation: "Thoughtworks Technologies, Gurugram",
   footerQuote: "“Build. Innovate. Exora. Turn your ideas into impactful solutions!”",
 
   socialLinks: [
-    { label: "UNSTOP", url: "https://unstop.com/o/iPHpWUc?lb=bjos6kym&utm_medium=Share&utm_source=ubfxqrcy86969&utm_campaign=Online_coding_challenge" },
+    { label: "UNSTOP", url: "https://unstop.com/hackathons/exora-20-unveil-the-build-abes-engineering-college-1799143" },
     { label: "COMMUNITY", url: "https://developers.google.com/community/gdg" },
-    { label: "INSTAGRAM", url: "https://instagram.com/gdg_abesec" },
-    { label: "LINKEDIN", url: "https://linkedin.com/company/gdg-abesec" },
+    { label: "INSTAGRAM", url: "https://www.instagram.com/gdg.abesec" },
+    { label: "LINKEDIN", url: "https://www.linkedin.com/company/gdg-abesec/" },
     { label: "DISCORD", url: "https://discord.gg/gdgabesec" }
   ]
 };

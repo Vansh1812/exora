@@ -42,7 +42,7 @@ export const TrackTabs: React.FC<TrackTabsProps> = ({
     <div
       role="tablist"
       aria-label="Classified Operations Tracks"
-      className="flex flex-col gap-2.5 w-full"
+      className="flex flex-col gap-2.5 w-full h-full"
     >
       {tracks.map((track, idx) => {
         const isActive = track.id === activeTrackId;
@@ -65,7 +65,7 @@ export const TrackTabs: React.FC<TrackTabsProps> = ({
               boxShadow: isActive ? `0 0 25px ${track.accent}25, inset 0 0 15px ${track.accent}10` : undefined,
               borderColor: isActive ? track.accent : undefined,
             } as React.CSSProperties}
-            className={`group text-left p-4 rounded-xl border transition-all duration-200 relative overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-[var(--track-accent)] ${
+            className={`group flex-1 flex items-center text-left p-4 rounded-xl border transition-all duration-200 relative overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-[var(--track-accent)] ${
               isActive
                 ? 'bg-[#121915] border-[var(--track-accent)] text-[#e2e8e5] translate-x-1'
                 : 'bg-[#0c100e]/95 border-[#1f2e26] text-[#8e9e96] hover:border-[#2f4a3a] hover:bg-[#101612] hover:-translate-y-0.5'
