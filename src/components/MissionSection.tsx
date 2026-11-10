@@ -1,237 +1,255 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { EVENT_CONFIG } from '../eventConfig';
 import { useReveal } from '../hooks/useReveal';
-import { useReducedMotion } from '../hooks/useReducedMotion';
-import { Lightbulb, Cpu, Rocket, Users, Target } from 'lucide-react';
+import { Sparkles, Lightbulb, Cpu, Rocket, Users } from 'lucide-react';
 
+/**
+ * The Build Section ("About")
+ * Redesigned with unified Orbital Walk design language:
+ * - Simple, textual, and editorial (removed nested cluttered boxes)
+ * - Signature 28px radius glass pass card with centered diamond sparkle & bottom gradient glow
+ * - Asymmetric manifesto layout with pull-quote and inline stat metrics
+ * - 4 Pillars presented as an elegant textual list with celestial icons
+ * - Clean 6-parameter evaluation matrix with mono headers
+ */
 export const MissionSection: React.FC = () => {
-  const { ref, revealClass, isRevealed } = useReveal<HTMLDivElement>();
-  const isReduced = useReducedMotion();
-  const [shaking, setShaking] = useState(false);
-  const [stampsActive, setStampsActive] = useState(false);
-  const [hasGlitched, setHasGlitched] = useState(false);
-
-  useEffect(() => {
-    if (isRevealed && !stampsActive) {
-      setStampsActive(true);
-      setHasGlitched(true);
-
-      // Trigger micro shake (~150ms) on first stamp hit
-      if (!isReduced) {
-        setShaking(true);
-        const timer = setTimeout(() => setShaking(false), 150);
-        return () => clearTimeout(timer);
-      }
-    }
-  }, [isRevealed, stampsActive, isReduced]);
+  const { ref, revealClass } = useReveal<HTMLDivElement>();
 
   return (
     <section
       id="mission"
-      className={`py-24 px-4 sm:px-6 lg:px-8 border-b border-[#1f2e26] relative ${
-        shaking ? 'animate-screen-shake' : ''
-      }`}
+      className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden"
     >
       <div ref={ref} className={`max-w-6xl mx-auto ${revealClass}`}>
-        {/* Kicker with RGB Glitch on entry */}
-        <div
-          className={`mb-4 flex items-center gap-2 text-xs font-mono tracking-widest text-[#c9a227] uppercase ${
-            hasGlitched ? 'animate-glitch' : ''
-          }`}
-        >
-          <span className="text-[#52635a]">//</span>
-          <span>THE MISSION</span>
-          <span className="text-[#33473c]">·</span>
-          <span className="text-[#52635a]">CLASSIFIED DOSSIER BRIEFING</span>
-        </div>
-
-        {/* 2-Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-stretch mb-16">
-          {/* Left Column (5 cols): Steel Plate Slide-in */}
-          <div className="lg:col-span-5 space-y-6 lg:flex lg:flex-col lg:justify-between lg:h-full lg:space-y-0">
-            <div>
-              <h2 className="font-display text-4xl sm:text-5xl font-extrabold text-[#e2e8e5] tracking-tight leading-tight">
-                {EVENT_CONFIG.eventName}:
-              </h2>
-              <div className="font-display text-3xl sm:text-4xl font-black tracking-tight text-stroke-hollow mission-tagline uppercase">
-                {EVENT_CONFIG.eventTaglineMain}
-              </div>
-            </div>
-
-            <p className="font-mono text-sm sm:text-base text-[#8e9e96] leading-relaxed">
-              Exora 2.0 is a premier 24-hour hackathon hosted by{' '}
-              <strong className="text-[#e2e8e5] font-semibold">{EVENT_CONFIG.collegeName}</strong> at{' '}
-              <span className="text-[#c9a227] font-semibold">{EVENT_CONFIG.venue}</span> on{' '}
-              <span className="text-[#c9a227] font-semibold">{EVENT_CONFIG.dateDisplay}</span>. It is an innovation-driven crucible designed to bridge the chasm between academic theory and battle-tested production engineering.
-            </p>
-
-            <div className="pt-2 text-xs font-mono text-[#52635a] border-l-2 border-[#2f4a3a] pl-3">
-              "Others plead for technological scraps. Latveria commands sovereign architecture."
-            </div>
-
-            {/* Hairline Divider and Stamped Stats */}
-            <div className="pt-6 border-t border-[#1f2e26] grid grid-cols-2 sm:grid-cols-4 gap-4">
-              <div
-                className={`transition-all duration-300 ${
-                  stampsActive ? 'animate-stamp-hit' : 'opacity-0'
-                }`}
-                style={{ animationDelay: '0ms' }}
-              >
-                <div className="text-2xl sm:text-3xl font-mono font-bold text-[#c9a227] tabular-nums">
-                  1,500+
-                </div>
-                <div className="text-[10px] font-mono tracking-widest text-[#52635a] uppercase mt-1">
-                  DEVELOPERS
-                </div>
-              </div>
-
-              <div
-                className={`transition-all duration-300 ${
-                  stampsActive ? 'animate-stamp-hit' : 'opacity-0'
-                }`}
-                style={{ animationDelay: '100ms' }}
-              >
-                <div className="text-2xl sm:text-3xl font-mono font-bold text-[#4ade80] tabular-nums">
-                  28
-                </div>
-                <div className="text-[10px] font-mono tracking-widest text-[#52635a] uppercase mt-1">
-                  NOV 2026
-                </div>
-              </div>
-
-              <div
-                className={`transition-all duration-300 ${
-                  stampsActive ? 'animate-stamp-hit' : 'opacity-0'
-                }`}
-                style={{ animationDelay: '200ms' }}
-              >
-                <div className="text-2xl sm:text-3xl font-mono font-bold text-[#e2e8e5] tracking-wider">
-                  FREE
-                </div>
-                <div className="text-[10px] font-mono tracking-widest text-[#52635a] uppercase mt-1">
-                  ENTRY
-                </div>
-              </div>
-
-              <div
-                className={`transition-all duration-300 ${
-                  stampsActive ? 'animate-stamp-hit' : 'opacity-0'
-                }`}
-                style={{ animationDelay: '300ms' }}
-              >
-                <div className="text-2xl sm:text-3xl font-mono font-bold text-[#c9a227] tracking-wider">
-                  ₹25K+
-                </div>
-                <div className="text-[10px] font-mono tracking-widest text-[#52635a] uppercase mt-1">
-                  BOUNTY
-                </div>
-              </div>
-            </div>
+        {/* Section Header */}
+        <div className="mb-10 sm:mb-12 text-center md:text-left">
+          <div className="inline-flex items-center gap-2 mb-2 px-3.5 py-1 rounded-full bg-[#120a2e]/80 border border-[#8b5cf6]/40 text-xs font-display tracking-[0.2em] text-[#ffc58a] uppercase">
+            <Sparkles className="w-3.5 h-3.5 text-[#ffc58a]" />
+            <span>THE BUILD // ARCHITECTURAL CRUCIBLE</span>
           </div>
 
-          {/* Right Column (7 cols): Asymmetric Bento Grid of 4 Cards */}
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-5">
-            {/* Card 1: Innovation & Problem Solving */}
-            <div className="border border-[#1f2e26] bg-[#0c100e] hover:border-[#2f4a3a] p-6 rounded-2xl rivet-corner shadow-xl transition-all group flex flex-col justify-between">
-              <div>
-                <div className="w-10 h-10 rounded-xl bg-[#141e18] border border-[#2f4a3a] flex items-center justify-center text-[#c9a227] mb-5 group-hover:scale-105 transition-transform">
-                  <Lightbulb className="w-5 h-5 text-[#c9a227]" />
-                </div>
-                <h3 className="font-display font-bold text-base sm:text-lg text-[#e2e8e5] mb-2 tracking-tight">
-                  INNOVATION & PROBLEM SOLVING
-                </h3>
-                <p className="text-xs sm:text-sm font-mono text-[#8e9e96] leading-relaxed">
-                  Identify and tackle real-world challenges through unconventional thinking and novel approaches.
-                </p>
-              </div>
-            </div>
+          <h2 className="font-display text-4xl sm:text-6xl font-normal text-[#f4f0ff] tracking-[0.08em] uppercase">
+            THE BUILD
+          </h2>
 
-            {/* Card 2: Technical Excellence */}
-            <div className="border border-[#1f2e26] bg-[#0c100e] hover:border-[#2f4a3a] p-6 rounded-2xl rivet-corner shadow-xl transition-all group flex flex-col justify-between">
-              <div>
-                <div className="w-10 h-10 rounded-xl bg-[#141e18] border border-[#2f4a3a] flex items-center justify-center text-[#4ade80] mb-5 group-hover:scale-105 transition-transform">
-                  <Cpu className="w-5 h-5 text-[#4ade80]" />
-                </div>
-                <h3 className="font-display font-bold text-base sm:text-lg text-[#e2e8e5] mb-2 tracking-tight">
-                  TECHNICAL EXCELLENCE
-                </h3>
-                <p className="text-xs sm:text-sm font-mono text-[#8e9e96] leading-relaxed">
-                  Focus on hands-on project development and modern product thinking.
-                </p>
-              </div>
-            </div>
-
-            {/* Card 3: Startup Fundamentals */}
-            <div className="sm:col-span-2 border border-[#1f2e26] bg-[#0c100e] hover:border-[#2f4a3a] p-6 rounded-2xl rivet-corner shadow-xl transition-all group flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-[#141e18] border border-[#2f4a3a] flex items-center justify-center text-[#38bdf8] shrink-0 group-hover:scale-105 transition-transform">
-                  <Rocket className="w-5 h-5 text-[#38bdf8]" />
-                </div>
-                <div>
-                  <h3 className="font-display font-bold text-base sm:text-lg text-[#e2e8e5] mb-1 tracking-tight">
-                    STARTUP FUNDAMENTALS
-                  </h3>
-                  <p className="text-xs sm:text-sm font-mono text-[#8e9e96] leading-relaxed">
-                    Mastering idea validation, market fit, and scalable business models.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 4: Community Alliance */}
-            <div className="sm:col-span-2 border border-[#2f4a3a] bg-[#101713] p-6 rounded-2xl rivet-corner shadow-xl transition-all group">
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-[#1a2b22] border border-[#4ade80]/40 flex items-center justify-center text-[#c9a227] shrink-0 group-hover:scale-105 transition-transform">
-                  <Users className="w-5 h-5 text-[#c9a227]" />
-                </div>
-                <div>
-                  <h3 className="font-display font-bold text-base sm:text-lg text-[#e2e8e5] mb-1 tracking-tight">
-                    COMMUNITY ALLIANCE
-                  </h3>
-                  <p className="text-xs sm:text-sm font-mono text-[#8e9e96] leading-relaxed">
-                    Fostering interdisciplinary collaboration across Google Developer Groups, Thoughtworks mentors, and student builders.
-                  </p>
-                </div>
-              </div>
-            </div>
+          <div className="font-display text-base sm:text-lg text-[#6ee7f9] tracking-wider uppercase mt-1">
+            A Crucible Between Worlds
           </div>
         </div>
 
-        {/* Judging Parameters (Scoring Matrix) */}
-        <div className="border border-[#2f4a3a] bg-[#0c100e] p-6 sm:p-8 rounded-2xl rivet-corner">
-          <div className="flex items-center gap-2 mb-2">
-            <Target className="w-4 h-4 text-[#c9a227]" />
-            <span className="text-[10px] font-mono text-[#c9a227] uppercase tracking-widest">
-              SCORING MATRIX // EVALUATION STANDARDS
-            </span>
+        {/* =========================================================================
+            CARD 1: MAIN MANIFESTO & 4 PILLARS (Unified Signature Glass Pass Card)
+            ========================================================================= */}
+        <div className="glass-pass-card rounded-[28px] p-6 sm:p-10 relative overflow-hidden transition-all border border-white/14 mb-8">
+          {/* Centered Top Diamond Sparkle */}
+          <div
+            className="absolute -top-3.5 left-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-[#120a2e] border border-[#ffc58a]/60 flex items-center justify-center shadow-[0_0_12px_#ffc58a] z-20"
+            aria-hidden="true"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-[#ffc58a] animate-pulse" />
           </div>
-          <h3 className="font-display text-2xl sm:text-3xl font-bold text-[#e2e8e5] mb-2">
-            Final Judging Parameters
-          </h3>
-          <p className="text-xs font-mono text-[#8e9e96] mb-6">
-            The executive jury evaluates completed builds at Thoughtworks Technologies across 6 core criteria:
-          </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {EVENT_CONFIG.judgingCriteria.map((crit, idx) => (
-              <div
-                key={crit.id}
-                className="p-4 bg-[#080b09] border border-[#1b2b22] hover:border-[#2f4a3a] rounded-xl transition-all group"
-              >
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-[9px] font-mono text-[#52635a] uppercase tracking-widest">
-                    CRITERION 0{idx + 1} // {crit.category}
+          {/* Bottom Gradient Glow */}
+          <div
+            className="absolute bottom-0 left-0 right-0 h-[2px] opacity-75"
+            style={{
+              background: 'linear-gradient(90deg, transparent 0%, #8b5cf6 30%, #ffc58a 70%, #ff9a3c 100%)',
+            }}
+            aria-hidden="true"
+          />
+
+          {/* 2-Column Asymmetric Content Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start relative z-10">
+            {/* Left Column (5 cols): Manifesto Pull-Quote & Textual Stats */}
+            <div className="lg:col-span-5 space-y-6">
+              <blockquote className="p-5 rounded-2xl bg-[#05030f]/60 border-l-4 border-l-[#ffc58a] border border-white/10 shadow-[0_0_25px_rgba(255,197,138,0.12)]">
+                <p className="font-sans font-light text-base sm:text-lg text-[#f4f0ff] leading-relaxed italic">
+                  &ldquo;We don&apos;t build fragile prototypes that get abandoned by Monday. We walk the line between imagination and production engineering — turning raw concepts into resilient, enduring architectures.&rdquo;
+                </p>
+              </blockquote>
+
+              <p className="font-sans text-xs sm:text-sm text-[#a99fcf] leading-relaxed">
+                Exora 2.0 is an innovation-driven hackathon hosted by{' '}
+                <strong className="text-[#f4f0ff] font-medium">{EVENT_CONFIG.collegeName}</strong> with our grand finale hosted at{' '}
+                <span className="text-[#ffc58a] font-medium">{EVENT_CONFIG.venue}</span> on{' '}
+                <span className="text-[#ffc58a] font-medium">{EVENT_CONFIG.dateDisplay}</span>. Over 24 hours, student builders journey across three phases and five specialized orbits.
+              </p>
+
+              {/* Clean Inline Fact Metrics (Textual, No Clunky Boxes) */}
+              <div className="pt-4 border-t border-white/10 grid grid-cols-2 gap-4">
+                <div>
+                  <span className="text-[10px] font-mono tracking-widest text-[#a99fcf] uppercase block">
+                    SPRINT DURATION
                   </span>
-                  <span className="w-2 h-2 rounded-full bg-[#2f4a3a] group-hover:bg-[#c9a227] transition-colors" />
+                  <span className="text-xl sm:text-2xl font-display text-[#ffc58a] block mt-0.5">
+                    24 HOURS
+                  </span>
+                  <span className="text-xs font-sans text-[#a99fcf]/80">Continuous Build</span>
                 </div>
-                <h4 className="font-display font-bold text-base text-[#e2e8e5] mb-1">
-                  {crit.name}
-                </h4>
-                <p className="text-xs font-mono text-[#8e9e96]">
-                  {crit.descriptor}
-                </p>
+
+                <div>
+                  <span className="text-[10px] font-mono tracking-widest text-[#a99fcf] uppercase block">
+                    JOURNEY FORMAT
+                  </span>
+                  <span className="text-xl sm:text-2xl font-display text-[#6ee7f9] block mt-0.5">
+                    3 PHASES
+                  </span>
+                  <span className="text-xs font-sans text-[#a99fcf]/80">Online to Finale</span>
+                </div>
+
+                <div>
+                  <span className="text-[10px] font-mono tracking-widest text-[#a99fcf] uppercase block">
+                    VENUE ACCESS
+                  </span>
+                  <span className="text-xl sm:text-2xl font-display text-[#e04dff] block mt-0.5">
+                    THOUGHTWORKS
+                  </span>
+                  <span className="text-xs font-sans text-[#a99fcf]/80">HQ Gurugram</span>
+                </div>
+
+                <div>
+                  <span className="text-[10px] font-mono tracking-widest text-[#a99fcf] uppercase block">
+                    ENROLLMENT
+                  </span>
+                  <span className="text-xl sm:text-2xl font-display text-[#f4f0ff] block mt-0.5">
+                    100% FREE
+                  </span>
+                  <span className="text-xs font-sans text-[#a99fcf]/80">Merit Selection</span>
+                </div>
               </div>
-            ))}
+            </div>
+
+            {/* Right Column (7 cols): The 4 Pillars as a Clean Textual List */}
+            <div className="lg:col-span-7 space-y-4">
+              <div className="text-xs font-display tracking-[0.2em] text-[#ffc58a] uppercase flex items-center gap-2 mb-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#ffc58a]" />
+                <span>CORE FOUNDATIONAL PILLARS</span>
+              </div>
+
+              {/* Pillar 1 */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-[#05030f]/50 border border-white/5 hover:border-white/20 transition-all flex items-start gap-4">
+                <div className="w-10 h-10 rounded-xl bg-[#120a2e] border border-[#ffc58a]/40 flex items-center justify-center text-[#ffc58a] shrink-0 shadow-[0_0_12px_rgba(255,197,138,0.2)]">
+                  <Lightbulb className="w-5 h-5 text-[#ffc58a]" />
+                </div>
+                <div>
+                  <h3 className="font-display text-sm sm:text-base text-[#f4f0ff] uppercase tracking-wide mb-1">
+                    Planetary Innovation
+                  </h3>
+                  <p className="font-sans text-xs sm:text-sm text-[#a99fcf] leading-relaxed">
+                    Identify and solve fundamental challenges through unconventional architectures and novel multi-agent or hardware paradigms.
+                  </p>
+                </div>
+              </div>
+
+              {/* Pillar 2 */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-[#05030f]/50 border border-white/5 hover:border-white/20 transition-all flex items-start gap-4">
+                <div className="w-10 h-10 rounded-xl bg-[#120a2e] border border-[#6ee7f9]/40 flex items-center justify-center text-[#6ee7f9] shrink-0 shadow-[0_0_12px_rgba(110,231,249,0.2)]">
+                  <Cpu className="w-5 h-5 text-[#6ee7f9]" />
+                </div>
+                <div>
+                  <h3 className="font-display text-sm sm:text-base text-[#f4f0ff] uppercase tracking-wide mb-1">
+                    Production Mastery
+                  </h3>
+                  <p className="font-sans text-xs sm:text-sm text-[#a99fcf] leading-relaxed">
+                    Terminal open from minute one. Build real, deployable, resilient systems with test coverage and end-to-end telemetry.
+                  </p>
+                </div>
+              </div>
+
+              {/* Pillar 3 */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-[#05030f]/50 border border-white/5 hover:border-white/20 transition-all flex items-start gap-4">
+                <div className="w-10 h-10 rounded-xl bg-[#120a2e] border border-[#e04dff]/40 flex items-center justify-center text-[#e04dff] shrink-0 shadow-[0_0_12px_rgba(224,77,255,0.2)]">
+                  <Rocket className="w-5 h-5 text-[#e04dff]" />
+                </div>
+                <div>
+                  <h3 className="font-display text-sm sm:text-base text-[#f4f0ff] uppercase tracking-wide mb-1">
+                    Startup Trajectory & Venture Velocity
+                  </h3>
+                  <p className="font-sans text-xs sm:text-sm text-[#a99fcf] leading-relaxed">
+                    Validate product-market fit, refine unit economics, and transition straight from Sunday demo to incubator pipelines.
+                  </p>
+                </div>
+              </div>
+
+              {/* Pillar 4 */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-[#05030f]/50 border border-white/5 hover:border-white/20 transition-all flex items-start gap-4">
+                <div className="w-10 h-10 rounded-xl bg-[#120a2e] border border-[#8b5cf6]/40 flex items-center justify-center text-[#ffc58a] shrink-0 shadow-[0_0_12px_rgba(139,92,246,0.2)]">
+                  <Users className="w-5 h-5 text-[#ffc58a]" />
+                </div>
+                <div>
+                  <h3 className="font-display text-sm sm:text-base text-[#f4f0ff] uppercase tracking-wide mb-1">
+                    Cosmic Alliance & Industry Guidance
+                  </h3>
+                  <p className="font-sans text-xs sm:text-sm text-[#a99fcf] leading-relaxed">
+                    Collaborate directly with Thoughtworks engineering directors, Google Developer Groups leads, and seasoned founders who review code 1:1.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* =========================================================================
+            CARD 2: FINAL JUDGING PARAMETERS (Clean 6-Point Evaluation Matrix)
+            ========================================================================= */}
+        <div className="glass-pass-card rounded-[28px] p-6 sm:p-9 relative overflow-hidden transition-all border border-white/14">
+          {/* Centered Top Diamond Sparkle */}
+          <div
+            className="absolute -top-3.5 left-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-[#120a2e] border border-[#6ee7f9]/60 flex items-center justify-center shadow-[0_0_12px_#6ee7f9] z-20"
+            aria-hidden="true"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-[#6ee7f9] animate-pulse" />
+          </div>
+
+          {/* Bottom Gradient Glow */}
+          <div
+            className="absolute bottom-0 left-0 right-0 h-[2px] opacity-75"
+            style={{
+              background: 'linear-gradient(90deg, transparent 0%, #6ee7f9 40%, #8b5cf6 80%, transparent 100%)',
+            }}
+            aria-hidden="true"
+          />
+
+          <div className="relative z-10">
+            {/* Header */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pb-4 mb-6 border-b border-white/10">
+              <div>
+                <span className="text-[10px] font-mono tracking-[0.2em] uppercase text-[#6ee7f9] block mb-1">
+                  EVALUATION STANDARDS // 6 CORE DIMENSIONS
+                </span>
+                <h3 className="font-display text-2xl sm:text-3xl text-[#f4f0ff] uppercase tracking-wide">
+                  Final Judging Parameters
+                </h3>
+              </div>
+              <span className="text-xs font-sans text-[#a99fcf]">
+                Executive jury scoring @ Thoughtworks Gurugram
+              </span>
+            </div>
+
+            {/* Clean 3x2 Textual Parameter Matrix */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {EVENT_CONFIG.judgingCriteria.map((crit, idx) => (
+                <div
+                  key={crit.id}
+                  className="p-4 rounded-xl bg-[#05030f]/40 border border-white/5 hover:border-white/20 transition-colors"
+                >
+                  <div className="flex items-center justify-between gap-2 mb-1.5">
+                    <span className="text-[9px] font-mono tracking-widest text-[#ffc58a] uppercase">
+                      CRITERION 0{idx + 1}
+                    </span>
+                    <span className="text-[9px] font-display tracking-wider text-[#a99fcf] uppercase">
+                      {crit.category}
+                    </span>
+                  </div>
+                  <h4 className="font-display text-base font-normal text-[#f4f0ff] uppercase tracking-wide mb-1">
+                    {crit.name}
+                  </h4>
+                  <p className="text-xs font-sans text-[#a99fcf] leading-relaxed">
+                    {crit.descriptor}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

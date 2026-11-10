@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { EVENT_CONFIG } from '../eventConfig';
-import { GdgLogoMark } from './GdgLogoMark';
+import { OrbitalLogo } from './OrbitalLogo';
 
 interface NavbarProps {
-  onOpenRegisterModal: () => void;
+  onOpenRegisterModal?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenRegisterModal }) => {
+export const Navbar: React.FC<NavbarProps> = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Close mobile menu on Escape key
@@ -29,184 +29,155 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenRegisterModal }) => {
 
   return (
     <div className="sticky top-4 z-40 w-full px-4 sm:px-6 pointer-events-none">
-      {/* Floating Tactical Pill Header (Inspired by Exora & GDG Brand Identity) */}
-      <header className="pointer-events-auto max-w-4xl mx-auto rounded-full border border-[#2f4a3a]/70 bg-[#0a0f0d]/90 backdrop-blur-md px-4 sm:px-6 py-2 shadow-[0_12px_40px_rgba(0,0,0,0.85)] flex items-center justify-between gap-4 transition-all hover:border-[#c9a227]/40">
-        {/* Left: Official GDG < > Insignia */}
+      {/* Floating Rounded Pill Bar (Orbital Walk Aesthetic) */}
+      <header className="pointer-events-auto max-w-4xl mx-auto rounded-full border border-white/15 bg-[#120a2e]/85 backdrop-blur-md px-4 sm:px-6 py-2 shadow-[0_12px_40px_rgba(5,3,15,0.85)] flex items-center justify-between gap-4 transition-all hover:border-[#8b5cf6]/50">
+        {/* Left: Minimal Orbital Mark + EXORA Wordmark */}
         <a
           href="#hero"
           onClick={(e) => handleNavClick(e, '#hero')}
-          className="flex items-center group shrink-0 select-none py-0.5"
+          className="flex items-center group shrink-0 select-none py-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8b5cf6] rounded-full"
           aria-label={`${EVENT_CONFIG.eventName} Home`}
         >
-          {/* Authentic Google Developer Groups < > Brackets Logo */}
-          <GdgLogoMark className="w-10 h-7 sm:w-11 sm:h-8 transition-transform group-hover:scale-105" />
+          <OrbitalLogo className="w-7 h-7 sm:w-8 sm:h-8" />
         </a>
 
         {/* Center: Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-4 lg:gap-6 text-[11px] font-mono font-semibold tracking-widest uppercase text-[#c4cec8]">
+        <nav className="hidden md:flex items-center gap-5 lg:gap-7 text-[11px] font-display uppercase tracking-[0.16em] text-[#a99fcf]">
           <a
             href="#mission"
             onClick={(e) => handleNavClick(e, '#mission')}
-            className="hover:text-[#c9a227] transition-colors whitespace-nowrap"
+            className="hover:text-[#ffc58a] transition-colors whitespace-nowrap focus:outline-none focus-visible:text-[#ffc58a]"
           >
-            ABOUT
+            THE BUILD
           </a>
           <a
             href="#tracks"
             onClick={(e) => handleNavClick(e, '#tracks')}
-            className="hover:text-[#c9a227] transition-colors whitespace-nowrap"
+            className="hover:text-[#ffc58a] transition-colors whitespace-nowrap focus:outline-none focus-visible:text-[#ffc58a]"
           >
-            TRACKS
+            ORBITS
           </a>
           <a
             href="#timeline"
             onClick={(e) => handleNavClick(e, '#timeline')}
-            className="hover:text-[#c9a227] transition-colors whitespace-nowrap"
+            className="hover:text-[#ffc58a] transition-colors whitespace-nowrap focus:outline-none focus-visible:text-[#ffc58a]"
           >
-            TIMELINE
+            THE WALK
           </a>
           <a
             href="#impact"
             onClick={(e) => handleNavClick(e, '#impact')}
-            className="hover:text-[#c9a227] transition-colors whitespace-nowrap"
+            className="hover:text-[#ffc58a] transition-colors whitespace-nowrap focus:outline-none focus-visible:text-[#ffc58a]"
           >
             IMPACT
           </a>
           <a
             href="#sponsors"
             onClick={(e) => handleNavClick(e, '#sponsors')}
-            className="hover:text-[#c9a227] transition-colors whitespace-nowrap"
+            className="hover:text-[#ffc58a] transition-colors whitespace-nowrap focus:outline-none focus-visible:text-[#ffc58a]"
           >
-            SPONSORS
-          </a>
-          <a
-            href="#rewards"
-            onClick={(e) => handleNavClick(e, '#rewards')}
-            className="hover:text-[#c9a227] transition-colors whitespace-nowrap"
-          >
-            REWARDS
-          </a>
-          <a
-            href="#faq"
-            onClick={(e) => handleNavClick(e, '#faq')}
-            className="hover:text-[#c9a227] transition-colors whitespace-nowrap"
-          >
-            FAQ
+            PATRONS
           </a>
         </nav>
 
-        {/* Right: Desktop Register CTA Button + Mobile 3-Line Hamburger Icon */}
-        <div className="flex items-center gap-2.5 shrink-0">
-          {/* Desktop Gold CTA */}
-          <button
-            type="button"
-            onClick={onOpenRegisterModal}
-            className="hidden sm:inline-flex button-metallic-sheen px-5 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider text-[#0b0d0c] bg-[#c9a227] hover:bg-[#ddb435] shadow-[0_0_15px_rgba(201,162,39,0.35)] transition-all active:scale-95 whitespace-nowrap cursor-pointer"
+        {/* Right: Register Primary Pill Button + Mobile Hamburger Toggle */}
+        <div className="flex items-center gap-2.5">
+          {/* Primary Action Button (Desktop): Peach-to-Orange Gradient Pill */}
+          <a
+            href={EVENT_CONFIG.registrationUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden sm:inline-flex items-center justify-center px-5 py-2 min-h-[40px] rounded-full text-xs font-display font-medium tracking-[0.12em] uppercase text-[#05030f] bg-gradient-to-r from-[#ffc58a] to-[#ff9a3c] hover:from-[#ffcf9e] hover:to-[#ffa54f] shadow-[0_0_20px_rgba(255,154,60,0.35)] hover:shadow-[0_0_28px_rgba(255,154,60,0.55)] transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#e04dff] active:scale-95"
           >
-            REGISTER
-          </button>
+            <span>REGISTER</span>
+          </a>
 
-          {/* Elegant 3-Line Hamburger Menu Icon (Directly matches image_d1fdd409.png reference) */}
+          {/* Mobile Hamburger Button */}
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-1.5 text-white hover:text-[#c9a227] transition-colors focus:outline-none flex items-center justify-center cursor-pointer"
-            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+            className="md:hidden p-2 rounded-full text-[#a99fcf] hover:text-[#ffc58a] hover:bg-[#120a2e] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8b5cf6]"
+            aria-label="Toggle navigation menu"
             aria-expanded={mobileMenuOpen}
           >
             <svg
-              className="w-5 h-5 text-white transition-transform"
-              viewBox="0 0 24 24"
+              className="w-5 h-5"
               fill="none"
               stroke="currentColor"
-              strokeWidth="2.4"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              viewBox="0 0 24 24"
             >
               {mobileMenuOpen ? (
-                <>
-                  <line x1="18" y1="6" x2="6" y2="18" />
-                  <line x1="6" y1="6" x2="18" y2="18" />
-                </>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
               ) : (
-                <>
-                  <line x1="3" y1="6" x2="21" y2="6" />
-                  <line x1="3" y1="12" x2="21" y2="12" />
-                  <line x1="3" y1="18" x2="21" y2="18" />
-                </>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
               )}
             </svg>
           </button>
         </div>
       </header>
 
-      {/* Mobile Drawer Dropdown */}
+      {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="pointer-events-auto md:hidden mt-2 max-w-sm mx-auto rounded-2xl border border-[#2f4a3a] bg-[#0c120f]/95 backdrop-blur-md p-4 space-y-2 text-center font-mono text-xs uppercase tracking-wider text-[#8e9e96] shadow-[0_20px_50px_rgba(0,0,0,0.9)] rivet-corner">
-          <div className="pb-2 border-b border-[#1b2b22] text-[10px] text-[#c9a227] tracking-widest">
-            OPERATIONAL NAVIGATION
+        <div className="pointer-events-auto md:hidden mt-2 max-w-sm mx-auto rounded-3xl border border-white/15 bg-[#120a2e]/95 backdrop-blur-xl p-5 space-y-2 text-center font-display text-xs uppercase tracking-[0.16em] text-[#a99fcf] shadow-[0_20px_50px_rgba(5,3,15,0.9)]">
+          <div className="pb-2 border-b border-white/10 text-[10px] text-[#ffc58a] tracking-[0.2em]">
+            ORBITAL NAVIGATION
           </div>
           <a
             href="#mission"
             onClick={(e) => handleNavClick(e, '#mission')}
-            className="block py-2 rounded-lg hover:bg-[#142019] hover:text-[#c9a227] transition-colors"
+            className="block py-2.5 rounded-xl hover:bg-white/5 hover:text-[#ffc58a] transition-colors"
           >
-            ABOUT / THE MISSION
+            THE BUILD
           </a>
           <a
             href="#tracks"
             onClick={(e) => handleNavClick(e, '#tracks')}
-            className="block py-2 rounded-lg hover:bg-[#142019] hover:text-[#c9a227] transition-colors"
+            className="block py-2.5 rounded-xl hover:bg-white/5 hover:text-[#ffc58a] transition-colors"
           >
-            OPERATIONAL TRACKS
+            CHOOSE YOUR ORBIT
           </a>
           <a
             href="#timeline"
             onClick={(e) => handleNavClick(e, '#timeline')}
-            className="block py-2 rounded-lg hover:bg-[#142019] hover:text-[#c9a227] transition-colors"
+            className="block py-2.5 rounded-xl hover:bg-white/5 hover:text-[#ffc58a] transition-colors"
           >
-            EVENT TIMELINE
+            THE WALK TIMELINE
           </a>
           <a
             href="#impact"
             onClick={(e) => handleNavClick(e, '#impact')}
-            className="block py-2 rounded-lg hover:bg-[#142019] hover:text-[#c9a227] transition-colors"
+            className="block py-2.5 rounded-xl hover:bg-white/5 hover:text-[#ffc58a] transition-colors"
           >
-            DOOM VS OUR PLAN
+            BEFORE VS WITH EXORA
           </a>
           <a
             href="#sponsors"
             onClick={(e) => handleNavClick(e, '#sponsors')}
-            className="block py-2 rounded-lg hover:bg-[#142019] hover:text-[#c9a227] transition-colors"
+            className="block py-2.5 rounded-xl hover:bg-white/5 hover:text-[#ffc58a] transition-colors"
           >
-            SPONSORS & ALLIES
-          </a>
-          <a
-            href="#rewards"
-            onClick={(e) => handleNavClick(e, '#rewards')}
-            className="block py-2 rounded-lg hover:bg-[#142019] hover:text-[#c9a227] transition-colors"
-          >
-            PRIZE REWARDS
-          </a>
-          <a
-            href="#faq"
-            onClick={(e) => handleNavClick(e, '#faq')}
-            className="block py-2 rounded-lg hover:bg-[#142019] hover:text-[#c9a227] transition-colors"
-          >
-            FREQUENTLY ASKED
+            PATRONS & COLLABORATORS
           </a>
 
-          <div className="pt-2 border-t border-[#1b2b22]">
-            <button
-              type="button"
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenRegisterModal();
-              }}
-              className="w-full py-2.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider text-[#0b0d0c] bg-[#c9a227] hover:bg-[#ddb435] shadow-[0_0_15px_rgba(201,162,39,0.35)] transition-all cursor-pointer"
+          <div className="pt-3 border-t border-white/10">
+            <a
+              href={EVENT_CONFIG.registrationUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block w-full py-3 text-center rounded-full text-xs font-display font-medium uppercase tracking-[0.14em] text-[#05030f] bg-gradient-to-r from-[#ffc58a] to-[#ff9a3c] shadow-[0_0_20px_rgba(255,154,60,0.35)] transition-all cursor-pointer"
             >
               REGISTER FOR EXORA 2.0
-            </button>
+            </a>
           </div>
         </div>
       )}

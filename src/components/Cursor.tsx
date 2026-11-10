@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useReducedMotion } from '../hooks/useReducedMotion';
 
+/**
+ * Orbital Starlight Cursor
+ * Soft celestial point with an interactive violet-cyan orbit ring.
+ */
 export const Cursor: React.FC = () => {
   const isReduced = useReducedMotion();
   const [pos, setPos] = useState({ x: -100, y: -100 });
@@ -60,27 +64,24 @@ export const Cursor: React.FC = () => {
       aria-hidden="true"
     >
       <div
-        className={`-translate-x-1/2 -translate-y-1/2 flex items-center justify-center transition-all duration-150 ${
-          isHovered ? 'scale-125' : 'scale-100'
+        className={`-translate-x-1/2 -translate-y-1/2 flex items-center justify-center transition-all duration-200 ${
+          isHovered ? 'scale-130' : 'scale-100'
         }`}
       >
-        {/* Outer Circular Reticle */}
+        {/* Outer Orbital Ring */}
         <div
-          className={`rounded-full border transition-all duration-150 ${
+          className={`rounded-full border transition-all duration-200 ${
             isHovered
-              ? 'w-7 h-7 border-[#c9a227] bg-[#c9a227]/10'
-              : 'w-5 h-5 border-[#2f4a3a] bg-transparent'
+              ? 'w-7 h-7 border-[#e04dff] bg-[#e04dff]/15 shadow-[0_0_12px_rgba(224,77,255,0.4)]'
+              : 'w-5 h-5 border-[#8b5cf6]/40 bg-transparent'
           }`}
         />
-        {/* Center Point */}
+        {/* Core Cyan Sparkle Dot */}
         <div
-          className={`absolute w-1 h-1 rounded-full transition-colors ${
-            isHovered ? 'bg-[#c9a227]' : 'bg-[#4ade80]'
+          className={`absolute w-1.5 h-1.5 rounded-full transition-colors duration-200 ${
+            isHovered ? 'bg-[#ffc58a] shadow-[0_0_8px_#ffc58a]' : 'bg-[#6ee7f9] shadow-[0_0_6px_#6ee7f9]'
           }`}
         />
-        {/* Crosshair ticks */}
-        <div className="absolute w-3 h-[1px] bg-[#c9a227]/50" />
-        <div className="absolute h-3 w-[1px] bg-[#c9a227]/50" />
       </div>
     </div>
   );

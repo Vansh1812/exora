@@ -1,423 +1,464 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=JetBrains+Mono:wght@500;600;700&display=swap');
 @import "tailwindcss";
+
+@font-face {
+  font-family: 'Trench';
+  src: url('/fonts/trench100.ttf') format('truetype');
+  font-weight: 100 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 @layer base {
   :root {
-  --bg-base: #0b0d0c;
+    /* Orbital Walk Design Tokens */
+    --bg: #05030f;
+    --black: #000000;
+    --panel: #120a2e;
+    --violet: #8b5cf6;
+    --magenta: #e04dff;
+    --peach: #ffc58a;
+    --orange: #ff9a3c;
+    --coral: #ff6f91;
+    --blue: #5b7cff;
+    --walker: #6ee7f9;
+    --text: #f4f0ff;
+    --muted: #a99fcf;
 
-  --green-oxidized: #2f4a3a;
-  --green-oxidized-dark: #1b2e23;
-  --green-oxidized-bright: #3f634e;
-  --green-glow: rgba(47, 74, 58, 0.45);
+    /* Legacy semantic mappings for backwards compatibility during progressive stages */
+    --bg-base: #05030f;
+    --steel-heading: #f4f0ff;
+    --steel-text: #f4f0ff;
+    --steel-muted: #a99fcf;
+    --steel-border: rgba(139, 92, 246, 0.2);
+    --gold-accent: #ffc58a;
+    --gold-accent-hover: #ff9a3c;
+    --green-oxidized: #5b7cff;
 
-  --gold-accent: #c9a227;
-  --gold-accent-hover: #ddb435;
-  --gold-glow: rgba(201, 162, 39, 0.25);
-
-  /* Improved readable text colors */
-  --steel-text: #c4cec8;
-  --steel-heading: #f1f3f0;
-  --steel-muted: #9baaa1;
-
-  --steel-border: #1f2e26;
-  --steel-border-light: #2c4236;
-
-  /* Typography */
-  --font-body: 'Inter', Arial, sans-serif;
-  --font-display: 'Fraunces', Georgia, serif;
-  --font-mono: 'JetBrains Mono', monospace;
-}
+    /* Typography */
+    --font-display: 'Trench', 'Orbitron', system-ui, sans-serif;
+    --font-body: 'Manrope', system-ui, sans-serif;
+  }
 
   html {
-  font-family: var(--font-body);
-  background-color: var(--bg-base);
-  color: var(--steel-text);
-  scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-}
+    font-family: var(--font-body);
+    background-color: var(--bg);
+    color: var(--text);
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
 
+  /* Display Typography (Techno rounded wide headings) */
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
 
-  /* Display headings */
-h1, h2, h3, h4, .font-display {
-  font-family: var(--font-display);
-  font-weight: 700;
-  color: var(--steel-heading);
-  line-height: 1.2;
-}
+  body {
+    font-family: var(--font-body);
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
 
-/* Body text */
-body {
-  font-family: var(--font-body);
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.65;
-  color: var(--steel-text);
-}
-
-/* Paragraphs and lists */
-p, li {
-  line-height: 1.7;
-}
-
-/* Technical text */
-code, kbd, samp, pre, .font-mono {
-  font-family: var(--font-mono);
-}
+  p, li {
+    line-height: 1.65;
+  }
 
   code, kbd, samp, pre, .font-mono {
     font-family: 'JetBrains Mono', ui-monospace, monospace;
   }
-  /* Buttons and form elements */
-button,
-input,
-textarea,
-select {
-  font-family: var(--font-body);
+
+  /* Text selection with cosmic violet glow */
+  ::selection {
+    background-color: rgba(139, 92, 246, 0.4);
+    color: #ffffff;
+  }
 }
 
-button {
-  font-weight: 600;
-}
+/* =========================================================================
+   BACKGROUND SYSTEM: COSMIC GLOWS, DRIFTING GRADIENTS, STARS & GRAIN
+   ========================================================================= */
 
-/* Text selection */
-::selection {
-  background-color: rgba(201, 162, 39, 0.3);
-  color: #ffffff;
-}
-}
-
-/* Film Grain Texture Overlay */
-.film-grain {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 50;
-  opacity: 0.045;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-}
-
-/* Subtle scanlines / Dossier grid pattern with slow pulsing opacity */
-@keyframes dossierGridPulse {
-  0%, 100% {
-    opacity: 0.35;
+/* 1. Large Soft Radial-Gradient Glows drifting slowly (transform only, 40-60s loops) */
+@keyframes driftGlowBlue {
+  0% {
+    transform: translate(0, 0) scale(1);
   }
   50% {
-    opacity: 0.85;
+    transform: translate(6vw, 4vh) scale(1.1);
+  }
+  100% {
+    transform: translate(-3vw, 2vh) scale(0.95);
   }
 }
 
-.dossier-grid {
-  position: relative;
+@keyframes driftGlowViolet {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-5vw, -6vh) scale(1.15);
+  }
+  100% {
+    transform: translate(4vw, -2vh) scale(0.9);
+  }
 }
 
-.dossier-grid::before {
-  content: '';
+@keyframes driftGlowPeach {
+  0% {
+    transform: translate(0, 0) scale(0.95);
+  }
+  50% {
+    transform: translate(4vw, -5vh) scale(1.1);
+  }
+  100% {
+    transform: translate(-4vw, 3vh) scale(1.05);
+  }
+}
+
+.cosmic-glow-system {
   position: fixed;
   inset: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
   z-index: 0;
-  background-image: 
-    linear-gradient(to right, rgba(47, 74, 58, 0.08) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(47, 74, 58, 0.08) 1px, transparent 1px);
-  background-size: 32px 32px;
-  animation: dossierGridPulse 7s ease-in-out infinite;
+  overflow: hidden;
 }
 
-/* Rivet Corner Accents */
-.rivet-corner {
-  position: relative;
-}
-.rivet-corner::before,
-.rivet-corner::after {
-  content: '';
+.glow-orb-blue {
   position: absolute;
-  width: 5px;
-  height: 5px;
+  top: -15vh;
+  left: -10vw;
+  width: 70vw;
+  height: 70vw;
+  max-width: 900px;
+  max-height: 900px;
   border-radius: 50%;
-  background-color: #4a5c52;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.8), 0 0 0 1px #1a2720;
-}
-.rivet-corner::before {
-  top: 6px;
-  left: 6px;
-}
-.rivet-corner::after {
-  top: 6px;
-  right: 6px;
+  background: radial-gradient(circle, rgba(91, 124, 255, 0.22) 0%, rgba(91, 124, 255, 0.08) 45%, transparent 70%);
+  animation: driftGlowBlue 55s ease-in-out infinite alternate;
+  will-change: transform;
 }
 
-/* Rubber Stamp Styling */
-.dossier-stamp {
-  display: inline-block;
-  font-family: 'JetBrains Mono', monospace;
+.glow-orb-violet {
+  position: absolute;
+  top: 35vh;
+  right: -15vw;
+  width: 75vw;
+  height: 75vw;
+  max-width: 1000px;
+  max-height: 1000px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(224, 77, 255, 0.20) 0%, rgba(139, 92, 246, 0.10) 40%, transparent 70%);
+  animation: driftGlowViolet 60s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.glow-orb-peach {
+  position: absolute;
+  bottom: -20vh;
+  left: 20vw;
+  width: 65vw;
+  height: 65vw;
+  max-width: 850px;
+  max-height: 850px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 197, 138, 0.18) 0%, rgba(255, 154, 60, 0.08) 45%, transparent 70%);
+  animation: driftGlowPeach 48s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* 2. Star field dots with gentle twinkling */
+@keyframes starTwinkle {
+  0%, 100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+.cosmic-stars {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  background-image: 
+    radial-gradient(1px 1px at 20px 30px, #ffffff, transparent),
+    radial-gradient(1.5px 1.5px at 100px 150px, #ffc58a, transparent),
+    radial-gradient(1px 1px at 250px 80px, #6ee7f9, transparent),
+    radial-gradient(1.5px 1.5px at 320px 240px, #ffffff, transparent),
+    radial-gradient(1px 1px at 450px 380px, #e04dff, transparent),
+    radial-gradient(1px 1px at 600px 120px, #ffffff, transparent),
+    radial-gradient(2px 2px at 720px 290px, #ffc58a, transparent),
+    radial-gradient(1px 1px at 850px 420px, #6ee7f9, transparent),
+    radial-gradient(1px 1px at 980px 180px, #ffffff, transparent),
+    radial-gradient(1.5px 1.5px at 1120px 320px, #8b5cf6, transparent);
+  background-size: 1200px 600px;
+  opacity: 0.65;
+  animation: starTwinkle 8s ease-in-out infinite alternate;
+}
+
+/* 3. Tiled SVG Noise Grain (6-8% opacity) */
+.cosmic-grain {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.065;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* =========================================================================
+   SIGNATURE COMPONENTS: GLASS PASS CARD, BUTTONS, TAG PILL
+   ========================================================================= */
+
+/* Glass Pass Card: 24px radius, dark violet gradient fill, bottom violet-orange glow, top diamond sparkle */
+.glass-pass-card {
+  position: relative;
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(18, 10, 46, 0.85) 0%, rgba(10, 5, 26, 0.92) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 
+    0 20px 50px -10px rgba(5, 3, 15, 0.8),
+    0 10px 30px -5px rgba(139, 92, 246, 0.20),
+    0 20px 40px -12px rgba(255, 154, 60, 0.16);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-pass-card:hover {
+  box-shadow: 
+    0 25px 60px -10px rgba(5, 3, 15, 0.9),
+    0 15px 40px -5px rgba(139, 92, 246, 0.32),
+    0 25px 50px -10px rgba(255, 154, 60, 0.26);
+}
+
+/* Pulse animation for the top diamond sparkle */
+@keyframes sparklePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.85;
+    filter: drop-shadow(0 0 4px #ffc58a);
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+    filter: drop-shadow(0 0 10px #ff9a3c) drop-shadow(0 0 16px #e04dff);
+  }
+}
+
+.diamond-sparkle {
+  animation: sparklePulse 3s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* Primary Pill Button: peach-to-orange gradient, dark text, display font, soft orange glow */
+.btn-primary-orbital {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 48px;
+  padding: 0.75rem 1.75rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #ffc58a 0%, #ff9a3c 100%);
+  color: #05030f;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  padding: 0.25rem 0.65rem;
-  border-width: 1.5px;
-  border-style: solid;
-  border-radius: 2px;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
-  user-select: none;
+  box-shadow: 0 4px 20px rgba(255, 154, 60, 0.32);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
 }
 
-.stamp-classified {
-  color: #c9a227;
-  border-color: #c9a227;
-  background-color: rgba(201, 162, 39, 0.08);
+.btn-primary-orbital:hover {
+  transform: translateY(-1.5px);
+  background: linear-gradient(135deg, #ffcf9e 0%, #ffa54f 100%);
+  box-shadow: 0 8px 30px rgba(255, 154, 60, 0.52), 0 0 20px rgba(255, 197, 138, 0.4);
 }
 
-.stamp-declassified {
-  color: #4ade80;
-  border-color: #2f4a3a;
-  background-color: rgba(47, 74, 58, 0.18);
+.btn-primary-orbital:active {
+  transform: translateY(0);
 }
 
-.stamp-restricted {
-  color: #f87171;
-  border-color: rgba(248, 113, 113, 0.6);
-  background-color: rgba(248, 113, 113, 0.08);
+/* Secondary Pill Button: 1px lavender border, transparent, hover glow */
+.btn-secondary-orbital {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 48px;
+  padding: 0.75rem 1.75rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(169, 159, 207, 0.45);
+  background: rgba(18, 10, 46, 0.4);
+  color: #f4f0ff;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 0.8125rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
 }
 
-/* Duotone Green Photo Filter via CSS */
-.filter-duotone-green {
-  filter: grayscale(100%) sepia(100%) hue-rotate(90deg) saturate(2) brightness(0.75) contrast(1.2);
-  transition: filter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.filter-duotone-green:hover {
-  filter: grayscale(80%) sepia(80%) hue-rotate(85deg) saturate(1.8) brightness(0.85) contrast(1.15);
-}
-
-/* Hollow Text Stroke */
-.text-stroke-hollow {
-  -webkit-text-stroke: 2.2px rgba(196, 206, 200, 0.8);
-  color: transparent;
-  filter: drop-shadow(0 0 10px rgba(196, 206, 200, 0.16));
-}
-.text-stroke-gold {
-  -webkit-text-stroke: 1.5px rgba(201, 162, 39, 0.4);
-  color: transparent;
-}
-.mission-tagline {
-  -webkit-text-stroke: 1.5px rgba(196, 206, 200, 0.8);
-  color: transparent;
-  filter: drop-shadow(0 0 7px rgba(196, 206, 200, 0.15));
+.btn-secondary-orbital:hover {
+  border-color: #e04dff;
+  background: rgba(139, 92, 246, 0.15);
+  color: #ffffff;
+  box-shadow: 0 0 22px rgba(224, 77, 255, 0.3);
+  transform: translateY(-1.5px);
 }
 
-/* Sinuous SVG Timeline Curve Glow */
-.timeline-curve-glow {
-  filter: drop-shadow(0 0 8px rgba(47, 74, 58, 0.8)) drop-shadow(0 0 2px rgba(201, 162, 39, 0.5));
+/* Tag Pill: small dark pill with faint violet border and wide letter spacing */
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.95rem;
+  border-radius: 9999px;
+  background: rgba(18, 10, 46, 0.75);
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  color: #6ee7f9;
+  font-family: var(--font-display);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
-/* Diagonal Laser Crosshairs (Inspired by Exora Hero) */
-.laser-crosshair-green {
-  background: linear-gradient(90deg, transparent, rgba(47, 74, 58, 0.6) 50%, transparent);
-}
-.laser-crosshair-gold {
-  background: linear-gradient(90deg, transparent, rgba(201, 162, 39, 0.5) 50%, transparent);
-}
-
-/* Doom Clock Countdown Shadows & Bevels */
-.doom-clock-container {
-  box-shadow:
-    0 25px 60px -12px rgba(0, 0, 0, 0.95),
-    0 0 45px -5px rgba(47, 74, 58, 0.65),
-    0 0 25px -5px rgba(201, 162, 39, 0.3),
-    inset 0 1px 1px rgba(255, 255, 255, 0.15),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.9);
+/* Walker 2-frame step cycle */
+@keyframes walkerStep {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-1.5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
-.doom-digit-box {
-  box-shadow:
-    inset 0 2px 5px rgba(0, 0, 0, 0.9),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    0 6px 14px -2px rgba(0, 0, 0, 0.8),
-    0 0 10px rgba(47, 74, 58, 0.25);
+.animate-walker-step {
+  animation: walkerStep 0.45s ease-in-out infinite;
 }
 
-.doom-digit-box-active {
-  box-shadow:
-    inset 0 2px 5px rgba(0, 0, 0, 0.9),
-    inset 0 1px 0 rgba(201, 162, 39, 0.45),
-    0 6px 16px -2px rgba(0, 0, 0, 0.85),
-    0 0 22px rgba(201, 162, 39, 0.38);
+/* Moon orbit animation around right planet */
+@keyframes orbitMoon1 {
+  0% {
+    transform: rotate(0deg) translateX(36px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateX(36px) rotate(-360deg);
+  }
 }
 
-/* Marquee Animation for Collaborators */
-@keyframes marqueeScroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+@keyframes orbitMoon2 {
+  0% {
+    transform: rotate(180deg) translateX(46px) rotate(-180deg);
+  }
+  100% {
+    transform: rotate(540deg) translateX(46px) rotate(-540deg);
+  }
+}
+
+.orbit-moon-1 {
+  animation: orbitMoon1 14s linear infinite;
+  transform-origin: center center;
+}
+
+.orbit-moon-2 {
+  animation: orbitMoon2 22s linear infinite;
+  transform-origin: center center;
+}
+
+/* Wave Divider translateX loop */
+@keyframes waveTranslate {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-wave-drift {
+  animation: waveTranslate 35s linear infinite;
+  will-change: transform;
+}
+
+/* Horizontal Sliding Marquee */
+@keyframes marqueeSlide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .animate-marquee {
   display: flex;
   width: max-content;
-  animation: marqueeScroll 25s linear infinite;
+  animation: marqueeSlide 30s linear infinite;
+  will-change: transform;
 }
 
 .animate-marquee:hover {
   animation-play-state: paused;
 }
 
+/* Planet gentle float for selected track planet */
+@keyframes planetFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+.animate-planet-float {
+  animation: planetFloat 3.2s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Detail card crossfade on track switch */
+@keyframes cardCrossfade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-card-crossfade {
+  animation: cardCrossfade 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: opacity, transform;
+}
+
 /* =========================================================================
-   MOTION & INTERACTION LAYER (Global easing cubic-bezier(0.16, 1, 0.3, 1))
+   ACCESSIBILITY: PREFERS-REDUCED-MOTION
    ========================================================================= */
-
-/* 1. RGB-Split Glitch (Triggered once on section header entry, ~150ms) */
-@keyframes rgbGlitch {
-  0% { transform: translate(0, 0); text-shadow: none; }
-  20% { transform: translate(-3px, 1px); text-shadow: 2px 0 rgba(239, 68, 68, 0.8), -2px 0 rgba(34, 197, 94, 0.8); }
-  45% { transform: translate(2px, -2px); text-shadow: -2px 0 rgba(201, 162, 39, 0.8), 2px 0 rgba(59, 130, 246, 0.8); }
-  75% { transform: translate(-1px, 1px); text-shadow: 1px 0 rgba(239, 68, 68, 0.6), -1px 0 rgba(34, 197, 94, 0.6); }
-  100% { transform: translate(0, 0); text-shadow: none; }
-}
-
-.animate-glitch {
-  animation: rgbGlitch 150ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-/* 2. Redaction Removal Reveal (Black bars cover text, then slide away left-to-right) */
-@keyframes redactionBar {
-  0% { transform: scaleX(1); transform-origin: left; }
-  40% { transform: scaleX(1); transform-origin: right; }
-  100% { transform: scaleX(0); transform-origin: right; }
-}
-
-.redaction-bar {
-  position: absolute;
-  inset: 0;
-  background-color: #0b0d0c;
-  z-index: 20;
-  animation: redactionBar 750ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-/* 3. Screen / Panel Micro Shake (~150ms) */
-@keyframes microShake {
-  0%, 100% { transform: translate(0, 0); }
-  20% { transform: translate(-3px, 2px); }
-  40% { transform: translate(3px, -2px); }
-  60% { transform: translate(-2px, -1px); }
-  80% { transform: translate(2px, 1px); }
-}
-
-.animate-screen-shake {
-  animation: microShake 150ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-/* 4. Rubber Stamp Scale-Down Hit (1.15 to 1.0) */
-@keyframes stampHit {
-  0% { transform: scale(1.15); opacity: 0; }
-  60% { transform: scale(0.98); opacity: 0.95; }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-.animate-stamp-hit {
-  animation: stampHit 280ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-/* 5. Mask Eyes Stepped Flicker Ignite + Slow Glow Loop */
-@keyframes eyeIgnite {
-  0% { opacity: 0.2; }
-  15% { opacity: 0.85; }
-  30% { opacity: 0.3; }
-  45% { opacity: 0.95; }
-  60% { opacity: 0.45; }
-  75% { opacity: 1; }
-  100% { opacity: 1; }
-}
-
-@keyframes eyeGlowLoop {
-  0%, 100% { opacity: 0.9; }
-  50% { opacity: 1; }
-}
-
-.animate-eye-ignite {
-  animation: eyeIgnite 850ms steps(5) forwards, eyeGlowLoop 4s ease-in-out infinite 850ms;
-}
-
-/* 6. Clock Digit Tick Flip & Seconds Glow Pulse */
-@keyframes digitTick {
-  0% { transform: translateY(-3px); opacity: 0.65; }
-  100% { transform: translateY(0); opacity: 1; }
-}
-
-.animate-digit-tick {
-  animation: digitTick 160ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@keyframes secondsGlow {
-  0%, 100% { text-shadow: 0 0 4px rgba(201, 162, 39, 0.3); }
-  50% { text-shadow: 0 0 12px rgba(201, 162, 39, 0.9); }
-}
-
-.animate-seconds-pulse {
-  animation: secondsGlow 1s ease-in-out infinite;
-}
-
-/* 7. Metallic Sheen Sweep on Register Button Hover */
-@keyframes metallicSheen {
-  0% { transform: translateX(-150%) skewX(-25deg); opacity: 0; }
-  50% { opacity: 0.45; }
-  100% { transform: translateX(250%) skewX(-25deg); opacity: 0; }
-}
-
-.button-metallic-sheen {
-  position: relative;
-  overflow: hidden;
-}
-
-.button-metallic-sheen::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
-  transform: translateX(-150%) skewX(-25deg);
-  pointer-events: none;
-}
-
-.button-metallic-sheen:hover::after {
-  animation: metallicSheen 650ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* 8. Static Noise Flash Feedback (200ms) */
-@keyframes staticNoiseFlash {
-  0% { opacity: 0.85; }
-  40% { opacity: 0.4; }
-  80% { opacity: 0.7; }
-  100% { opacity: 0; pointer-events: none; }
-}
-
-.animate-static-flash {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' fill='%23c9a227' opacity='0.3'/%3E%3C/svg%3E");
-  animation: staticNoiseFlash 200ms ease-out forwards;
-}
-
-/* 8.1 Track Panel Accent Scanline Sweep */
-@keyframes trackScanSweep {
-  0% { transform: translateY(-100%); opacity: 0; }
-  15% { opacity: 0.85; }
-  85% { opacity: 0.85; }
-  100% { transform: translateY(500px); opacity: 0; }
-}
-
-.animate-scan-sweep {
-  animation: trackScanSweep 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-/* 9. Respect prefers-reduced-motion: disable all intense animations & show final state */
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {
     animation-duration: 0.01ms !important;
@@ -425,26 +466,17 @@ button {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  .animate-marquee,
-  .animate-glitch,
-  .redaction-bar,
-  .animate-screen-shake,
-  .animate-stamp-hit,
-  .animate-digit-tick,
-  .animate-seconds-pulse,
-  .button-metallic-sheen::after,
-  .animate-static-flash,
-  .animate-scan-sweep,
-  .dossier-grid::before {
+  .glow-orb-blue,
+  .glow-orb-violet,
+  .glow-orb-peach,
+  .cosmic-stars,
+  .diamond-sparkle,
+  .orbit-moon-1,
+  .orbit-moon-2,
+  .animate-wave-drift,
+  .animate-walker-step,
+  .animate-marquee {
     animation: none !important;
     transform: none !important;
-    opacity: 0.5 !important;
-  }
-  .animate-eye-ignite {
-    animation: none !important;
-    opacity: 1 !important;
-  }
-  .redaction-bar {
-    display: none !important;
   }
 }

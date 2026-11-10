@@ -1,7 +1,7 @@
 /**
  * EXORA 2.0: THREE PHASES. ONE INNOVATION JOURNEY.
  * Document Source: GDG Exora 2.0 Event Flow (Google Developer Groups)
- * Theme: Dr. Doom Latverian classified dossier aesthetic + Exora precision structure.
+ * Theme: Orbital Walk — Unveil : The Build ("The Walk Between Worlds").
  */
 
 export interface ScheduleItem {
@@ -187,20 +187,22 @@ export const EVENT_CONFIG = {
       id: "phase-3",
       phaseNumber: 3,
       title: "Phase 3 – Offline Hackathon: Grand Finale",
-      subtitle: "In-Person Crucible, Mentoring & Final Judging",
+      subtitle: "One-Day In-Person Crucible, Mentoring & Final Judging",
       dateRange: "28 November 2026",
       mode: "Offline",
-      duration: "09:00 AM – 05:00 PM IST",
-      objective: "Shortlisted teams come together in person to refine, demonstrate, and present their solutions to the judging panel.",
+      duration: "08:00 AM – 05:00 PM IST",
+      objective: "Shortlisted teams gather in person at Thoughtworks Technologies for an intense one-day crucible: check-in, eliminatory mentoring, sprint refinement, and final jury defense.",
       bulletPoints: [
-        "VENUE: Thoughtworks Technologies, Gurugram.",
-        "9:00 AM – 12:00 PM: Second Mentoring Round (ELIMINATORY). Assigned mentors review project progress, suggest improvements, and help teams refine solutions.",
-        "CRITICAL: The second mentoring round is the eliminatory round.",
-        "12:00 PM – 5:00 PM: Final Judging Round. Teams present their completed projects to the judging panel.",
-        "Judges evaluate solutions across 6 parameters and determine the final winners."
+        "VENUE: Thoughtworks Technologies, Gurugram (Hall booked 08:00 AM – 05:00 PM).",
+        "08:00 AM – 09:00 AM: Hall Doors Open & Squad Check-in (Check-in mandatory by 09:00 AM).",
+        "09:00 AM – 10:00 AM: First Mentoring Round (ELIMINATORY). Evaluative screening — only advancing teams proceed.",
+        "10:00 AM – 12:00 PM: Rapid prototype sprint and architectural refinement.",
+        "12:00 PM – 02:00 PM: Second Mentoring Round for advancing squads.",
+        "02:00 PM – 04:30 PM: Final Judging Round. Selected teams pitch live demos to executive jury.",
+        "05:00 PM: Official Results Announcement & Award Ceremony."
       ],
-      keyMilestones: "28 NOV 9:00 AM • Eliminatory Mentoring | 28 NOV 12:00 PM • Final Judging",
-      outcome: "Final winners determined through the offline judging round.",
+      keyMilestones: "28 NOV 9:00 AM • Eliminatory Mentoring | 28 NOV 12:00 PM • Second Mentoring | 28 NOV 5:00 PM • Results",
+      outcome: "Final winners determined through offline jury evaluation and announced by 5:00 PM.",
       isEliminatory: true,
       statusBadge: "OFFLINE CRUCIBLE & AWARDS"
     }
@@ -221,14 +223,14 @@ export const EVENT_CONFIG = {
     },
     {
       id: "mentor-round-2",
-      roundName: "SECOND MENTORING ROUND",
+      roundName: "OFFLINE MENTORING & JUDGING",
       phase: "Phase 3 (Grand Finale at Thoughtworks)",
       date: "28 November 2026",
       mode: "Offline",
-      timing: "9:00 AM – 12:00 PM IST",
-      purpose: "Progress review and final project refinement before formal jury presentations.",
+      timing: "08:00 AM – 05:00 PM IST",
+      purpose: "Round 1 Eliminatory Mentoring (9–10 AM), Round 2 Mentoring (12 PM), Final Judging & 5 PM Awards.",
       roundType: "ELIMINATORY",
-      highlight: "SECOND MENTORING ROUND = ELIMINATORY ROUND."
+      highlight: "Round 1 (9–10 AM) is eliminatory; final results announced at 5:00 PM."
     }
   ] as MentoringRound[],
 
@@ -278,8 +280,9 @@ export const EVENT_CONFIG = {
     "Phase 1 shortlisted-team results will be declared on 25 November 2026.",
     "Only the top 40–50 shortlisted teams proceed from Phase 1 to Phase 2.",
     "Phase 2 on 27 November (24-Hour Hackathon) is strictly non-eliminatory.",
-    "The second mentoring round on 28 November (9:00 AM–12:00 PM) is the eliminatory round.",
-    "Final winners are determined through the offline judging round at Thoughtworks Technologies, Gurugram on 28 November."
+    "Phase 3 on 28 November is an intense one-day offline crucible at Thoughtworks Gurugram (Hall open 8:00 AM–5:00 PM; check-in by 9:00 AM).",
+    "Round 1 mentoring on 28 November (9:00 AM–10:00 AM) is strictly eliminatory.",
+    "Advancing teams receive Round 2 mentoring at 12:00 PM, followed by final jury judging and results announced by 5:00 PM."
   ],
 
   // Section 1: The Mission — 4 Bento Pillars (image_866a6ac6.png)
@@ -362,25 +365,25 @@ export const EVENT_CONFIG = {
     },
     {
       id: "time-5",
-      time: "28 NOV // 09:00 AM",
+      time: "28 NOV // 08:00 AM – 10:00 AM",
       marker: "PHASE 3",
-      title: "OFFLINE MENTORING & REFINEMENT",
+      title: "CHECK-IN & ELIMINATORY ROUND",
       phase: "THOUGHTWORKS GURUGRAM",
-      description: "Shortlisted teams assemble offline at Thoughtworks Technologies, Gurugram. Assigned mentors review progress, suggest improvements, and guide final preparations.",
-      deliverable: "Mentor sign-off, feedback implementation & jury readiness",
+      description: "Hall opens at 8:00 AM; check-in by 9:00 AM. First mentoring round (9:00 AM – 10:00 AM) is eliminatory.",
+      deliverable: "Check-in verification & eliminatory mentoring evaluation",
       side: "left",
-      highlightBadge: "GRAND FINALE"
+      highlightBadge: "ROUND 1 ELIMINATORY"
     },
     {
       id: "time-6",
-      time: "28 NOV // 12:00 PM",
+      time: "28 NOV // 12:00 PM – 05:00 PM",
       marker: "FINALE",
-      title: "FINAL JUDGING ROUND & ASCENSION",
+      title: "MENTORING 2, JURY & 5 PM AWARDS",
       phase: "THE GRAND UNVEIL",
-      description: "12:00 PM – 5:00 PM: Teams present their completed projects to the executive judging panel across the 6 criteria to determine the final champions.",
+      description: "Round 2 mentoring at 12:00 PM, followed by final judging for selected teams. Grand results declared at 5:00 PM.",
       deliverable: "Live stage demonstration, jury scoring & bounty conferral",
       side: "right",
-      highlightBadge: "GRAND FINALE"
+      highlightBadge: "5 PM AWARDS"
     }
   ] as ScheduleItem[],
 

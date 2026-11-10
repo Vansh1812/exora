@@ -1,6 +1,6 @@
 /**
- * Classified Hackathon Operations (Tracks) Data
- * Strictly adheres to OP-01 through OP-05 code names and accents
+ * Orbital Tracks Data ("Choose Your Orbit")
+ * Strictly adheres to ORBIT 01 through ORBIT 05 code names, celestial glyphs, and exact hex tokens
  */
 
 export interface TrackData {
@@ -10,20 +10,21 @@ export interface TrackData {
   accent: string;
   glyph: 'vault' | 'pulse' | 'ledger' | 'ironworks' | 'wildcard';
   brief: string;
-  threatLevel: number; // 1 to 5
+  difficulty: number; // 1 to 5 stars
   problemStatements: string[];
   trackPerk?: string;
+  isWideStrip?: boolean;
 }
 
 export const TRACKS_DATA: TrackData[] = [
   {
-    id: "op-01",
-    codeName: "OP-01 // VAULT",
+    id: "orbit-01",
+    codeName: "ORBIT 01 // SENTINEL",
     title: "FinTech & Cybersecurity",
-    accent: "#7CFF6B",
+    accent: "#5b7cff",
     glyph: "vault",
-    brief: "Secure sovereign treasuries and annihilate fiscal infiltrators before they pierce the perimeter.",
-    threatLevel: 4,
+    brief: "Construct unbreachable fiscal fortresses and zero-trust verification engines that safeguard economic frontiers.",
+    difficulty: 4,
     problemStatements: [
       "Real-time UPI fraud pattern interception and synthetic identity detection engine.",
       "Zero-knowledge cryptographic credential verification for decentralized banking APIs.",
@@ -32,13 +33,13 @@ export const TRACKS_DATA: TrackData[] = [
     trackPerk: "Fast-Track Security Review & Dedicated Infrastructure Mentorship"
   },
   {
-    id: "op-02",
-    codeName: "OP-02 // PULSE",
+    id: "orbit-02",
+    codeName: "ORBIT 02 // VITALIS",
     title: "HealthTech & Social Impact",
-    accent: "#FF6B6B",
+    accent: "#ff6f91",
     glyph: "pulse",
-    brief: "Subjugate biological decay; construct resilient diagnostic shields for vulnerable mortal populations.",
-    threatLevel: 3,
+    brief: "Bridge the planetary healthcare divide with edge diagnostics and resilient community life-support systems.",
+    difficulty: 3,
     problemStatements: [
       "Edge-deployed triage diagnostics for remote primary healthcare clinics lacking connectivity.",
       "Privacy-preserving predictive outbreak telemetry using federated edge learning.",
@@ -47,13 +48,13 @@ export const TRACKS_DATA: TrackData[] = [
     trackPerk: "Clinical Validation Guidance & Social Impact Grant Evaluation"
   },
   {
-    id: "op-03",
-    codeName: "OP-03 // LEDGER",
+    id: "orbit-03",
+    codeName: "ORBIT 03 // CONSENSUS",
     title: "Blockchain & Web3",
-    accent: "#8B7CFF",
+    accent: "#8b5cf6",
     glyph: "ledger",
-    brief: "Dismantle fragile centralized monopolies with immutable, cryptographic sovereign consensus protocols.",
-    threatLevel: 5,
+    brief: "Forge immutable decentralized protocols and peer-to-peer coordination networks that return agency to builders.",
+    difficulty: 5,
     problemStatements: [
       "Transparent academic micro-credentialing and anti-tamper degree verification ledger.",
       "Decentralized disaster relief fund dispersion protocol with automated milestones.",
@@ -62,13 +63,13 @@ export const TRACKS_DATA: TrackData[] = [
     trackPerk: "Web3 Gas Grants & Smart Contract Security Audit Sponsorship"
   },
   {
-    id: "op-04",
-    codeName: "OP-04 // IRONWORKS",
+    id: "orbit-04",
+    codeName: "ORBIT 04 // KINETIC",
     title: "Physical AI, Robotics & IoT",
-    accent: "#FFB020",
+    accent: "#ffc58a",
     glyph: "ironworks",
-    brief: "Fuse silicon intellect with unyielding physical machinery to automate absolute operational dominance.",
-    threatLevel: 4,
+    brief: "Fuse spatial intelligence with embedded silicon and robotic hardware to automate the physical world.",
+    difficulty: 4,
     problemStatements: [
       "Autonomous indoor drone routing and hazard detection for automated warehouses.",
       "Edge computer vision sensory module for preventative industrial machinery fault alerts.",
@@ -77,18 +78,19 @@ export const TRACKS_DATA: TrackData[] = [
     trackPerk: "Hardware Testbench Access & Embedded Silicon Prototyping Kits"
   },
   {
-    id: "op-05",
-    codeName: "OP-05 // WILDCARD",
+    id: "orbit-05",
+    codeName: "ORBIT 05 // HORIZON",
     title: "Open Innovation",
-    accent: "#5EEAD4",
+    accent: "#6ee7f9",
     glyph: "wildcard",
-    brief: "Unleash untamed radical experiments that defy conventional taxonomy and shatter existing boundaries.",
-    threatLevel: 5,
+    brief: "Launch radical experiments that transcend established categories and chart uncharted technological territory.",
+    difficulty: 5,
     problemStatements: [
-      "Multi-agent collaborative code synthesis engine for legacy mainframe migrations.",
+      "Multi-agent collaborative code synthesis engine for legacy architecture migrations.",
       "Distributed peer-to-peer mesh communications grid during urban infrastructure blackouts.",
       "Adaptive tactile learning interfaces translating complex spatial science for visually impaired youth."
     ],
-    trackPerk: "Wildcard Jury Bounty & Venture Incubation Seed Consideration"
+    trackPerk: "Wildcard Jury Bounty & Venture Incubation Seed Consideration",
+    isWideStrip: true
   }
 ];

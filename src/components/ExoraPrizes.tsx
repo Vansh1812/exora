@@ -1,113 +1,170 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { EVENT_CONFIG } from '../eventConfig';
 import { useReveal } from '../hooks/useReveal';
-import { Gift } from 'lucide-react';
+import { Sparkles, Trophy, Award, Gift, ArrowRight } from 'lucide-react';
 
+/**
+ * Prize Rewards Section ("The Pool")
+ * Completely re-themed with Orbital Walk design technique:
+ * - Signature glass pass cards with centered top diamond sparkles and bottom gradient glows
+ * - Clean cosmic typography with peach/cyan/magenta highlights
+ * - Direct Unstop registration link with no intermediate form
+ */
 export const ExoraPrizes: React.FC = () => {
-  const { ref, revealClass, isRevealed } = useReveal<HTMLDivElement>();
-  const [hasGlitched, setHasGlitched] = useState(false);
-
-  useEffect(() => {
-    if (isRevealed) {
-      setHasGlitched(true);
-    }
-  }, [isRevealed]);
+  const { ref, revealClass } = useReveal<HTMLDivElement>();
 
   return (
-    <section id="rewards" className="py-24 px-4 sm:px-6 lg:px-8 border-b border-[#1f2e26] relative">
+    <section id="rewards" className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden">
       <div ref={ref} className={`max-w-6xl mx-auto ${revealClass}`}>
-        {/* Section Header with RGB Glitch */}
-        <div className="mb-12">
-          <div
-            className={`flex items-center gap-2 text-xs font-mono tracking-widest text-[#c9a227] uppercase mb-2 ${
-              hasGlitched ? 'animate-glitch' : ''
-            }`}
-          >
-            <span className="text-[#52635a]">//</span>
-            <span>THE POOL</span>
-            <span className="text-[#33473c]">·</span>
-            <span className="text-[#52635a]">₹25,000+ CUMULATIVE REWARDS</span>
+        {/* Section Header */}
+        <div className="mb-10 sm:mb-12 text-center md:text-left">
+          <div className="inline-flex items-center gap-2 mb-2 px-3.5 py-1 rounded-full bg-[#120a2e]/80 border border-[#8b5cf6]/40 text-xs font-display tracking-[0.2em] text-[#ffc58a] uppercase">
+            <Sparkles className="w-3.5 h-3.5 text-[#ffc58a]" />
+            <span>BOUNTIES // MERIT POOL · ₹25,000+ REWARDS</span>
           </div>
 
-          <h2 className="font-display text-4xl sm:text-5xl font-extrabold text-[#e2e8e5] tracking-tight uppercase">
-            PRIZE REWARDS
+          <h2 className="font-display text-4xl sm:text-6xl font-normal text-[#f4f0ff] tracking-[0.08em] uppercase">
+            PRIZE POOL
           </h2>
+
+          <p className="text-xs sm:text-sm font-sans text-[#a99fcf] max-w-2xl mt-2 leading-relaxed">
+            Direct cash bounties, certificates of merit, and startup acceleration awarded to top finalist squads.
+          </p>
         </div>
 
-        {/* 3-Card Grid Matching image_63b7ae22.png */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch mb-12">
-          {/* Card 1: Technical Excellence (Left) */}
-          <div className="border border-[#1f2e26] bg-[#0c100e] hover:border-[#4ade80]/60 p-6 sm:p-8 rounded-2xl rivet-corner shadow-xl hover:shadow-[0_12px_35px_rgba(74,222,128,0.12)] hover:-translate-y-2 flex flex-col justify-between transition-all duration-300 ease-out group">
-            <div>
-              <div className="text-4xl sm:text-5xl font-mono font-extrabold text-[#4ade80] tabular-nums mb-4 tracking-tight">
+        {/* 3-Card Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch mb-10">
+          {/* Card 1: 2nd Prize (First Runner-Up) */}
+          <div className="glass-pass-card rounded-[28px] p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden transition-all duration-300 border border-white/14 hover:-translate-y-1 group">
+            {/* Centered Top Diamond Sparkle */}
+            <div
+              className="absolute -top-3.5 left-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-[#120a2e] border border-[#6ee7f9]/60 flex items-center justify-center shadow-[0_0_12px_#6ee7f9] z-20"
+              aria-hidden="true"
+            >
+              <Award className="w-3.5 h-3.5 text-[#6ee7f9]" />
+            </div>
+
+            {/* Bottom Glow */}
+            <div
+              className="absolute bottom-0 left-0 right-0 h-[2px] opacity-75"
+              style={{
+                background: 'linear-gradient(90deg, transparent 0%, #6ee7f9 50%, #8b5cf6 100%)',
+              }}
+              aria-hidden="true"
+            />
+
+            <div className="relative z-10 pt-2">
+              <span className="text-[10px] font-mono tracking-widest text-[#6ee7f9] uppercase block mb-1">
+                FIRST RUNNER-UP //
+              </span>
+              <div className="text-4xl sm:text-5xl font-display font-medium text-[#6ee7f9] tabular-nums mb-3 tracking-wide">
                 ₹9,000
               </div>
-              <h3 className="font-display font-bold text-base sm:text-lg text-[#e2e8e5] mb-2 tracking-tight uppercase">
+              <h3 className="font-display text-lg sm:text-xl text-[#f4f0ff] uppercase tracking-wide mb-2">
                 2ND PRIZE
               </h3>
-              <p className="text-xs sm:text-sm font-mono text-[#8e9e96] leading-relaxed">
-                Awarded to the first runner-up for an exceptional project and strong technical execution.
+              <p className="text-xs sm:text-sm font-sans text-[#a99fcf] leading-relaxed">
+                Awarded to the first runner-up squad for exceptional project craftsmanship and strong technical execution.
               </p>
             </div>
-            <div className="pt-6 mt-6 border-t border-[#1b2b22] text-[11px] font-mono text-[#52635a]">
-              FIRST RUNNER-UP
+
+            <div className="pt-4 mt-6 border-t border-white/10 text-[11px] font-mono text-[#a99fcf]">
+              CASH BOUNTY + CITATION
             </div>
           </div>
 
-          {/* Card 2: The Grand Unveil (Center - Elevated with TOP REWARD badge) */}
-          <div className="border-2 border-[#c9a227] bg-[#101713] p-6 sm:p-8 rounded-2xl rivet-corner shadow-[0_0_35px_rgba(201,162,39,0.2)] hover:shadow-[0_15px_45px_rgba(201,162,39,0.35)] hover:-translate-y-2 flex flex-col justify-between transition-all duration-300 ease-out relative">
-            <div>
-              <div className="text-center mb-3">
-                <span className="inline-block text-[10px] font-mono font-bold tracking-[0.2em] text-[#c9a227] uppercase">
-                  TOP REWARD
-                </span>
-              </div>
+          {/* Card 2: 1st Prize (Champions - Elevated with Top Reward Badge) */}
+          <div className="glass-pass-card rounded-[28px] p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden transition-all duration-300 border-2 border-[#ffc58a]/60 shadow-[0_0_35px_rgba(255,197,138,0.18)] hover:shadow-[0_15px_45px_rgba(255,197,138,0.3)] hover:-translate-y-1.5 group">
+            {/* Centered Top Diamond Sparkle */}
+            <div
+              className="absolute -top-3.5 left-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-[#120a2e] border border-[#ffc58a] flex items-center justify-center shadow-[0_0_14px_#ffc58a] z-20"
+              aria-hidden="true"
+            >
+              <Trophy className="w-3.5 h-3.5 text-[#ffc58a] animate-pulse" />
+            </div>
 
-              <div className="text-5xl sm:text-6xl font-mono font-black text-[#c9a227] tabular-nums mb-4 text-center tracking-tight">
+            {/* Bottom Glow */}
+            <div
+              className="absolute bottom-0 left-0 right-0 h-[2px] opacity-90"
+              style={{
+                background: 'linear-gradient(90deg, transparent 0%, #ffc58a 50%, #ff9a3c 100%)',
+              }}
+              aria-hidden="true"
+            />
+
+            <div className="relative z-10 pt-2 text-center">
+              <span className="inline-block px-3 py-1 rounded-full bg-[#ffc58a]/15 border border-[#ffc58a]/40 text-[10px] font-display uppercase tracking-widest text-[#ffc58a] mb-2">
+                TOP REWARD // GRAND CHAMPIONS
+              </span>
+              <div className="text-5xl sm:text-6xl font-display font-medium text-[#ffc58a] tabular-nums mb-3 tracking-wide">
                 ₹15,000
               </div>
-
-              <h3 className="font-display font-bold text-lg sm:text-xl text-[#e2e8e5] mb-2 tracking-tight uppercase text-center">
+              <h3 className="font-display text-xl sm:text-2xl text-[#f4f0ff] uppercase tracking-wide mb-2">
                 1ST PRIZE
               </h3>
-
-              <p className="text-xs sm:text-sm font-mono text-[#e2e8e5]/90 leading-relaxed text-center">
-                Awarded to the winning team for outstanding innovation, technical excellence, and overall project execution.
+              <p className="text-xs sm:text-sm font-sans text-[#f4f0ff]/90 leading-relaxed">
+                Awarded to the grand winning squad for outstanding innovation, systems engineering, and live jury pitch defense.
               </p>
             </div>
 
-            <div className="pt-6 mt-6 border-t border-[#2f4a3a] text-center text-xs font-mono text-[#c9a227] font-semibold">
-              EXORA 2.0 CHAMPIONS
+            <div className="pt-4 mt-6 border-t border-white/10 text-center text-xs font-mono text-[#ffc58a] font-medium">
+              EXORA 2.0 OVERALL CHAMPIONS
             </div>
           </div>
 
-          {/* Card 3: Future Tech Award (Right) */}
-          <div className="border border-[#1f2e26] bg-[#0c100e] hover:border-[#38bdf8]/60 p-6 sm:p-8 rounded-2xl rivet-corner shadow-xl hover:shadow-[0_12px_35px_rgba(56,189,248,0.12)] hover:-translate-y-2 flex flex-col justify-between transition-all duration-300 ease-out group">
-            <div>
-              <div className="text-4xl sm:text-5xl font-mono font-extrabold text-[#38bdf8] tabular-nums mb-4 tracking-tight">
+          {/* Card 3: 3rd Prize (Second Runner-Up) */}
+          <div className="glass-pass-card rounded-[28px] p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden transition-all duration-300 border border-white/14 hover:-translate-y-1 group">
+            {/* Centered Top Diamond Sparkle */}
+            <div
+              className="absolute -top-3.5 left-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-[#120a2e] border border-[#e04dff]/60 flex items-center justify-center shadow-[0_0_12px_#e04dff] z-20"
+              aria-hidden="true"
+            >
+              <Award className="w-3.5 h-3.5 text-[#e04dff]" />
+            </div>
+
+            {/* Bottom Glow */}
+            <div
+              className="absolute bottom-0 left-0 right-0 h-[2px] opacity-75"
+              style={{
+                background: 'linear-gradient(90deg, transparent 0%, #e04dff 50%, #ff6f91 100%)',
+              }}
+              aria-hidden="true"
+            />
+
+            <div className="relative z-10 pt-2">
+              <span className="text-[10px] font-mono tracking-widest text-[#e04dff] uppercase block mb-1">
+                SECOND RUNNER-UP //
+              </span>
+              <div className="text-4xl sm:text-5xl font-display font-medium text-[#e04dff] tabular-nums mb-3 tracking-wide">
                 ₹6,000
               </div>
-              <h3 className="font-display font-bold text-base sm:text-lg text-[#e2e8e5] mb-2 tracking-tight uppercase">
+              <h3 className="font-display text-lg sm:text-xl text-[#f4f0ff] uppercase tracking-wide mb-2">
                 3RD PRIZE
               </h3>
-              <p className="text-xs sm:text-sm font-mono text-[#8e9e96] leading-relaxed">
-                Awarded to the second runner-up for an innovative project and impressive problem-solving approach.
+              <p className="text-xs sm:text-sm font-sans text-[#a99fcf] leading-relaxed">
+                Awarded to the second runner-up squad for an innovative solution and impressive problem-solving approach.
               </p>
             </div>
-            <div className="pt-6 mt-6 border-t border-[#1b2b22] text-[11px] font-mono text-[#52635a]">
-              SECOND RUNNER-UP
+
+            <div className="pt-4 mt-6 border-t border-white/10 text-[11px] font-mono text-[#a99fcf]">
+              CASH BOUNTY + CITATION
             </div>
           </div>
         </div>
 
-        {/* Special Bounties Strip */}
-        <div className="border border-[#1f2e26] bg-[#090d0b] p-6 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-3">
-            <Gift className="w-5 h-5 text-[#c9a227] shrink-0" />
+        {/* Special Bounties & Certificates Strip */}
+        <div className="glass-pass-card rounded-[28px] p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden border border-white/14">
+          <div className="flex items-center gap-4">
+            <div className="w-11 h-11 rounded-2xl bg-[#120a2e] border border-[#ffc58a]/40 flex items-center justify-center text-[#ffc58a] shrink-0 shadow-[0_0_15px_rgba(255,197,138,0.2)]">
+              <Gift className="w-5 h-5 text-[#ffc58a]" />
+            </div>
             <div>
-              <div className="font-mono text-xs font-bold text-[#e2e8e5] uppercase">
-                CERTIFICATES FOR ALL PARTICIPANTS
+              <div className="font-display text-base text-[#f4f0ff] uppercase tracking-wide">
+                Certificates of Merit & Participation
               </div>
+              <p className="text-xs sm:text-sm font-sans text-[#a99fcf] mt-0.5">
+                Every shortlisted participant receives verified credentials from Google Developer Groups & Thoughtworks.
+              </p>
             </div>
           </div>
 
@@ -115,9 +172,10 @@ export const ExoraPrizes: React.FC = () => {
             href={EVENT_CONFIG.registrationUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="button-metallic-sheen px-6 py-2.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider text-[#0b0d0c] bg-[#c9a227] hover:bg-[#ddb435] transition-all whitespace-nowrap"
+            className="btn-primary-orbital shrink-0"
           >
-            Claim Your Contention
+            <span>Reserve Your Orbit</span>
+            <ArrowRight className="w-4 h-4 ml-1" />
           </a>
         </div>
       </div>

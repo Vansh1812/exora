@@ -1,189 +1,657 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import { TRACKS_DATA, TrackData } from '../data/tracks';
-import { TrackTabs } from './TrackTabs';
-import { TrackPanel } from './TrackPanel';
-import { TrackGlyph } from './glyphs/TrackGlyphs';
 import { useReveal } from '../hooks/useReveal';
-import { ChevronDown, Sparkles } from 'lucide-react';
+import { useReducedMotion } from '../hooks/useReducedMotion';
+import { Sparkles } from 'lucide-react';
 
+/**
+ * Concise, plain-language mission statements (max 14 words)
+ * and 3 short ideas to build (max 10 words each) for each orbit
+ */
+const TRACK_COPY: Record<string, { mission: string; ideas: string[]; codenameOnly: string; shortTitle: string }> = {
+  'orbit-01': {
+    codenameOnly: 'SENTINEL',
+    shortTitle: 'FinTech',
+    mission: 'Build unbreachable financial defenses, fraud detection engines, and privacy-preserving verification systems.',
+    ideas: [
+      'Real-time UPI fraud interception and synthetic identity defense',
+      'Zero-knowledge cryptographic credentials for decentralized banking APIs',
+      'Privacy-preserving anomaly telemetry for cross-border student transactions',
+    ],
+  },
+  'orbit-02': {
+    codenameOnly: 'VITALIS',
+    shortTitle: 'HealthTech',
+    mission: 'Bridge healthcare divides using edge diagnostics, predictive telemetry, and community life-support tools.',
+    ideas: [
+      'Offline edge diagnostics for remote community healthcare clinics',
+      'Federated edge learning for predictive disease outbreak telemetry',
+      'Multi-lingual mental wellness and cognitive support assistant',
+    ],
+  },
+  'orbit-03': {
+    codenameOnly: 'CONSENSUS',
+    shortTitle: 'Blockchain',
+    mission: 'Forge decentralized protocols, transparent credential ledgers, and tamper-proof peer-to-peer networks.',
+    ideas: [
+      'Anti-tamper academic micro-credential and degree verification ledger',
+      'Automated decentralized disaster relief disbursement protocol',
+      'Zero-gas micro-patronage network for open-source hardware creators',
+    ],
+  },
+  'orbit-04': {
+    codenameOnly: 'KINETIC',
+    shortTitle: 'Robotics',
+    mission: 'Automate physical systems by combining spatial robotics, IoT sensors, and embedded edge silicon.',
+    ideas: [
+      'Autonomous indoor drone routing for automated logistics warehouses',
+      'Edge computer vision sensory module for predictive machine alerts',
+      'Smart agricultural micro-irrigation controller on low-power LoRaWAN',
+    ],
+  },
+  'orbit-05': {
+    codenameOnly: 'HORIZON',
+    shortTitle: 'Wildcard',
+    mission: 'Build radical wildcard experiments that break boundaries and pioneer uncharted technological frontiers.',
+    ideas: [
+      'Multi-agent collaborative code synthesis for legacy system migrations',
+      'Peer-to-peer mesh communications grid for emergency power blackouts',
+      'Tactile spatial interfaces translating complex STEM for youth',
+    ],
+  },
+};
+
+/**
+ * Custom SVG Planet Spheres with distinctive features:
+ * - Sentinel: Luminous angled cyber ring with glowing node
+ * - Vitalis: Bio-craters and glowing life-pulse aura
+ * - Consensus: Tilted dual intersecting planetary rings
+ * - Kinetic: Horizontal atmospheric bands (gas giant)
+ * - Horizon: 4-point radiant star core and prismatic corona
+ */
+const PlanetSphere: React.FC<{
+  trackId: string;
+  accent: string;
+  isSelected?: boolean;
+  isReduced?: boolean;
+  className?: string;
+}> = React.memo(({ trackId, accent, isSelected = false, isReduced = false, className = '' }) => {
+  return (
+    <svg
+      viewBox="0 0 100 100"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`overflow-visible select-none ${className}`}
+      aria-hidden="true"
+    >
+      <defs>
+        {/* Planet 1: Sentinel (FinTech & Cybersecurity) */}
+        <radialGradient id="grad-orbit-01" cx="35%" cy="30%" r="70%">
+          <stop offset="0%" stopColor="#dbeafe" />
+          <stop offset="35%" stopColor="#5b7cff" />
+          <stop offset="75%" stopColor="#2563eb" />
+          <stop offset="100%" stopColor="#0f172a" />
+        </radialGradient>
+
+        {/* Planet 2: Vitalis (HealthTech & Social Impact) */}
+        <radialGradient id="grad-orbit-02" cx="35%" cy="30%" r="70%">
+          <stop offset="0%" stopColor="#ffe4e6" />
+          <stop offset="30%" stopColor="#ff6f91" />
+          <stop offset="70%" stopColor="#e11d48" />
+          <stop offset="100%" stopColor="#4c0519" />
+        </radialGradient>
+
+        {/* Planet 3: Consensus (Blockchain & Web3) */}
+        <radialGradient id="grad-orbit-03" cx="35%" cy="30%" r="70%">
+          <stop offset="0%" stopColor="#f3e8ff" />
+          <stop offset="35%" stopColor="#c084fc" />
+          <stop offset="75%" stopColor="#8b5cf6" />
+          <stop offset="100%" stopColor="#2e1065" />
+        </radialGradient>
+
+        {/* Planet 4: Kinetic (Physical AI & IoT) */}
+        <radialGradient id="grad-orbit-04" cx="35%" cy="30%" r="70%">
+          <stop offset="0%" stopColor="#fffbeb" />
+          <stop offset="30%" stopColor="#ffc58a" />
+          <stop offset="70%" stopColor="#ea580c" />
+          <stop offset="100%" stopColor="#7c2d12" />
+        </radialGradient>
+
+        {/* Planet 5: Horizon (Open Innovation) */}
+        <radialGradient id="grad-orbit-05" cx="35%" cy="30%" r="70%">
+          <stop offset="0%" stopColor="#ecfeff" />
+          <stop offset="30%" stopColor="#6ee7f9" />
+          <stop offset="70%" stopColor="#0891b2" />
+          <stop offset="100%" stopColor="#083344" />
+        </radialGradient>
+
+        {/* Clipping path for Kinetic bands */}
+        <clipPath id="kineticSphereClip">
+          <circle cx="50" cy="50" r="32" />
+        </clipPath>
+      </defs>
+
+      {/* Thin Outer Orbit Ring for Selected Planet */}
+      {isSelected && (
+        <ellipse
+          cx="50"
+          cy="50"
+          rx="47"
+          ry="19"
+          stroke={accent}
+          strokeWidth="1.2"
+          strokeDasharray="3 3"
+          opacity="0.85"
+        />
+      )}
+
+      {/* Tiny Orbiting Moon for Selected Planet */}
+      {isSelected && (
+        <g
+          style={{ transformOrigin: '50px 50px' }}
+          className={isReduced ? '' : 'orbit-moon-1'}
+        >
+          <circle cx="50" cy="12" r="3" fill="#ffffff" filter="drop-shadow(0 0 4px #ffffff)" />
+        </g>
+      )}
+
+      {/* Corona Atmosphere Halo */}
+      <circle
+        cx="50"
+        cy="50"
+        r="36"
+        fill={accent}
+        opacity={isSelected ? 0.28 : 0.12}
+      />
+
+      {/* Planet Sphere Body */}
+      <circle
+        cx="50"
+        cy="50"
+        r="32"
+        fill={`url(#grad-${trackId})`}
+      />
+
+      {/* Specular Rim Light */}
+      <circle
+        cx="49"
+        cy="48"
+        r="30"
+        stroke="#ffffff"
+        strokeWidth="0.8"
+        opacity="0.45"
+      />
+
+      {/* -------------------------------------------------------------
+          DISTINCTIVE PLANETARY FEATURES PER TRACK
+          ------------------------------------------------------------- */}
+      {/* 1. Sentinel: Digital Cyber Ring with Glowing Node */}
+      {trackId === 'orbit-01' && (
+        <g>
+          <ellipse
+            cx="50"
+            cy="50"
+            rx="43"
+            ry="14"
+            stroke="#5b7cff"
+            strokeWidth="1.8"
+            strokeDasharray="6 3"
+            transform="rotate(-25 50 50)"
+            opacity="0.9"
+          />
+          {/* Specular digital node on ring */}
+          <circle cx="85" cy="38" r="2.8" fill="#6ee7f9" filter="drop-shadow(0 0 4px #6ee7f9)" />
+        </g>
+      )}
+
+      {/* 2. Vitalis: Bio-Craters and Pulse Aura */}
+      {trackId === 'orbit-02' && (
+        <g>
+          {/* Crater 1 */}
+          <ellipse cx="38" cy="42" rx="7" ry="5" fill="#4c0519" opacity="0.6" />
+          <ellipse cx="37" cy="41" rx="6" ry="4" stroke="#ffffff" strokeWidth="0.6" opacity="0.4" />
+          {/* Crater 2 */}
+          <ellipse cx="63" cy="58" rx="5" ry="3.5" fill="#4c0519" opacity="0.5" />
+          <ellipse cx="62" cy="57" rx="4" ry="2.6" stroke="#ffffff" strokeWidth="0.6" opacity="0.35" />
+          {/* Pulse arc */}
+          <path
+            d="M 32 58 Q 50 64 68 58"
+            stroke="#ff6f91"
+            strokeWidth="1"
+            opacity="0.65"
+            fill="none"
+          />
+        </g>
+      )}
+
+      {/* 3. Consensus: Dual Intersecting Planetary Rings */}
+      {trackId === 'orbit-03' && (
+        <g>
+          {/* Primary Ring */}
+          <ellipse
+            cx="50"
+            cy="50"
+            rx="46"
+            ry="14"
+            stroke="#c084fc"
+            strokeWidth="2"
+            transform="rotate(-22 50 50)"
+            opacity="0.95"
+          />
+          {/* Secondary Crossing Ring */}
+          <ellipse
+            cx="50"
+            cy="50"
+            rx="41"
+            ry="12"
+            stroke="#ffc58a"
+            strokeWidth="1.2"
+            strokeDasharray="4 2"
+            transform="rotate(34 50 50)"
+            opacity="0.75"
+          />
+        </g>
+      )}
+
+      {/* 4. Kinetic: Horizontal Atmospheric Bands (Gas Giant) */}
+      {trackId === 'orbit-04' && (
+        <g clipPath="url(#kineticSphereClip)">
+          <path d="M 14 38 Q 50 46 86 38" stroke="#f97316" strokeWidth="4.5" opacity="0.75" fill="none" />
+          <path d="M 12 50 Q 50 58 88 50" stroke="#c2410c" strokeWidth="3.5" opacity="0.8" fill="none" />
+          <path d="M 18 62 Q 50 68 82 62" stroke="#ea580c" strokeWidth="2.5" opacity="0.6" fill="none" />
+          <path d="M 22 28 Q 50 34 78 28" stroke="#fef08a" strokeWidth="1.5" opacity="0.45" fill="none" />
+        </g>
+      )}
+
+      {/* 5. Horizon: Radiant 4-Point Star Core & Prismatic Corona */}
+      {trackId === 'orbit-05' && (
+        <g>
+          {/* Prismatic fine ring */}
+          <circle cx="50" cy="50" r="43" stroke="#6ee7f9" strokeWidth="1" strokeDasharray="3 3" opacity="0.4" />
+          {/* 4-point radiant star in center */}
+          <path
+            d="M 50 32 Q 50 50 68 50 Q 50 50 50 68 Q 50 50 32 50 Q 50 50 50 32 Z"
+            fill="#ffffff"
+            filter="drop-shadow(0 0 5px #6ee7f9)"
+          />
+          <circle cx="50" cy="50" r="2.5" fill="#6ee7f9" />
+        </g>
+      )}
+    </svg>
+  );
+});
+
+PlanetSphere.displayName = 'PlanetSphere';
+
+/**
+ * Choose Your Orbit (Redesigned Tracks Section)
+ * Features:
+ * 1. Planet selector row: 5 glowing SVG spheres in one row (fits 360px without text wrap, 48px min tap targets)
+ * 2. Detail card below: Glass card with diamond sparkle on top, bottom gradient glow, top-right cropped planet
+ * 3. Compact skimmable content: Mono label, display font title, 1-line plain mission, 3 ideas with sparkle bullets, stars & reward pill
+ * 4. Open Innovation (Horizon): Special full-width wildcard strip with dashed border
+ * 5. Full keyboard accessibility (Arrow keys, Home, End) and ARIA roles (tablist, tab, tabpanel)
+ */
 export const TracksSection: React.FC = () => {
-  const { ref, revealClass, isRevealed } = useReveal<HTMLDivElement>();
-  const [activeTrackId, setActiveTrackId] = useState<string>(TRACKS_DATA[0].id);
-  const [mobileExpandedId, setMobileExpandedId] = useState<string>(TRACKS_DATA[0].id);
+  const sectionRef = useRef<HTMLElement>(null);
+  const tabsRef = useRef<(HTMLButtonElement | null)[]>([]);
+  const { ref: revealRef, revealClass } = useReveal<HTMLDivElement>();
+  const isReduced = useReducedMotion();
 
-  // Memoize active track object for high performance
+  const [activeTrackId, setActiveTrackId] = useState<string>(TRACKS_DATA[0].id);
+  const [isSectionVisible, setIsSectionVisible] = useState<boolean>(true);
+
+  // Pause animations when section is off-screen
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsSectionVisible(entry.isIntersecting);
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // Memoize active track object
   const activeTrack = useMemo(
     () => TRACKS_DATA.find((t) => t.id === activeTrackId) || TRACKS_DATA[0],
     [activeTrackId]
   );
 
-  const wildcardTrack = useMemo(
-    () => TRACKS_DATA.find((t) => t.id === 'op-05') || TRACKS_DATA[4],
-    []
+  const activeCopy = useMemo(
+    () => TRACK_COPY[activeTrack.id] || TRACK_COPY['orbit-01'],
+    [activeTrack.id]
   );
 
-  const handleMobileAccordionToggle = (id: string) => {
-    setMobileExpandedId((prev) => (prev === id ? '' : id));
-  };
+  // Keyboard navigation for tablist (WAI-ARIA compliance)
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent, index: number) => {
+      let targetIndex = index;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        targetIndex = (index + 1) % TRACKS_DATA.length;
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        targetIndex = (index - 1 + TRACKS_DATA.length) % TRACKS_DATA.length;
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        targetIndex = 0;
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        targetIndex = TRACKS_DATA.length - 1;
+      }
+
+      if (targetIndex !== index) {
+        tabsRef.current[targetIndex]?.focus();
+        setActiveTrackId(TRACKS_DATA[targetIndex].id);
+      }
+    },
+    []
+  );
 
   return (
     <section
       id="tracks"
-      ref={ref}
-      className={`py-24 px-4 sm:px-6 lg:px-8 border-b border-[#1f2e26] relative overflow-hidden ${revealClass}`}
+      ref={sectionRef}
+      className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto">
+      <div ref={revealRef} className={`max-w-5xl mx-auto ${revealClass}`}>
         {/* Section Header */}
-        <div className="mb-12 text-center md:text-left">
-          <div className="flex items-center justify-center md:justify-start gap-2 text-xs font-mono tracking-widest text-[#c9a227] uppercase mb-2">
-            <span className="text-[#52635a]">//</span>
-            <span>OPERATIONAL SECTORS</span>
-            <span className="text-[#33473c]">·</span>
-            <span>5 FILES // CLEARANCE REQUIRED</span>
+        <div className="mb-10 sm:mb-12 text-center md:text-left">
+          <div className="inline-flex items-center gap-2 mb-2 px-3.5 py-1 rounded-full bg-[#120a2e]/80 border border-[#8b5cf6]/40 text-xs font-display tracking-[0.2em] text-[#ffc58a] uppercase">
+            <Sparkles className="w-3.5 h-3.5 text-[#ffc58a]" />
+            <span>ORBITAL DOMAINS // 5 TRAJECTORIES</span>
           </div>
 
-          <h2 className="font-display text-4xl sm:text-6xl font-extrabold text-[#e2e8e5] tracking-tight uppercase">
-            CHOOSE YOUR OPERATION
+          <h2 className="font-display text-4xl sm:text-6xl font-normal text-[#f4f0ff] tracking-[0.08em] uppercase">
+            CHOOSE YOUR ORBIT
           </h2>
 
-          <p className="text-xs sm:text-sm font-mono text-[#8e9e96] max-w-2xl mt-2">
-            Select a classified sector file to review mission parameters, operational targets, and threat ratings before deploying your squad.
+          <p className="text-xs sm:text-sm font-sans text-[#a99fcf] max-w-2xl mt-2 leading-relaxed">
+            Select a planetary sphere to align your squad’s mission directives, difficulty rating, and track rewards.
           </p>
         </div>
 
-        {/* ============================================================
-            DESKTOP LAYOUT (lg:grid): FILE DRAWER WITH LEFT TABS & RIGHT PANEL
-            ============================================================ */}
-        <div className="hidden lg:grid lg:grid-cols-12 gap-8 items-stretch mb-12">
-          {/* Left Column (5 cols): File Drawer Vertical Tabs */}
-          <div className="lg:col-span-5">
-            <TrackTabs
-              tracks={TRACKS_DATA}
-              activeTrackId={activeTrackId}
-              onSelectTrack={setActiveTrackId}
-            />
-          </div>
-
-          {/* Right Column (7 cols): Active Track Full Dossier Panel */}
-          <div className="lg:col-span-7">
-            <TrackPanel track={activeTrack} />
-          </div>
-        </div>
-
-        {/* ============================================================
-            MOBILE LAYOUT (below lg): ACCORDION WITH MIN 48PX TAP TARGETS
-            ============================================================ */}
-        <div className="lg:hidden space-y-3 mb-10">
-          {TRACKS_DATA.map((track) => {
-            const isExpanded = mobileExpandedId === track.id;
+        {/* =========================================================================
+            1. PLANET SELECTOR ROW (role="tablist")
+            5 glowing planets in one row; fits 360px without text wrap; min 48px tap targets
+            ========================================================================= */}
+        <div
+          role="tablist"
+          aria-label="Choose Your Orbit Tracks"
+          className="flex items-end justify-between sm:justify-center gap-1 sm:gap-6 md:gap-10 w-full max-w-4xl mx-auto mb-10 px-1 pt-4 pb-2"
+        >
+          {TRACKS_DATA.map((track, idx) => {
+            const isSelected = track.id === activeTrackId;
+            const copy = TRACK_COPY[track.id];
 
             return (
-              <div
+              <button
                 key={track.id}
+                ref={(el) => {
+                  tabsRef.current[idx] = el;
+                }}
+                id={`tab-${track.id}`}
+                role="tab"
+                aria-selected={isSelected}
+                aria-controls="track-detail-panel"
+                tabIndex={isSelected ? 0 : -1}
+                onClick={() => setActiveTrackId(track.id)}
+                onKeyDown={(e) => handleKeyDown(e, idx)}
+                aria-label={`${track.codeName}: ${track.title}`}
                 style={{
-                  '--track-accent': track.accent,
-                  borderLeftColor: track.accent,
+                  '--accent': track.accent,
                 } as React.CSSProperties}
-                className={`border bg-[#0c100e] rounded-xl overflow-hidden transition-all duration-200 border-l-4 ${
-                  isExpanded ? 'border-t-[#2f4a3a] border-r-[#2f4a3a] border-b-[#2f4a3a]' : 'border-[#1f2e26]'
+                className={`group flex flex-col items-center justify-end min-w-[56px] min-h-[72px] sm:min-w-[76px] sm:min-h-[96px] p-1 rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] transition-all duration-300 relative cursor-pointer ${
+                  isSelected ? 'z-20' : 'z-10 opacity-70 hover:opacity-100'
                 }`}
               >
-                {/* Accordion Trigger (Min 48px tap target) */}
-                <button
-                  type="button"
-                  onClick={() => handleMobileAccordionToggle(track.id)}
-                  aria-expanded={isExpanded}
-                  aria-controls={`mobile-panel-${track.id}`}
-                  className="w-full min-h-[52px] p-4 flex items-center justify-between gap-3 text-left outline-none focus-visible:ring-2 focus-visible:ring-[var(--track-accent)]"
+                {/* Planet Sphere Visual with Scale and Floating on Selected */}
+                <div
+                  className={`relative transition-all duration-300 ${
+                    isSelected
+                      ? `scale-125 sm:scale-130 ${
+                          !isReduced && isSectionVisible ? 'animate-planet-float' : ''
+                        }`
+                      : 'hover:scale-105'
+                  }`}
+                  style={{
+                    width: 'clamp(44px, 11vw, 68px)',
+                    height: 'clamp(44px, 11vw, 68px)',
+                  }}
                 >
-                  <div className="flex items-center gap-3 min-w-0">
-                    <div
-                      className="w-8 h-8 rounded-lg border flex items-center justify-center shrink-0"
-                      style={{
-                        backgroundColor: `${track.accent}15`,
-                        borderColor: `${track.accent}50`,
-                        color: track.accent,
-                      }}
-                    >
-                      <TrackGlyph type={track.glyph} className="w-4 h-4" accent={track.accent} />
-                    </div>
-
-                    <div className="min-w-0 truncate">
-                      <span
-                        className="block text-[10px] font-mono tracking-wider font-bold uppercase truncate"
-                        style={{ color: track.accent }}
-                      >
-                        {track.codeName}
-                      </span>
-                      <span className="block font-display text-sm font-bold text-[#e2e8e5] truncate">
-                        {track.title}
-                      </span>
-                    </div>
-                  </div>
-
-                  <ChevronDown
-                    className={`w-4 h-4 text-[#8e9e96] shrink-0 transition-transform duration-200 ${
-                      isExpanded ? 'rotate-180 text-[var(--track-accent)]' : ''
-                    }`}
+                  <PlanetSphere
+                    trackId={track.id}
+                    accent={track.accent}
+                    isSelected={isSelected}
+                    isReduced={isReduced}
+                    className="w-full h-full"
                   />
-                </button>
+                </div>
 
-                {/* Mobile Accordion Content */}
-                {isExpanded && (
-                  <div id={`mobile-panel-${track.id}`} className="p-4 pt-1 border-t border-[#1b2b22] space-y-4">
-                    {/* Brief */}
-                    <div className="p-3 bg-[#080b09] rounded-lg border border-[#1a261f]">
-                      <div className="text-[10px] font-mono uppercase mb-1" style={{ color: track.accent }}>
-                        MISSION BRIEF
-                      </div>
-                      <p className="font-display italic text-xs sm:text-sm text-[#e2e8e5]/90">
-                        "{track.brief}"
-                      </p>
-                    </div>
+                {/* Codename in Tiny Mono Text Underneath */}
+                <div className="mt-2.5 text-center flex flex-col items-center">
+                  <span
+                    style={{
+                      color: isSelected ? track.accent : '#a99fcf',
+                      fontSize: 'clamp(8.5px, 1.8vw, 11px)',
+                    }}
+                    className={`font-mono uppercase tracking-wider block transition-colors leading-none ${
+                      isSelected ? 'font-bold' : 'font-normal'
+                    }`}
+                  >
+                    {copy?.codenameOnly || track.id}
+                  </span>
 
-                    {/* Threat Bar */}
-                    <div className="flex items-center justify-between text-[11px] font-mono">
-                      <span className="text-[#52635a]">THREAT ASSESSMENT:</span>
-                      <div className="flex items-center gap-1.5">
-                        {[1, 2, 3, 4, 5].map((lvl) => (
-                          <div
-                            key={lvl}
-                            className="w-2.5 h-3 rounded-sm"
-                            style={{
-                              backgroundColor: lvl <= track.threatLevel ? track.accent : '#1a2720',
-                            }}
-                          />
-                        ))}
-                      </div>
-                    </div>
+                  {/* Selected Track Short Name */}
+                  <span
+                    style={{
+                      fontSize: 'clamp(8px, 1.5vw, 10px)',
+                    }}
+                    className={`font-sans text-[#f4f0ff]/80 truncate max-w-[64px] sm:max-w-[100px] mt-1 transition-opacity ${
+                      isSelected ? 'opacity-100' : 'hidden sm:block opacity-60'
+                    }`}
+                  >
+                    {copy?.shortTitle || track.title}
+                  </span>
 
-                    {/* Problem Statements */}
-                    <div className="space-y-2">
-                      <span className="text-[10px] font-mono uppercase text-[#52635a] block">
-                        OPERATIONAL TARGETS:
-                      </span>
-                      {track.problemStatements.map((statement, sIdx) => (
-                        <div key={sIdx} className="text-xs font-mono text-[#8e9e96] flex items-start gap-2">
-                          <span className="font-bold shrink-0" style={{ color: track.accent }}>
-                            &gt;
-                          </span>
-                          <span>{statement}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Perk */}
-                    {track.trackPerk && (
-                      <div className="text-[11px] font-mono text-[#c9a227] pt-2 border-t border-[#1b2b22]">
-                        ★ {track.trackPerk}
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
+                  {/* Active Indicator Pip */}
+                  {isSelected && (
+                    <span
+                      className="w-1.5 h-1.5 rounded-full mt-1.5 shadow-[0_0_8px_var(--accent)]"
+                      style={{ backgroundColor: track.accent }}
+                      aria-hidden="true"
+                    />
+                  )}
+                </div>
+              </button>
             );
           })}
         </div>
+
+        {/* =========================================================================
+            2. DETAIL CARD BELOW THE ROW (role="tabpanel")
+            Large glass card (radius 28px, diamond sparkle, bottom glow, top-right cropped planet)
+            ========================================================================= */}
+        <div
+          id="track-detail-panel"
+          role="tabpanel"
+          aria-labelledby={`tab-${activeTrack.id}`}
+          tabIndex={0}
+          style={{
+            '--accent': activeTrack.accent,
+            boxShadow: `0 24px 60px -10px rgba(5, 3, 15, 0.9), 0 0 35px ${activeTrack.accent}25`,
+            borderColor: `${activeTrack.accent}45`,
+          } as React.CSSProperties}
+          className="glass-pass-card rounded-[28px] p-6 sm:p-9 md:p-10 relative overflow-hidden transition-all duration-300 border border-white/14 mb-8 outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+        >
+          {/* Centered Diamond Sparkle SVG on Top */}
+          <div
+            className="absolute -top-3.5 left-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-[#120a2e] border flex items-center justify-center shadow-lg z-20"
+            style={{
+              borderColor: activeTrack.accent,
+              boxShadow: `0 0 14px ${activeTrack.accent}`,
+            }}
+            aria-hidden="true"
+          >
+            <Sparkles className="w-3.5 h-3.5 animate-pulse" style={{ color: activeTrack.accent }} />
+          </div>
+
+          {/* Soft Gradient Glow Along the Bottom Edge */}
+          <div
+            className="absolute bottom-0 left-0 right-0 h-[2px] opacity-75"
+            style={{
+              background: `linear-gradient(90deg, transparent 0%, ${activeTrack.accent} 50%, #ff9a3c 100%)`,
+            }}
+            aria-hidden="true"
+          />
+
+          {/* Large Cropped Decorative Planet in Top-Right Corner at 25% Opacity */}
+          <div
+            className="absolute -top-10 -right-10 w-44 h-44 sm:w-64 sm:h-64 opacity-25 pointer-events-none overflow-hidden select-none"
+            aria-hidden="true"
+          >
+            <PlanetSphere
+              trackId={activeTrack.id}
+              accent={activeTrack.accent}
+              isSelected={false}
+              isReduced={isReduced}
+              className="w-full h-full"
+            />
+          </div>
+
+          {/* Card Content with Crossfade (key={activeTrack.id}) */}
+          <div
+            key={activeTrack.id}
+            className={`relative z-10 space-y-6 ${
+              isReduced ? '' : 'animate-card-crossfade'
+            }`}
+          >
+            {/* Top Row: Small Mono Label & Difficulty Rating */}
+            <div className="flex items-center justify-between gap-4 flex-wrap">
+              <span
+                style={{ color: activeTrack.accent }}
+                className="font-mono text-xs sm:text-sm tracking-[0.2em] uppercase font-medium"
+              >
+                {activeTrack.codeName}
+              </span>
+
+              {/* 1 to 5 Stars in Accent Color */}
+              <div className="flex items-center gap-1.5 bg-[#05030f]/60 px-3 py-1 rounded-full border border-white/10">
+                <span className="text-[10px] font-display text-[#a99fcf] tracking-widest uppercase">
+                  DIFFICULTY:
+                </span>
+                <div className="flex items-center gap-1">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <span
+                      key={star}
+                      className="text-sm leading-none"
+                      style={{
+                        color: star <= activeTrack.difficulty ? activeTrack.accent : '#271947',
+                        textShadow:
+                          star <= activeTrack.difficulty
+                            ? `0 0 6px ${activeTrack.accent}`
+                            : 'none',
+                      }}
+                    >
+                      ★
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Track Name in Display Font */}
+            <h3 className="font-display text-2xl sm:text-4xl text-[#f4f0ff] uppercase tracking-wide leading-tight">
+              {activeTrack.title}
+            </h3>
+
+            {/* One-Line Plain Language Mission (max 14 words) */}
+            <p className="text-sm sm:text-base text-[#f4f0ff]/95 leading-relaxed font-sans max-w-3xl">
+              &ldquo;{activeCopy.mission}&rdquo;
+            </p>
+
+            {/* Ideas to Build (3 short lines, max 10 words each) */}
+            <div className="space-y-2.5 pt-2">
+              <span className="text-[10px] font-display uppercase tracking-widest text-[#a99fcf] block">
+                IDEAS TO BUILD //
+              </span>
+
+              <div className="space-y-2">
+                {activeCopy.ideas.map((idea, idx) => (
+                  <div
+                    key={idx}
+                    className="flex items-start gap-2.5 text-xs sm:text-sm text-[#f4f0ff]/85 leading-snug"
+                  >
+                    <Sparkles
+                      className="w-3.5 h-3.5 shrink-0 mt-0.5"
+                      style={{ color: activeTrack.accent }}
+                    />
+                    <span>{idea}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Reward / Mentor Pill at Bottom */}
+            {activeTrack.trackPerk && (
+              <div className="pt-4 border-t border-white/10 flex items-center justify-between flex-wrap gap-2">
+                <div
+                  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-sans border"
+                  style={{
+                    backgroundColor: `${activeTrack.accent}15`,
+                    borderColor: `${activeTrack.accent}45`,
+                    color: '#f4f0ff',
+                  }}
+                >
+                  <Sparkles className="w-3.5 h-3.5 text-[#ffc58a] shrink-0" />
+                  <span>{activeTrack.trackPerk}</span>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* =========================================================================
+            3. OPEN INNOVATION (HORIZON) SPECIAL FULL-WIDTH STRIP
+            Dashed orbit border, rotated "Wildcard" mini-label, "Your idea. Your orbit."
+            ========================================================================= */}
+        <button
+          type="button"
+          onClick={() => setActiveTrackId('orbit-05')}
+          aria-label="Select Horizon: Open Innovation Wildcard Orbit"
+          style={{
+            '--accent': '#6ee7f9',
+          } as React.CSSProperties}
+          className={`w-full p-4 sm:p-5 rounded-2xl border-2 border-dashed transition-all duration-300 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-left relative overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-[#6ee7f9] cursor-pointer ${
+            activeTrack.id === 'orbit-05'
+              ? 'border-[#6ee7f9] bg-[#120a2e]/90 shadow-[0_0_25px_rgba(110,231,249,0.22)]'
+              : 'border-[#6ee7f9]/40 bg-[#120a2e]/40 hover:border-[#6ee7f9]/80 hover:bg-[#120a2e]/60'
+          }`}
+        >
+          <div className="flex items-center gap-3">
+            <span className="px-2 py-0.5 rounded text-[10px] font-display uppercase tracking-wider bg-[#6ee7f9]/20 text-[#6ee7f9] border border-[#6ee7f9]/40 -rotate-3 shrink-0">
+              WILDCARD
+            </span>
+            <div>
+              <span className="font-display text-sm sm:text-base text-[#f4f0ff] uppercase tracking-wide block">
+                Your idea. Your orbit.
+              </span>
+              <span className="font-sans text-xs text-[#a99fcf]">
+                Cross-domain prototypes, radical hardware, and unconstrained software experiments.
+              </span>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2 text-xs font-display text-[#6ee7f9] uppercase tracking-wider shrink-0 self-end sm:self-center">
+            <span>{activeTrack.id === 'orbit-05' ? 'ORBIT ACTIVE' : 'CHOOSE HORIZON'}</span>
+            <span className="text-sm">→</span>
+          </div>
+        </button>
       </div>
     </section>
   );
