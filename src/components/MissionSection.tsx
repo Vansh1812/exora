@@ -25,11 +25,11 @@ export const MissionSection: React.FC = () => {
         <div className="mb-10 sm:mb-12 text-center md:text-left">
           <div className="inline-flex items-center gap-2 mb-2 px-3.5 py-1 rounded-full bg-[#120a2e]/80 border border-[#8b5cf6]/40 text-xs font-display tracking-[0.2em] text-[#ffc58a] uppercase">
             <Sparkles className="w-3.5 h-3.5 text-[#ffc58a]" />
-            <span>THE BUILD // ARCHITECTURAL CRUCIBLE</span>
+            <span>EXORA 2.0 // ARCHITECTURAL CRUCIBLE</span>
           </div>
 
           <h2 className="font-display text-4xl sm:text-6xl font-normal text-[#f4f0ff] tracking-[0.08em] uppercase">
-            THE BUILD
+            EXORA <span className="text-[#6ee7f9] font-light">2.0</span>
           </h2>
 
           <div className="font-display text-base sm:text-lg text-[#6ee7f9] tracking-wider uppercase mt-1">

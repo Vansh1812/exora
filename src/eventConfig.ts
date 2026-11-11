@@ -49,6 +49,8 @@ export interface JudgingCriterion {
   name: string;
   descriptor: string;
   category: string;
+  shortLabel?: string;
+  shortDesc?: string;
 }
 
 export interface BentoPillar {
@@ -57,6 +59,10 @@ export interface BentoPillar {
   description: string;
   iconName: 'lightbulb' | 'cpu' | 'rocket' | 'users';
   isWide?: boolean;
+  shortLabel?: string;
+  pillarName?: string;
+  oneLiner?: string;
+  colorAccent?: string;
 }
 
 export interface PrizeCard {
@@ -240,37 +246,49 @@ export const EVENT_CONFIG = {
       id: "crit-1",
       name: "INNOVATION",
       descriptor: "Originality and creative problem articulation.",
-      category: "CREATIVE THRESHOLD"
+      category: "CREATIVE THRESHOLD",
+      shortLabel: "INNOVATION",
+      shortDesc: "Novel thinking & creative original concepts"
     },
     {
       id: "crit-2",
       name: "PROBLEM SOLVING",
       descriptor: "Relevance of the chosen challenge and novel approach.",
-      category: "STRATEGIC IMPACT"
+      category: "STRATEGIC IMPACT",
+      shortLabel: "PROBLEM SOLVING",
+      shortDesc: "Real-world challenge depth & strategic solution"
     },
     {
       id: "crit-3",
       name: "TECHNICAL IMPLEMENTATION",
       descriptor: "Quality of execution, code architecture, and craftsmanship.",
-      category: "ENGINEERING DEPTH"
+      category: "ENGINEERING DEPTH",
+      shortLabel: "IMPLEMENTATION",
+      shortDesc: "Code craftsmanship, architecture & engineering depth"
     },
     {
       id: "crit-4",
       name: "FEASIBILITY",
       descriptor: "Practicality, real-world operational viability, and scale.",
-      category: "VIABILITY"
+      category: "VIABILITY",
+      shortLabel: "FEASIBILITY",
+      shortDesc: "Practical viability & operational scale readiness"
     },
     {
       id: "crit-5",
       name: "IMPACT",
       descriptor: "Potential transformative value and measurable outcomes.",
-      category: "MISSION VALUE"
+      category: "MISSION VALUE",
+      shortLabel: "IMPACT",
+      shortDesc: "Transformative mission value & measurable outcomes"
     },
     {
       id: "crit-6",
       name: "PRESENTATION",
       descriptor: "Clarity of demonstration, communication, and defense.",
-      category: "STAGE DEFENSE"
+      category: "STAGE DEFENSE",
+      shortLabel: "PRESENTATION",
+      shortDesc: "Demonstration clarity, narrative & live stage defense"
     }
   ] as JudgingCriterion[],
 
@@ -289,30 +307,46 @@ export const EVENT_CONFIG = {
   missionPillars: [
     {
       id: "pillar-innovation",
-      title: "INNOVATION & PROBLEM SOLVING",
+      title: "Planetary Innovation",
       description: "Identify and tackle real-world challenges through unconventional thinking and novel approaches.",
       iconName: "lightbulb",
+      shortLabel: "INNOVATE",
+      pillarName: "Planetary Innovation",
+      oneLiner: "Tackle fundamental challenges through novel multi-agent or hardware paradigms.",
+      colorAccent: "#ffc58a",
       isWide: false
     },
     {
       id: "pillar-tech",
-      title: "TECHNICAL EXCELLENCE",
+      title: "Production Mastery",
       description: "Focus on hands-on project development and modern product thinking.",
       iconName: "cpu",
+      shortLabel: "SHIP",
+      pillarName: "Production Mastery",
+      oneLiner: "Build deployable, resilient systems with test coverage and end-to-end telemetry.",
+      colorAccent: "#6ee7f9",
       isWide: false
     },
     {
       id: "pillar-startup",
-      title: "STARTUP FUNDAMENTALS",
+      title: "Startup Trajectory",
       description: "Mastering idea validation, market fit, and scalable business models.",
       iconName: "rocket",
+      shortLabel: "LAUNCH",
+      pillarName: "Startup Trajectory",
+      oneLiner: "Validate product-market fit and transition straight from Sunday demo to incubator pipelines.",
+      colorAccent: "#ff6f91",
       isWide: false
     },
     {
       id: "pillar-community",
-      title: "COMMUNITY ALLIANCE",
+      title: "Industry Guidance",
       description: "Fostering interdisciplinary collaboration and deep networking across student builders, mentors, and industry veterans.",
       iconName: "users",
+      shortLabel: "MENTORS",
+      pillarName: "Industry Guidance",
+      oneLiner: "1:1 architectural reviews with Thoughtworks directors and seasoned GDG founders.",
+      colorAccent: "#8b5cf6",
       isWide: true
     }
   ] as BentoPillar[],

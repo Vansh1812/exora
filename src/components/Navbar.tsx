@@ -48,7 +48,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
             onClick={(e) => handleNavClick(e, '#mission')}
             className="hover:text-[#ffc58a] transition-colors whitespace-nowrap focus:outline-none focus-visible:text-[#ffc58a]"
           >
-            THE BUILD
+            EXORA 2.0
           </a>
           <a
             href="#tracks"
@@ -137,7 +137,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
             onClick={(e) => handleNavClick(e, '#mission')}
             className="block py-2.5 rounded-xl hover:bg-white/5 hover:text-[#ffc58a] transition-colors"
           >
-            THE BUILD
+            EXORA 2.0
           </a>
           <a
             href="#tracks"
