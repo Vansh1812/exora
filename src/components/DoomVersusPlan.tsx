@@ -161,16 +161,16 @@ export const DoomVersusPlan: React.FC<ImpactSectionProps> = ({ onOpenRegisterMod
             <span className="text-[#6ee7f9]">BEFORE VS WITH EXORA</span>
           </div>
 
-          <h2 className="font-display text-4xl sm:text-5xl font-normal text-[#f4f0ff] tracking-[0.08em] uppercase">
+          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-semibold text-white tracking-[0.04em] uppercase leading-tight">
             Before vs With Exora
           </h2>
-          <p className="mt-2 text-xs sm:text-sm font-sans text-[#a99fcf] max-w-2xl leading-relaxed">
+          <p className="mt-3 text-sm sm:text-base font-sans font-medium text-[#c5bddf] max-w-2xl leading-[1.8]">
             Drag the divider to compare conventional hackathon illusions with Exora 2.0&apos;s production-grade engineering crucible across worlds.
           </p>
         </div>
 
         {/* Accessible Keyboard & Draggable Status Bar */}
-        <div className="hidden md:flex mb-6 flex-wrap items-center justify-between gap-4 p-3.5 bg-[#120a2e]/60 border border-white/10 rounded-2xl text-xs font-display">
+        <div className="hidden md:flex mb-6 flex-wrap items-center justify-between gap-4 p-3.5 bg-[#120a2e]/60 border border-white/10 rounded-2xl text-sm font-display">
           <div className="flex items-center gap-2 text-[#a99fcf]">
             <Sliders className="w-4 h-4 text-[#ffc58a]" />
             <span>
@@ -213,24 +213,24 @@ export const DoomVersusPlan: React.FC<ImpactSectionProps> = ({ onOpenRegisterMod
           {/* Base Layer: WITH EXORA (Right Side - Violet & Peach Glow) */}
           <div className="absolute inset-0 bg-gradient-to-br from-[#120a2e] via-[#1a0e3f] to-[#0d0624] p-8 sm:p-10 flex flex-col justify-between pointer-events-none">
             <div className="max-w-md ml-auto text-right space-y-5">
-              <div className="inline-flex items-center gap-2 text-xs font-display font-medium tracking-widest text-[#ffc58a] uppercase bg-[#120a2e] border border-[#ffc58a]/40 px-3.5 py-1 rounded-full shadow-[0_0_15px_rgba(255,197,138,0.2)]">
+              <div className="inline-flex items-center gap-2 text-sm font-display font-medium tracking-wider text-[#ffc58a] uppercase bg-[#120a2e] border border-[#ffc58a]/40 px-3.5 py-1 rounded-full shadow-[0_0_15px_rgba(255,197,138,0.2)]">
                 <Sparkles className="w-3.5 h-3.5 text-[#ffc58a]" />
                 <span>WITH EXORA // CODE THAT ENDURES</span>
               </div>
-              <h3 className="font-display text-2xl sm:text-3xl text-[#f4f0ff] uppercase tracking-wide">
+              <h3 className="font-display text-2xl sm:text-3xl font-semibold text-white uppercase tracking-wide leading-tight">
                 Shipped Systems & Real Mastery
               </h3>
-              <div className="space-y-4 text-xs sm:text-sm font-sans text-[#f4f0ff]/95 text-right">
+              <div className="space-y-5 text-xs sm:text-sm font-sans text-[#f4f0ff]/95 text-right">
                 {COMPARISON_PAIRS.map((pair) => (
                   <div key={pair.id} className="flex items-center justify-end gap-2.5">
-                    <span className="leading-snug">{pair.withExora}</span>
+                    <span className="text-sm sm:text-base leading-relaxed">{pair.withExora}</span>
                     <span className="text-[#6ee7f9] font-bold text-base shrink-0">✓</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="mt-8 text-right text-[11px] font-display text-[#6ee7f9] tracking-widest uppercase">
+            <div className="mt-8 text-right text-xs font-display text-[#6ee7f9] tracking-widest uppercase">
               STATUS: EXORA 2.0 ORBITAL TRAJECTORY VERIFIED
             </div>
           </div>
@@ -243,24 +243,24 @@ export const DoomVersusPlan: React.FC<ImpactSectionProps> = ({ onOpenRegisterMod
             }}
           >
             <div className="max-w-md space-y-5">
-              <div className="inline-flex items-center gap-2 text-xs font-display tracking-widest text-[#f87171] uppercase bg-[#180a0a] border border-[#f87171]/40 px-3.5 py-1 rounded-full">
+              <div className="inline-flex items-center gap-2 text-sm font-display font-medium tracking-wider text-[#ff8585] uppercase bg-[#180a0a] border border-[#f87171]/40 px-3.5 py-1 rounded-full">
                 <AlertTriangle className="w-3.5 h-3.5 text-[#f87171]" />
                 <span>BEFORE EXORA // THE USUAL PARADE</span>
               </div>
-              <h3 className="font-display text-2xl sm:text-3xl text-[#f87171]/90 uppercase tracking-wide">
+              <h3 className="font-display text-2xl sm:text-3xl font-semibold text-[#ff8585] uppercase tracking-wide leading-tight">
                 Fragile Toys & Hollow Illusions
               </h3>
-              <div className="space-y-4 text-xs sm:text-sm font-sans text-[#cbd5e1]">
+              <div className="space-y-5 text-xs sm:text-sm font-sans text-[#cbd5e1]">
                 {COMPARISON_PAIRS.map((pair) => (
                   <div key={pair.id} className="flex items-center gap-2.5">
                     <span className="text-[#f87171] font-bold text-base shrink-0">✗</span>
-                    <span className="leading-snug">{pair.before}</span>
+                    <span className="text-sm sm:text-base leading-relaxed">{pair.before}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="mt-8 text-[11px] font-display text-[#a99fcf]/70 tracking-widest uppercase">
+            <div className="mt-8 text-xs font-display text-[#a99fcf]/90 tracking-widest uppercase">
               CONVENTIONAL ILLUSION // WE LEAVE THIS BEHIND
             </div>
           </div>
@@ -281,7 +281,7 @@ export const DoomVersusPlan: React.FC<ImpactSectionProps> = ({ onOpenRegisterMod
             MOBILE: Stacked Panels with ✗/✓ Pairs Kept Together
             ========================================================================= */}
         <div className="md:hidden space-y-4">
-          <div className="p-4 bg-[#120a2e]/60 border border-white/10 rounded-2xl flex items-center justify-between text-xs font-display">
+          <div className="p-4 bg-[#120a2e]/60 border border-white/10 rounded-2xl flex items-center justify-between text-sm font-display">
             <span className="text-[#ffc58a] font-medium flex items-center gap-2">
               <Sliders className="w-3.5 h-3.5 text-[#ffc58a]" />
               THE PARADIGM SHIFT
@@ -295,7 +295,7 @@ export const DoomVersusPlan: React.FC<ImpactSectionProps> = ({ onOpenRegisterMod
                 key={pair.id}
                 className="glass-pass-card rounded-2xl p-4 space-y-3"
               >
-                <div className="text-[10px] font-display text-[#a99fcf] uppercase tracking-wider flex items-center justify-between border-b border-white/5 pb-1.5">
+                <div className="text-xs font-display text-[#a99fcf] uppercase tracking-wider flex items-center justify-between border-b border-white/5 pb-1.5">
                   <span>ORBIT 0{idx + 1}</span>
                   <span className="text-[#ffc58a]">REALITY CHECK</span>
                 </div>
@@ -303,8 +303,8 @@ export const DoomVersusPlan: React.FC<ImpactSectionProps> = ({ onOpenRegisterMod
                 {/* Left ✗ Item (Conventional) */}
                 <div className="flex items-start gap-2.5 bg-[#180808]/80 border border-[#f87171]/25 p-3 rounded-xl">
                   <XCircle className="w-4 h-4 text-[#f87171] shrink-0 mt-0.5" />
-                  <div className="text-xs font-sans text-[#cbd5e1] leading-snug">
-                    <span className="text-[10px] uppercase font-display text-[#f87171] block mb-0.5">
+                  <div className="text-sm font-sans text-[#dbe3ee] leading-relaxed">
+                    <span className="text-xs uppercase font-display text-[#f87171] block mb-0.5">
                       Conventional:
                     </span>
                     {pair.before}
@@ -314,8 +314,8 @@ export const DoomVersusPlan: React.FC<ImpactSectionProps> = ({ onOpenRegisterMod
                 {/* Right ✓ Item (With Exora) */}
                 <div className="flex items-start gap-2.5 bg-[#190c38]/80 border border-[#8b5cf6]/30 p-3 rounded-xl">
                   <CheckCircle2 className="w-4 h-4 text-[#6ee7f9] shrink-0 mt-0.5" />
-                  <div className="text-xs font-sans text-[#f4f0ff] leading-snug">
-                    <span className="text-[10px] uppercase font-display text-[#6ee7f9] block mb-0.5">
+                  <div className="text-sm font-sans text-white leading-relaxed">
+                    <span className="text-xs uppercase font-display text-[#6ee7f9] block mb-0.5">
                       With Exora 2.0:
                     </span>
                     {pair.withExora}
@@ -330,7 +330,7 @@ export const DoomVersusPlan: React.FC<ImpactSectionProps> = ({ onOpenRegisterMod
             2. STAT STRIP BELOW THE CARD
             ========================================================================= */}
         <div className="mt-8 border border-white/10 bg-[#120a2e]/60 backdrop-blur-md rounded-2xl p-4 sm:p-5 shadow-lg">
-          <div className="flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-6 gap-y-2 text-center text-xs sm:text-sm font-display tracking-[0.14em] text-[#a99fcf] select-none uppercase">
+          <div className="flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-6 gap-y-2 text-center text-sm sm:text-base font-display tracking-[0.12em] text-[#c5bddf] select-none uppercase">
             <span className="text-[#f4f0ff] font-medium">24 HOURS</span>
             <span className="text-white/20 hidden sm:inline">//</span>
             <span className="text-[#f4f0ff] font-medium">12+ MENTORS</span>
@@ -339,7 +339,7 @@ export const DoomVersusPlan: React.FC<ImpactSectionProps> = ({ onOpenRegisterMod
             <span className="text-white/20 hidden sm:inline">//</span>
             <span className="text-[#f4f0ff] font-medium">40+ SQUADS</span>
             <span className="text-white/20 hidden sm:inline">//</span>
-            <span className="text-[#ffc58a] font-medium">PRIZE POOL ₹25,000+</span>
+            <span className="text-[#ffc58a] font-medium">PRIZE POOL ₹2,00,000+</span>
           </div>
         </div>
 
@@ -347,7 +347,7 @@ export const DoomVersusPlan: React.FC<ImpactSectionProps> = ({ onOpenRegisterMod
             3. "BEYOND THE VENUE" ROW (3 Community-Impact Points)
             ========================================================================= */}
         <div className="mt-8 pt-8 border-t border-white/10">
-          <div className="flex items-center gap-2 text-xs font-display tracking-[0.2em] text-[#ffc58a] uppercase mb-4">
+          <div className="flex items-center gap-2 text-sm font-display tracking-[0.16em] text-[#ffd2a8] uppercase mb-5">
             <span className="w-1.5 h-1.5 rounded-full bg-[#ffc58a]" />
             <span>BEYOND THE VENUE // 3 LASTING IMPACT CHANNELS</span>
           </div>
@@ -363,10 +363,10 @@ export const DoomVersusPlan: React.FC<ImpactSectionProps> = ({ onOpenRegisterMod
                   <div className="w-9 h-9 rounded-xl bg-[#120a2e] border border-[#8b5cf6]/40 flex items-center justify-center text-[#ffc58a] mb-3 group-hover:scale-105 transition-transform shadow-[0_0_10px_rgba(255,197,138,0.2)]">
                     <IconComp className="w-4 h-4 text-[#ffc58a]" />
                   </div>
-                  <h4 className="font-display text-base text-[#f4f0ff] mb-1.5 uppercase tracking-wide">
+                  <h4 className="font-display text-lg font-semibold text-white mb-2 uppercase tracking-wide leading-snug">
                     {pt.title}
                   </h4>
-                  <p className="text-xs font-sans text-[#a99fcf] leading-relaxed">
+                  <p className="text-sm font-sans text-[#c5bddf] leading-relaxed">
                     {pt.description}
                   </p>
                 </div>
@@ -379,8 +379,8 @@ export const DoomVersusPlan: React.FC<ImpactSectionProps> = ({ onOpenRegisterMod
             4. CLOSING LINE & "RESERVE YOUR ORBIT" CTA
             ========================================================================= */}
         <div className="mt-12 text-center flex flex-col items-center justify-center p-8 bg-gradient-to-b from-[#120a2e]/90 to-[#0a051d]/90 border border-white/10 rounded-3xl shadow-[0_0_40px_rgba(139,92,246,0.15)]">
-          <p className="font-display text-xl sm:text-2xl md:text-3xl font-light text-[#f4f0ff] mb-6 tracking-wide uppercase">
-            Most hackathons end on Sunday. <span className="text-[#ffc58a]">We build into orbit.</span>
+          <p className="font-display text-xl sm:text-2xl md:text-3xl font-semibold text-white mb-6 tracking-wide leading-tight uppercase">
+            Most hackathons end on Sunday. <span className="text-[#ffd2a8]">We build into orbit.</span>
           </p>
 
           <a

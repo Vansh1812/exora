@@ -1,48 +1,80 @@
+
 import React from 'react';
-import { EVENT_CONFIG } from '../eventConfig';
 import { Sparkles } from 'lucide-react';
 
+const SPONSORS = [
+  { name: 'OSCode', tagline: 'Official Sponsor' },
+  { name: 'Unstop', tagline: 'Official Sponsor' },
+  { name: 'n8n', tagline: 'Official Sponsor' },
+  { name: 'Adaptation AI', tagline: 'Official Sponsor' },
+  { name: 'Fetch.ai', tagline: 'Official Sponsor' },
+  { name: 'ASI: One', tagline: 'Official Sponsor' },
+];
+
 export const CollaboratorsMarquee: React.FC = () => {
-  const doubleList = [...EVENT_CONFIG.collaborators, ...EVENT_CONFIG.collaborators];
+  const doubleList = [...SPONSORS, ...SPONSORS];
 
   return (
-    <section id="sponsors" className="py-16 border-b border-white/10 bg-transparent overflow-hidden relative">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 mb-8 text-center sm:text-left">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#120a2e]/80 border border-[#8b5cf6]/40 text-xs font-display tracking-[0.2em] text-[#ffc58a] uppercase backdrop-blur-md">
-          <Sparkles className="w-3.5 h-3.5 text-[#ffc58a]" />
-          <span>COLLABORATORS & PATRONS // ECOSYSTEM INFRASTRUCTURE</span>
+    <section
+      id="sponsors"
+      className="py-20 sm:py-24 border-b border-white/10 bg-transparent overflow-hidden relative"
+    >
+      {/* Section Heading */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 mb-10 text-center">
+        <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#120a2e]/80 border border-[#8b5cf6]/40 text-xs sm:text-sm font-display font-medium tracking-[0.16em] text-[#ffd2a8] uppercase backdrop-blur-md shadow-[0_0_18px_rgba(139,92,246,0.12)]">
+          <Sparkles className="w-4 h-4 text-[#ffc58a]" />
+          <span>POWERED BY OUR SPONSORS</span>
         </div>
+
+        <h2 className="mt-5 font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-white tracking-wide uppercase leading-tight">
+          Our <span className="text-[#ffc58a]">Sponsors</span>
+        </h2>
+
+        <p className="mt-4 max-w-2xl mx-auto text-sm sm:text-base font-sans font-medium text-[#c5bddf] leading-relaxed">
+          The partners supporting innovation, empowering builders, and helping
+          bring the Exora 2.0 experience to life.
+        </p>
       </div>
 
-      {/* Infinite Horizontal Sliding Marquee Track with CSS Mask (No Black Background Overlays) */}
+      {/* Infinite Sponsors Marquee */}
       <div
         className="relative w-full overflow-hidden"
         style={{
-          maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
-          WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
+          maskImage:
+            'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
+          WebkitMaskImage:
+            'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
         }}
+        aria-label="Exora 2.0 sponsors"
       >
-        <div className="animate-marquee flex items-center gap-5 sm:gap-8 py-2">
-          {doubleList.map((collab, idx) => (
+        <div className="animate-marquee flex w-max items-center gap-4 sm:gap-6 py-4">
+          {doubleList.map((sponsor, idx) => (
             <div
-              key={idx}
-              className="glass-pass-card px-6 py-4 rounded-2xl flex items-center gap-3.5 shrink-0 transition-all group cursor-default hover:-translate-y-0.5 border border-white/10 hover:border-[#8b5cf6]/60"
+              key={`${sponsor.name}-${idx}`}
+              aria-hidden={idx >= SPONSORS.length}
+              className="glass-pass-card min-w-[190px] sm:min-w-[220px] px-6 sm:px-7 py-5 sm:py-6 rounded-2xl flex items-center gap-4 shrink-0 transition-all duration-300 group cursor-default border border-white/10 hover:border-[#ffc58a]/50 hover:-translate-y-1 hover:shadow-[0_0_24px_rgba(255,197,138,0.12)]"
             >
-              {/* Luminous Brand Accent Dot */}
-              <div className="w-2.5 h-2.5 rounded-full bg-[#6ee7f9] shadow-[0_0_8px_#6ee7f9] group-hover:bg-[#ffc58a] group-hover:shadow-[0_0_10px_#ffc58a] transition-colors" />
+              {/* Luminous Brand Accent */}
+              <div className="w-3 h-3 rounded-full shrink-0 bg-[#6ee7f9] shadow-[0_0_10px_#6ee7f9] group-hover:bg-[#ffc58a] group-hover:shadow-[0_0_12px_#ffc58a] transition-all duration-300" />
 
-              <div>
-                <div className="font-display text-sm sm:text-base font-normal text-[#f4f0ff] group-hover:text-[#ffc58a] transition-colors tracking-wide uppercase whitespace-nowrap">
-                  {collab.name}
-                </div>
-                <div className="text-[11px] font-sans text-[#a99fcf] whitespace-nowrap">
-                  {collab.tagline}
-                </div>
+              <div className="min-w-0">
+                <h3 className="font-display text-base sm:text-lg font-semibold text-white group-hover:text-[#ffd2a8] transition-colors tracking-wide whitespace-nowrap">
+                  {sponsor.name}
+                </h3>
+
+                <p className="mt-1 text-xs sm:text-sm font-sans font-medium text-[#bdb3dc] whitespace-nowrap">
+                  {sponsor.tagline}
+                </p>
               </div>
             </div>
           ))}
         </div>
       </div>
+
+      {/* Supporting Footer Text */}
+      <p className="mt-7 text-center px-4 text-xs sm:text-sm font-sans text-[#a99fcf] tracking-wide">
+        Together, building the next generation of innovation.
+      </p>
     </section>
   );
 };

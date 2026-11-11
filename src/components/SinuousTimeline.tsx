@@ -250,16 +250,16 @@ export const SinuousTimeline: React.FC = () => {
       <div ref={revealRef} className={`max-w-5xl mx-auto ${revealClass}`}>
         {/* Section Header */}
         <div className="mb-12 sm:mb-16 text-center md:text-left">
-          <div className="inline-flex items-center gap-2 mb-3 px-3.5 py-1 rounded-full bg-[#120a2e]/80 border border-[#8b5cf6]/40 text-xs font-display tracking-[0.2em] text-[#ffc58a] uppercase">
-            <Sparkles className="w-3.5 h-3.5 text-[#ffc58a]" />
+          <div className="inline-flex items-center gap-2 mb-3 px-4 py-1.5 rounded-full bg-[#180d35]/90 border border-[#b18aff]/50 text-xs sm:text-sm font-display font-semibold tracking-[0.16em] text-[#ffd09f] uppercase shadow-[0_0_18px_rgba(177,138,255,0.12)]">
+            <Sparkles className="w-4 h-4 text-[#ffd09f]" />
             <span>THE WALK // CHRONOLOGICAL SEQUENCE</span>
           </div>
 
-          <h2 className="font-display text-4xl sm:text-6xl font-normal text-[#f4f0ff] tracking-[0.08em] uppercase">
+          <h2 className="font-display text-4xl sm:text-6xl font-semibold text-white tracking-[0.08em] uppercase drop-shadow-[0_0_18px_rgba(224,77,255,0.2)]">
             THE WALK
           </h2>
 
-          <p className="text-xs sm:text-sm font-sans text-[#a99fcf] max-w-2xl mt-2 leading-relaxed">
+          <p className="text-sm sm:text-base font-sans text-[#c5bddf] max-w-2xl mt-3 leading-[1.8]">
             Three Phases. One unbroken journey from qualification to the offline grand finale at Thoughtworks Technologies, Gurugram.
           </p>
         </div>
@@ -587,10 +587,10 @@ export const SinuousTimeline: React.FC = () => {
               >
                 {/* Centered Diamond Sparkle */}
                 <div
-                  className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-[#120a2e] border border-[#ffc58a]/70 flex items-center justify-center shadow-[0_0_10px_#ffc58a]"
+                  className="absolute top-3 left-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-[#120a2e] border border-[#ffc58a]/70 flex items-center justify-center shadow-[0_0_12px_rgba(255,197,138,0.45)] z-20"
                   aria-hidden="true"
                 >
-                  <Sparkles className="w-3 h-3 text-[#ffc58a] animate-pulse" />
+                  <Sparkles className="w-4 h-4 text-[#ffd09f] animate-pulse" />
                 </div>
 
                 {/* Compact Content Header (Always Visible) */}
@@ -604,13 +604,13 @@ export const SinuousTimeline: React.FC = () => {
                   <div className="flex items-center justify-between gap-1 mb-1">
                     <span
                       style={{ fontSize: 'clamp(11px, 1.6cqw, 13px)' }}
-                      className="font-display tracking-[0.16em] uppercase text-[#ffc58a] font-medium"
+                      className="font-display text-xs sm:text-sm tracking-[0.14em] uppercase text-[#ffd09f] font-semibold"
                     >
                       PHASE 01 // ONLINE
                     </span>
                     <span
-                      style={{ fontSize: 'clamp(11px, 1.8cqw, 13px)' }}
-                      className="text-[#a99fcf] font-sans"
+                      style={{ fontSize: 'clamp(12px, 1.8cqw, 14px)' }}
+                      className="text-[#d5cbea] font-sans font-semibold tracking-wide"
                     >
                       8–22 Nov
                     </span>
@@ -618,13 +618,13 @@ export const SinuousTimeline: React.FC = () => {
 
                   <div className="flex items-center justify-between gap-2">
                     <h3
-                      style={{ fontSize: 'clamp(13px, 2.6cqw, 22px)' }}
-                      className="font-display font-normal text-[#f4f0ff] uppercase tracking-wide leading-tight"
+                      style={{ fontSize: 'clamp(14px, 2.6cqw, 24px)' }}
+                      className="font-display font-semibold text-white uppercase tracking-wide leading-snug"
                     >
                       Idea & PPT Screening
                     </h3>
                     <ChevronDown
-                      className={`w-3.5 h-3.5 text-[#ffc58a] shrink-0 transition-transform duration-200 ${
+                      className={`w-4 h-4 text-[#ffd09f] shrink-0 transition-transform duration-200 ${
                         expandedCards['phase-1'] ? 'rotate-180' : ''
                       }`}
                     />
@@ -639,13 +639,13 @@ export const SinuousTimeline: React.FC = () => {
                   >
                     <p
                       style={{ fontSize: 'clamp(11px, 1.8cqw, 13px)' }}
-                      className="font-sans text-[#a99fcf] leading-relaxed line-clamp-2"
+                      className="font-sans text-sm sm:text-base text-[#c5bddf] leading-relaxed line-clamp-3"
                     >
                       Squad registration and mandatory project PPT submission. Top 40–50 squads advance to the 24-hour hackathon.
                     </p>
-                    <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#ffc58a]/15 border border-[#ffc58a]/40 text-[#ffc58a]">
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ffc58a]/15 border border-[#ffc58a]/40 text-[#ffc58a]">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#ffc58a]" />
-                      <span style={{ fontSize: 'clamp(11px, 1.5cqw, 12px)' }} className="font-display uppercase tracking-wider">
+                      <span style={{ fontSize: 'clamp(11px, 1.5cqw, 12px)' }} className="font-display text-[10px] sm:text-xs font-semibold uppercase tracking-wider">
                         PPT Submission Mandatory
                       </span>
                     </div>
@@ -676,10 +676,9 @@ export const SinuousTimeline: React.FC = () => {
               >
                 {/* Centered Diamond Sparkle */}
                 <div
-                  className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-[#120a2e] border border-[#c084fc]/70 flex items-center justify-center shadow-[0_0_10px_#8b5cf6]"
-                  aria-hidden="true"
+                  className="absolute -top-5 left-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-[#120a2e] border border-[#c084fc]/70 flex items-center justify-center shadow-[0_0_12px_rgba(192,132,252,0.45)] z-20"
                 >
-                  <Sparkles className="w-3 h-3 text-[#c084fc] animate-pulse" />
+                  <Sparkles className="w-4 h-4 text-[#c084fc] animate-pulse" />
                 </div>
 
                 {/* Compact Content Header (Always Visible) */}
@@ -688,18 +687,18 @@ export const SinuousTimeline: React.FC = () => {
                   onClick={() => toggleCard('phase-2')}
                   aria-expanded={expandedCards['phase-2']}
                   aria-controls="card-detail-phase-2"
-                  className="w-full text-left outline-none min-h-[44px] flex flex-col justify-center"
+                  className="w-full text-left outline-none min-h-[44px] pt -5 flex flex-col justify-center"
                 >
                   <div className="flex items-center justify-between gap-1 mb-1">
                     <span
                       style={{ fontSize: 'clamp(11px, 1.6cqw, 13px)' }}
-                      className="font-display tracking-[0.16em] uppercase text-[#c084fc] font-medium"
+                      className="font-display text-xs sm:text-sm tracking-[0.14em] uppercase text-[#c084fc] font-semibold"
                     >
                       PHASE 02 // 24H SPRINT
                     </span>
                     <span
-                      style={{ fontSize: 'clamp(11px, 1.8cqw, 13px)' }}
-                      className="text-[#a99fcf] font-sans"
+                      style={{ fontSize: 'clamp(12px, 1.8cqw, 14px)' }}
+                      className="text-[#d5cbea] font-sans font-semibold tracking-wide"
                     >
                       27 Nov 2026
                     </span>
@@ -707,13 +706,13 @@ export const SinuousTimeline: React.FC = () => {
 
                   <div className="flex items-center justify-between gap-2">
                     <h3
-                      style={{ fontSize: 'clamp(13px, 2.6cqw, 22px)' }}
-                      className="font-display font-normal text-[#f4f0ff] uppercase tracking-wide leading-tight"
+                      style={{ fontSize: 'clamp(14px, 2.6cqw, 24px)' }}
+                      className="font-display font-semibold text-white uppercase tracking-wide leading-snug"
                     >
                       24-Hour Build
                     </h3>
                     <ChevronDown
-                      className={`w-3.5 h-3.5 text-[#c084fc] shrink-0 transition-transform duration-200 ${
+                      className={`w-4 h-4 text-[#c084fc] shrink-0 transition-transform duration-200 ${
                         expandedCards['phase-2'] ? 'rotate-180' : ''
                       }`}
                     />
@@ -728,13 +727,13 @@ export const SinuousTimeline: React.FC = () => {
                   >
                     <p
                       style={{ fontSize: 'clamp(11px, 1.8cqw, 13px)' }}
-                      className="font-sans text-[#a99fcf] leading-relaxed line-clamp-2"
+                      className="font-sans text-sm sm:text-base text-[#c5bddf] leading-relaxed line-clamp-3"
                     >
                       Non-eliminatory online build sprint. Squads receive architectural mentorship after 4:00 PM to refine project prototypes.
                     </p>
-                    <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#8b5cf6]/15 border border-[#8b5cf6]/40 text-[#c084fc]">
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#8b5cf6]/15 border border-[#8b5cf6]/40 text-[#c084fc]">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#8b5cf6]" />
-                      <span style={{ fontSize: 'clamp(11px, 1.5cqw, 12px)' }} className="font-display uppercase tracking-wider">
+                      <span style={{ fontSize: 'clamp(11px, 1.5cqw, 12px)' }} className="font-display text-[10px] sm:text-xs font-semibold uppercase tracking-wider">
                         Zero Eliminations Round
                       </span>
                     </div>
@@ -768,10 +767,9 @@ export const SinuousTimeline: React.FC = () => {
               >
                 {/* Centered Diamond Sparkle */}
                 <div
-                  className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-[#120a2e] border border-[#e04dff] flex items-center justify-center shadow-[0_0_12px_#e04dff]"
-                  aria-hidden="true"
+                  className="absolute top-3 left-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-[#120a2e] border border-[#6ee7f9]/70 flex items-center justify-center shadow-[0_0_12px_rgba(110,231,249,0.45)] z-20"
                 >
-                  <Sparkles className="w-3 h-3 text-[#ffc58a] animate-pulse" />
+                  <Sparkles className="w-4 h-4 text-[#6ee7f9] animate-pulse" />
                 </div>
 
                 {/* Compact Header (Always Visible) */}
@@ -785,13 +783,13 @@ export const SinuousTimeline: React.FC = () => {
                   <div className="flex items-center justify-between gap-1 mb-1">
                     <span
                       style={{ fontSize: 'clamp(11px, 1.6cqw, 13px)' }}
-                      className="font-display tracking-[0.16em] uppercase text-[#6ee7f9] font-medium"
+                      className="font-display text-xs sm:text-sm tracking-[0.14em] uppercase text-[#6ee7f9] font-semibold"
                     >
                       PHASE 03 // OFFLINE
                     </span>
                     <span
-                      style={{ fontSize: 'clamp(11px, 1.8cqw, 13px)' }}
-                      className="text-[#ffc58a] font-sans font-medium"
+                      style={{ fontSize: 'clamp(12px, 1.8cqw, 14px)' }}
+                      className="text-[#ffc58a] font-sans font-semibold tracking-wide"
                     >
                       28 Nov 2026
                     </span>
@@ -799,24 +797,24 @@ export const SinuousTimeline: React.FC = () => {
 
                   <div className="flex items-center justify-between gap-2">
                     <h3
-                      style={{ fontSize: 'clamp(13px, 2.6cqw, 22px)' }}
-                      className="font-display font-normal text-[#f4f0ff] uppercase tracking-wide leading-tight"
+                      style={{ fontSize: 'clamp(14px, 2.6cqw, 24px)' }}
+                      className="font-display font-semibold text-white uppercase tracking-wide leading-snug"
                     >
                       The Grand Finale
                     </h3>
                     <ChevronDown
-                      className={`w-3.5 h-3.5 text-[#6ee7f9] shrink-0 transition-transform duration-200 ${
+                      className={`w-4 h-4 text-[#6ee7f9] shrink-0 transition-transform duration-200 ${
                         expandedCards['phase-3'] ? 'rotate-180' : ''
                       }`}
                     />
                   </div>
 
                   <div
-                    style={{ fontSize: 'clamp(10px, 1.6cqw, 12px)' }}
-                    className="text-[#a99fcf] font-sans mt-0.5 flex items-center justify-between gap-1"
+                    style={{ fontSize: 'clamp(11px, 1.7cqw, 13px)' }}
+                    
                   >
                     <span className="truncate">Thoughtworks, Gurugram</span>
-                    <span className="text-[#ffc58a] font-display text-[10px] uppercase shrink-0">08 AM–05 PM</span>
+                    <span className="text-[#ffd09f] font-display text-[11px] sm:text-xs font-semibold uppercase shrink-0">08 AM–05 PM</span>
                   </div>
                 </button>
 
@@ -828,10 +826,10 @@ export const SinuousTimeline: React.FC = () => {
                   >
                     <div
                       style={{ fontSize: 'clamp(9px, 1.5cqw, 11px)' }}
-                      className="font-display uppercase tracking-widest text-[#ffc58a] flex items-center justify-between"
+                      className="font-display text-[10px] sm:text-xs font-semibold uppercase tracking-[0.14em] text-[#ffd09f] flex items-center justify-between"
                     >
                       <span>OFFLINE FINALE ITINERARY</span>
-                      <span className="text-[#6ee7f9] font-sans text-[10px]">08:00 AM – 05:00 PM</span>
+                      <span className="text-[#8beaff] font-sans text-[10px] sm:text-xs font-semibold">08:00 AM – 05:00 PM</span>
                     </div>
 
                     {/* Moon-Dot Milestone Sequence */}
@@ -839,11 +837,7 @@ export const SinuousTimeline: React.FC = () => {
                       {FINALE_SCHEDULE.map((item, sIdx) => (
                         <div
                           key={sIdx}
-                          className={`flex items-start gap-1.5 p-1 sm:p-1.5 rounded-lg border transition-colors ${
-                            item.isEliminatory
-                              ? 'bg-[#e04dff]/15 border-[#e04dff]/40'
-                              : 'bg-[#05030f]/60 border-white/5'
-                          }`}
+                          className="flex items-start gap-1.5 p-1 sm:p-1.5 rounded-lg border transition-all duration-200 hover:-translate-y-0.5 bg-[#05030f]/60 border-white/5 hover:bg-[#6ee7f9]/10 hover:border-[#6ee7f9]/40 hover:shadow-[0_0_14px_rgba(110,231,249,0.15)]"
                         >
                           {/* Moon dot */}
                           <span
@@ -856,23 +850,23 @@ export const SinuousTimeline: React.FC = () => {
                           <div className="min-w-0 flex-1">
                             <div className="flex items-center justify-between gap-1 leading-tight">
                               <span
-                                style={{ fontSize: 'clamp(9px, 1.5cqw, 11px)' }}
-                                className={`font-display uppercase truncate ${
-                                  item.isEliminatory ? 'text-[#ffc58a] font-medium' : 'text-[#f4f0ff]'
+                                style={{ fontSize: 'clamp(10px, 1.6cqw, 13px)' }}
+                                className={`font-display font-semibold uppercase truncate ${
+                                  item.isEliminatory ? 'text-[#ffd09f]' : 'text-white'
                                 }`}
                               >
                                 {item.marker} · {item.title}
                               </span>
                               <span
-                                style={{ fontSize: 'clamp(8px, 1.3cqw, 10px)' }}
-                                className="text-[#a99fcf] font-sans shrink-0"
+                                style={{ fontSize: 'clamp(9px, 1.4cqw, 11px)' }}
+                                className="text-[#d5cbea] font-sans font-medium shrink-0"
                               >
                                 {item.time}
                               </span>
                             </div>
                             <p
-                              style={{ fontSize: 'clamp(8px, 1.3cqw, 10px)' }}
-                              className="text-[#a99fcf]/80 font-sans truncate leading-tight"
+                              style={{ fontSize: 'clamp(9px, 1.4cqw, 11px)' }}
+                              className="text-[#c5bddf] font-sans font-medium leading-relaxed"
                             >
                               {item.detail}
                             </p>

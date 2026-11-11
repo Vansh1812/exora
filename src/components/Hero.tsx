@@ -32,7 +32,7 @@ export const Hero: React.FC<HeroProps> = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-[96vh] flex flex-col items-center justify-between text-center overflow-hidden pt-10 sm:pt-14 pb-0 px-4 sm:px-6 lg:px-8"
+      className="relative flex flex-col items-center justify-between text-center overflow-hidden pt-4 sm:pt-5 pb-0 px-4 sm:px-6 lg:px-8"
     >
       {/* Background Ambient Celestial Glow */}
       <div
@@ -41,22 +41,22 @@ export const Hero: React.FC<HeroProps> = () => {
       />
 
       {/* Main Content Container - Fills the viewport window with colossal typography */}
-      <div className="relative z-10 max-w-6xl mx-auto flex flex-col items-center justify-center flex-1 w-full py-6 sm:py-8">
+      <div className="relative z-10 max-w-6xl mx-auto flex flex-col items-center justify-center flex-1 w-full py-2 sm:py-3">
         {/* 1. Date & Venue Top Kicker Pill */}
-        <div className="inline-flex items-center gap-2 mb-3 sm:mb-4 px-4 py-1.5 rounded-full bg-[#120a2e]/70 border border-white/10 text-[11px] sm:text-xs font-display tracking-[0.18em] uppercase text-[#ffc58a] backdrop-blur-md">
+        <div className="inline-flex items-center justify-center gap-2 mb-3 sm:mb-4 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#120a2e]/85 border border-[#ffc58a]/25 text-[13px] sm:text-sm font-display font-semibold tracking-[0.12em] uppercase text-[#ffe0bd] backdrop-blur-md shadow-[0_0_20px_rgba(255,154,60,0.12] max-w-full">
           <span className="w-2 h-2 rounded-full bg-[#ffc58a] shadow-[0_0_8px_#ffc58a]" />
           <span>28 NOVEMBER 2026 // THOUGHTWORKS TECHNOLOGIES, GURUGRAM</span>
         </div>
 
         {/* 2. Signature Walker Line (Celestial signature from Figma) */}
-        <div className="w-full max-w-2xl px-2 sm:px-6 my-2 sm:my-3">
+        <div className="w-full max-w-2xl px-2 sm:px-6 my-1 sm:my-2">
           <WalkerLine progress={0.42} showMoons={true} />
         </div>
 
         {/* 3. Colossal Two-Line Title Occupying the Viewport Window */}
-        <h1 className="flex flex-col items-center justify-center text-center select-none my-2 sm:my-3 w-full">
+        <h1 className="flex flex-col items-center justify-center text-center select-none my-1 sm:my-2 w-full">
           {/* Line 1: Solid "EXORA 2.0" */}
-          <span className="font-display text-6xl sm:text-8xl md:text-9xl lg:text-[10rem] xl:text-[11.5rem] font-normal tracking-[0.06em] text-[#f4f0ff] uppercase leading-none drop-shadow-[0_4px_35px_rgba(224,77,255,0.35)]">
+          <span className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[8rem] xl:text-[9rem] font-normal tracking-[0.04em] text-[#f4f0ff] uppercase leading-none drop-shadow-[0_4px_35px_rgba(224,77,255,0.35)]">
             EXORA <span className="text-[#6ee7f9] font-light">2.0</span>
           </span>
 
@@ -67,14 +67,14 @@ export const Hero: React.FC<HeroProps> = () => {
               color: 'transparent',
               textShadow: '0 0 30px rgba(224, 77, 255, 0.65), 0 0 60px rgba(255, 154, 60, 0.35)',
             }}
-            className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-light uppercase tracking-[0.14em] leading-none mt-2 sm:mt-4"
+            className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light uppercase tracking-[0.10em] leading-none mt-2 sm:mt-3"
           >
             UNVEIL THE BUILD
           </span>
         </h1>
 
         {/* 4. Cosmic Theme One-Liner (Replaced generic technical text with theme) */}
-        <p className="font-sans text-sm sm:text-base md:text-lg text-[#a99fcf] max-w-xl mx-auto mt-4 sm:mt-5 mb-8 sm:mb-10 leading-relaxed font-light">
+        <p className="font-sans text-sm sm:text-base md:text-lg text-[#d5cbea] max-w-2xl mx-auto mt-2 sm:mt-3 mb-4 sm:mb-5 leading-relaxed font-normal tracking-wide">
           The Walk Between Worlds · A 24-Hour Orbital Crucible by Google Developer Groups
         </p>
 
@@ -84,7 +84,7 @@ export const Hero: React.FC<HeroProps> = () => {
             href={EVENT_CONFIG.registrationUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary-orbital text-sm sm:text-base py-3.5 sm:py-4 px-8 sm:px-10 min-h-[52px] sm:min-h-[56px] shadow-[0_4px_30px_rgba(255,154,60,0.5)] w-full sm:w-auto font-medium"
+            className="btn-primary-orbital text-base sm:text-lg py-3.5 sm:py-4 px-8 sm:px-10 min-h-[52px] sm:min-h-[56px] shadow-[0_4px_30px_rgba(255,154,60,0.5)] w-full sm:w-auto font-semibold tracking-[0.06em]"
           >
             <span>RESERVE YOUR ORBIT</span>
             <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-1.5" />
@@ -93,7 +93,7 @@ export const Hero: React.FC<HeroProps> = () => {
           <a
             href="#timeline"
             onClick={handleScrollToTimeline}
-            className="btn-secondary-orbital text-sm sm:text-base py-3.5 sm:py-4 px-8 sm:px-10 min-h-[52px] sm:min-h-[56px] w-full sm:w-auto"
+            className="btn-secondary-orbital text-base sm:text-lg py-3.5 sm:py-4 px-8 sm:px-10 min-h-[52px] sm:min-h-[56px] w-full sm:w-auto font-semibold tracking-[0.06em] border border-[#c4a8f5]/50"
           >
             VIEW SCHEDULE
           </a>
@@ -106,7 +106,7 @@ export const Hero: React.FC<HeroProps> = () => {
           viewBox="0 0 1440 120"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-16 sm:h-24 md:h-28 text-transparent preserve-3d"
+          className="block w-full h-10 sm:h-14 md:h-16"
           preserveAspectRatio="none"
         >
           <defs>

@@ -31,7 +31,7 @@ export default function App() {
   useOrbitalEasterEgg(() => setIsEasterEggOpen(true));
 
   return (
-    <div className="relative min-h-screen bg-[#05030f] text-[#f4f0ff] overflow-x-hidden selection:bg-[#8b5cf6]/30 selection:text-[#ffffff]">
+    <div className="relative min-h-screen bg-[#05030f] text-[#f4f0ff] overflow-x-clip selection:bg-[#8b5cf6]/30 selection:text-[#ffffff]">
       {/* Interactive Starlight Cursor */}
       <Cursor />
 

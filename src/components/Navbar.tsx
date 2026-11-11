@@ -42,7 +42,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
         </a>
 
         {/* Center: Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-5 lg:gap-7 text-[11px] font-display uppercase tracking-[0.16em] text-[#a99fcf]">
+        <nav className="hidden md:flex items-center gap-5 lg:gap-7 text-[13px] font-display font-semibold uppercase tracking-[0.12em] text-[#f0eaff]">
           <a
             href="#mission"
             onClick={(e) => handleNavClick(e, '#mission')}
@@ -87,7 +87,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
             href={EVENT_CONFIG.registrationUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center justify-center px-5 py-2 min-h-[40px] rounded-full text-xs font-display font-medium tracking-[0.12em] uppercase text-[#05030f] bg-gradient-to-r from-[#ffc58a] to-[#ff9a3c] hover:from-[#ffcf9e] hover:to-[#ffa54f] shadow-[0_0_20px_rgba(255,154,60,0.35)] hover:shadow-[0_0_28px_rgba(255,154,60,0.55)] transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#e04dff] active:scale-95"
+            className="hidden sm:inline-flex items-center justify-center px-6 py-2.5 min-h-[44px] rounded-full text-[14px] font-display font-semibold tracking-[0.13em] uppercase text-[#05030f] bg-gradient-to-r from-[#ffd09f] to-[#ff9a3c] hover:from-[#ffdbb5] hover:to-[#ffad5f] shadow-[0_0_22px_rgba(255,154,60,0.4)] hover:shadow-[0_0_30px_rgba(255,154,60,0.6)] transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#e04dff] active:scale-95"
           >
             <span>REGISTER</span>
           </a>

@@ -121,8 +121,8 @@ export const EVENT_CONFIG = {
   grandFinaleDate: "28 November 2026",
   venue: "Thoughtworks Technologies, Gurugram",
   venueAddress: "Building 14, Tower B, DLF Cyber City, Sector 25, Gurugram, Haryana 122002",
-  registrationUrl: "https://unstop.com/o/iPHpWUc?lb=bjos6kym&utm_medium=Share&utm_source=ubfxqrcy86969&utm_campaign=Online_coding_challenge",
-  unstopUrl: "https://unstop.com/o/iPHpWUc?lb=bjos6kym&utm_medium=Share&utm_source=ubfxqrcy86969&utm_campaign=Online_coding_challenge",
+  registrationUrl: "https://unstop.com/hackathons/exora-20-unveil-the-build-abes-engineering-college-1799143",
+  unstopUrl: "https://unstop.com/hackathons/exora-20-unveil-the-build-abes-engineering-college-1799143",
 
   // Hero Synopsis
   heroSynopsis: "A premier 24-hour hackathon hosted by Google Developer Groups at Thoughtworks Technologies, Gurugram. Where technical creativity meets entrepreneurial thinking.",
@@ -423,15 +423,13 @@ export const EVENT_CONFIG = {
 
   // Section 3: Collaborators Marquee
   collaborators: [
-    { name: "Google Developer Groups", tagline: "Global Ecosystem" },
-    { name: "Thoughtworks Technologies", tagline: "Grand Finale Venue Partner" },
-    { name: "Google for Developers", tagline: "Platform Patron" },
-    { name: "GitHub Education", tagline: "Developer Infrastructure" },
-    { name: "JetBrains", tagline: "Professional Tooling" },
-    { name: ".xyz Domains", tagline: "Web Infrastructure" },
-    { name: "Unstop", tagline: "Registration Partner" },
-    { name: "GDG On Campus ABESEC", tagline: "Organizing Chapter" }
-  ] as Collaborator[],
+  { name: 'OSCode', tagline: 'Official Sponsor' },
+  { name: 'Unstop', tagline: 'Official Sponsor' },
+  { name: 'n8n', tagline: 'Official Sponsor' },
+  { name: 'Adaptation AI', tagline: 'Official Sponsor' },
+  { name: 'Fetch.ai', tagline: 'Official Sponsor' },
+  { name: 'ASI: One', tagline: 'Official Sponsor' },
+] as Collaborator[],
 
   // Section 4: Prize Rewards — 3 Cards with Top Reward
   prizes: [

@@ -362,16 +362,16 @@ export const TracksSection: React.FC = () => {
       <div ref={revealRef} className={`max-w-5xl mx-auto ${revealClass}`}>
         {/* Section Header */}
         <div className="mb-10 sm:mb-12 text-center md:text-left">
-          <div className="inline-flex items-center gap-2 mb-2 px-3.5 py-1 rounded-full bg-[#120a2e]/80 border border-[#8b5cf6]/40 text-xs font-display tracking-[0.2em] text-[#ffc58a] uppercase">
-            <Sparkles className="w-3.5 h-3.5 text-[#ffc58a]" />
+          <div className="inline-flex items-center gap-2 mb-3 px-4 py-1.5 rounded-full bg-[#180d35]/90 border border-[#b18aff]/50 text-xs sm:text-sm font-display font-semibold tracking-[0.16em] text-[#ffd09f] uppercase shadow-[0_0_18px_rgba(177,138,255,0.12)]">
+            <Sparkles className="w-4 h-4 text-[#ffd09f]" />
             <span>ORBITAL DOMAINS // 5 TRAJECTORIES</span>
           </div>
 
-          <h2 className="font-display text-4xl sm:text-6xl font-normal text-[#f4f0ff] tracking-[0.08em] uppercase">
+          <h2 className="font-display text-4xl sm:text-6xl font-semibold text-white tracking-[0.08em] uppercase drop-shadow-[0_0_18px_rgba(224,77,255,0.2)]">
             CHOOSE YOUR ORBIT
           </h2>
 
-          <p className="text-xs sm:text-sm font-sans text-[#a99fcf] max-w-2xl mt-2 leading-relaxed">
+          <p className="text-sm sm:text-base font-sans text-[#c5bddf] max-w-2xl mt-3 leading-relaxed">
             Select a planetary sphere to align your squad’s mission directives, difficulty rating, and track rewards.
           </p>
         </div>
@@ -437,11 +437,11 @@ export const TracksSection: React.FC = () => {
                 <div className="mt-2.5 text-center flex flex-col items-center">
                   <span
                     style={{
-                      color: isSelected ? track.accent : '#a99fcf',
-                      fontSize: 'clamp(8.5px, 1.8vw, 11px)',
+                      color: isSelected ? track.accent : '#d5cbea',
+                      fontSize: 'clamp(10px, 2vw, 12px)',
                     }}
                     className={`font-mono uppercase tracking-wider block transition-colors leading-none ${
-                      isSelected ? 'font-bold' : 'font-normal'
+                      isSelected ? 'font-bold' : 'font-medium'
                     }`}
                   >
                     {copy?.codenameOnly || track.id}
@@ -450,10 +450,10 @@ export const TracksSection: React.FC = () => {
                   {/* Selected Track Short Name */}
                   <span
                     style={{
-                      fontSize: 'clamp(8px, 1.5vw, 10px)',
+                      fontSize: 'clamp(9px, 1.7vw, 11px)',
                     }}
-                    className={`font-sans text-[#f4f0ff]/80 truncate max-w-[64px] sm:max-w-[100px] mt-1 transition-opacity ${
-                      isSelected ? 'opacity-100' : 'hidden sm:block opacity-60'
+                    className={`font-sans font-medium text-[#d5cbea] truncate max-w-[68px] sm:max-w-[100px] mt-1.5 transition-opacity ${
+                      isSelected ? 'opacity-100' : 'hidden sm:block opacity-90'
                     }`}
                   >
                     {copy?.shortTitle || track.title}
@@ -491,7 +491,7 @@ export const TracksSection: React.FC = () => {
         >
           {/* Centered Diamond Sparkle SVG on Top */}
           <div
-            className="absolute -top-3.5 left-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-[#120a2e] border flex items-center justify-center shadow-lg z-20"
+            className="absolute top-3 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#120a2e] border flex items-center justify-center shadow-lg z-20"
             style={{
               borderColor: activeTrack.accent,
               boxShadow: `0 0 14px ${activeTrack.accent}`,
@@ -535,21 +535,21 @@ export const TracksSection: React.FC = () => {
             <div className="flex items-center justify-between gap-4 flex-wrap">
               <span
                 style={{ color: activeTrack.accent }}
-                className="font-mono text-xs sm:text-sm tracking-[0.2em] uppercase font-medium"
+                className="font-mono text-sm sm:text-base tracking-[0.16em] uppercase font-semibold"
               >
                 {activeTrack.codeName}
               </span>
 
               {/* 1 to 5 Stars in Accent Color */}
               <div className="flex items-center gap-1.5 bg-[#05030f]/60 px-3 py-1 rounded-full border border-white/10">
-                <span className="text-[10px] font-display text-[#a99fcf] tracking-widest uppercase">
+                <span className="text-xs sm:text-sm font-display font-semibold text-[#d5cbea] tracking-wider uppercase">
                   DIFFICULTY:
                 </span>
                 <div className="flex items-center gap-1">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <span
                       key={star}
-                      className="text-sm leading-none"
+                      className="text-base sm:text-lg leading-none"
                       style={{
                         color: star <= activeTrack.difficulty ? activeTrack.accent : '#271947',
                         textShadow:
@@ -566,18 +566,18 @@ export const TracksSection: React.FC = () => {
             </div>
 
             {/* Track Name in Display Font */}
-            <h3 className="font-display text-2xl sm:text-4xl text-[#f4f0ff] uppercase tracking-wide leading-tight">
+            <h3 className="font-display text-3xl sm:text-5xl font-semibold text-white uppercase tracking-wide leading-tight drop-shadow-[0_0_16px_rgba(224,77,255,0.16)]">
               {activeTrack.title}
             </h3>
 
             {/* One-Line Plain Language Mission (max 14 words) */}
-            <p className="text-sm sm:text-base text-[#f4f0ff]/95 leading-relaxed font-sans max-w-3xl">
+            <p className="text-base sm:text-lg text-[#e5def5] leading-[1.8] font-sans font-medium max-w-3xl">
               &ldquo;{activeCopy.mission}&rdquo;
             </p>
 
             {/* Ideas to Build (3 short lines, max 10 words each) */}
             <div className="space-y-2.5 pt-2">
-              <span className="text-[10px] font-display uppercase tracking-widest text-[#a99fcf] block">
+              <span className="text-sm font-display font-semibold uppercase tracking-[0.16em] text-[#d5cbea] block">
                 IDEAS TO BUILD //
               </span>
 
@@ -585,7 +585,7 @@ export const TracksSection: React.FC = () => {
                 {activeCopy.ideas.map((idea, idx) => (
                   <div
                     key={idx}
-                    className="flex items-start gap-2.5 text-xs sm:text-sm text-[#f4f0ff]/85 leading-snug"
+                    className="flex items-start gap-3 text-sm sm:text-base font-sans font-medium text-[#e5def5] leading-relaxed"
                   >
                     <Sparkles
                       className="w-3.5 h-3.5 shrink-0 mt-0.5"
@@ -601,57 +601,21 @@ export const TracksSection: React.FC = () => {
             {activeTrack.trackPerk && (
               <div className="pt-4 border-t border-white/10 flex items-center justify-between flex-wrap gap-2">
                 <div
-                  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-sans border"
+                  
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm sm:text-base font-sans font-medium border"  
                   style={{
                     backgroundColor: `${activeTrack.accent}15`,
                     borderColor: `${activeTrack.accent}45`,
                     color: '#f4f0ff',
                   }}
                 >
-                  <Sparkles className="w-3.5 h-3.5 text-[#ffc58a] shrink-0" />
+                  <Sparkles className="w-4 h-4 text-[#ffd09f] shrink-0" />
                   <span>{activeTrack.trackPerk}</span>
                 </div>
               </div>
             )}
           </div>
         </div>
-
-        {/* =========================================================================
-            3. OPEN INNOVATION (HORIZON) SPECIAL FULL-WIDTH STRIP
-            Dashed orbit border, rotated "Wildcard" mini-label, "Your idea. Your orbit."
-            ========================================================================= */}
-        <button
-          type="button"
-          onClick={() => setActiveTrackId('orbit-05')}
-          aria-label="Select Horizon: Open Innovation Wildcard Orbit"
-          style={{
-            '--accent': '#6ee7f9',
-          } as React.CSSProperties}
-          className={`w-full p-4 sm:p-5 rounded-2xl border-2 border-dashed transition-all duration-300 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-left relative overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-[#6ee7f9] cursor-pointer ${
-            activeTrack.id === 'orbit-05'
-              ? 'border-[#6ee7f9] bg-[#120a2e]/90 shadow-[0_0_25px_rgba(110,231,249,0.22)]'
-              : 'border-[#6ee7f9]/40 bg-[#120a2e]/40 hover:border-[#6ee7f9]/80 hover:bg-[#120a2e]/60'
-          }`}
-        >
-          <div className="flex items-center gap-3">
-            <span className="px-2 py-0.5 rounded text-[10px] font-display uppercase tracking-wider bg-[#6ee7f9]/20 text-[#6ee7f9] border border-[#6ee7f9]/40 -rotate-3 shrink-0">
-              WILDCARD
-            </span>
-            <div>
-              <span className="font-display text-sm sm:text-base text-[#f4f0ff] uppercase tracking-wide block">
-                Your idea. Your orbit.
-              </span>
-              <span className="font-sans text-xs text-[#a99fcf]">
-                Cross-domain prototypes, radical hardware, and unconstrained software experiments.
-              </span>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-2 text-xs font-display text-[#6ee7f9] uppercase tracking-wider shrink-0 self-end sm:self-center">
-            <span>{activeTrack.id === 'orbit-05' ? 'ORBIT ACTIVE' : 'CHOOSE HORIZON'}</span>
-            <span className="text-sm">→</span>
-          </div>
-        </button>
       </div>
     </section>
   );
