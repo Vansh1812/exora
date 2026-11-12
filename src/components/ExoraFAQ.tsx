@@ -18,12 +18,12 @@ export const ExoraFAQ: React.FC = () => {
   return (
     <section
       id="faq"
-      className="py-10 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden"
+      className="pt-4 pb-12 sm:pt-6 sm:pb-16 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden"
     >
       <div ref={ref} className={`max-w-4xl mx-auto ${revealClass}`}>
 
         {/* Section Header */}
-        <div className="mb-6 sm:mb-14 text-center md:text-left">
+        <div className="mb-5 sm:mb-7 text-center md:text-left">
           <div className="inline-flex items-center gap-3 mb-3 px-5 py-2.5 rounded-full bg-[#120a2e]/80 border border-[#8b5cf6]/50 text-sm sm:text-base font-display font-semibold tracking-[0.16em] text-[#ffd2a8] uppercase backdrop-blur-md shadow-[0_0_20px_rgba(139,92,246,0.16)]">
             
             <span>INTEL // OPERATIONAL CLARIFICATIONS</span>

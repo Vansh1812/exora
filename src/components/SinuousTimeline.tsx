@@ -244,13 +244,7 @@ export const SinuousTimeline: React.FC = () => {
     return 2;
   }, [walkerData.progress, isReduced]);
 
-  // Automatically expand the Finale card when the walker arrives
-  useEffect(() => {
-    if (isNode3Lit) {
-      setExpandedCards((prev) => (prev['phase-3'] ? prev : { ...prev, 'phase-3': true }));
-    }
-  }, [isNode3Lit]);
-
+  // Toggle card expansion on click/tap only (collapsed by default)
   const toggleCard = useCallback((id: string) => {
     setExpandedCards((prev) => ({ ...prev, [id]: !prev[id] }));
   }, []);
@@ -262,11 +256,11 @@ export const SinuousTimeline: React.FC = () => {
     <section
       id="timeline"
       ref={sectionRef}
-      className="py-10 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden"
+      className="pt-4 pb-12 sm:pt-6 sm:pb-16 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden"
     >
       <div ref={revealRef} className={`max-w-5xl mx-auto ${revealClass}`}>
         {/* Section Header */}
-        <div className="mb-6 sm:mb-16 text-center md:text-left">
+        <div className="mb-5 sm:mb-8 text-center md:text-left">
           <div className="inline-flex items-center gap-2 mb-3 px-4 py-1.5 rounded-full bg-[#180d35]/90 border border-[#b18aff]/50 text-xs sm:text-sm font-display font-semibold tracking-[0.16em] text-[#ffd09f] uppercase shadow-[0_0_18px_rgba(177,138,255,0.12)]">
             
             <span>THE WALK // CHRONOLOGICAL SEQUENCE</span>
@@ -304,7 +298,7 @@ export const SinuousTimeline: React.FC = () => {
           <svg
             viewBox="0 0 900 1400"
             fill="none"
-            preserveAspectRatio="xMidYMid meet"
+            preserveAspectRatio="xMidYMin meet"
             className="absolute inset-0 w-full h-full pointer-events-none overflow-visible"
             aria-hidden="true"
           >
@@ -767,35 +761,34 @@ export const SinuousTimeline: React.FC = () => {
             </li>
 
             {/* -----------------------------------------------------------------
-                CARD 3: FINALE (Right of Node 3, at left: 34%, top: 71%, width: 48%)
-                Expands automatically when the walker arrives into the 24H schedule
+                CARD 3: FINALE (Right of Node 3, at left: 34%, width: 50%)
+                Expands smoothly into the open right-hand area so it never spills into the next section
                 ----------------------------------------------------------------- */}
             <li
               aria-current={activeStepIndex === 2 ? 'step' : undefined}
               style={{
                 left: '34%',
-                width: '48%',
-                transition: 'opacity 0.4s ease-out',
+                width: '50%',
+                transition: 'opacity 0.4s ease-out, top 0.3s ease-out',
                 opacity: isNode3Lit ? 1 : 0.45,
               }}
-              className="absolute z-20 top-[82%] sm:top-[74%]"
+              className={`absolute z-20 ${expandedCards['phase-3'] ? 'top-[56%]' : 'top-[72%]'}`}
             >
               <div
-                style={{ padding: 'clamp(10px, 2.2cqw, 20px)' }}
+                style={{ padding: 'clamp(12px, 2.2cqw, 20px)' }}
                 className={`glass-pass-card rounded-2xl sm:rounded-3xl transition-all duration-300 relative group border ${
                   isNode3Lit
                     ? 'border-[#e04dff]/50 shadow-[0_15px_40px_rgba(224,77,255,0.22)]'
                     : 'border-white/5'
                 }`}
               >
-                
-                {/* Compact Header (Always Visible) */}
+                {/* Header (Always Visible) */}
                 <button
                   type="button"
                   onClick={() => toggleCard('phase-3')}
                   aria-expanded={expandedCards['phase-3']}
                   aria-controls="card-detail-phase-3"
-                  className="w-full text-left outline-none min-h-[44px] flex flex-col justify-center"
+                  className="w-full text-left outline-none min-h-[44px] flex flex-col justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6ee7f9] rounded-xl cursor-pointer"
                 >
                   <div className="flex items-center justify-between gap-1 mb-1">
                     <span
@@ -806,7 +799,7 @@ export const SinuousTimeline: React.FC = () => {
                     </span>
                     <span
                       style={{ fontSize: 'clamp(12px, 1.8cqw, 14px)' }}
-                      className="text-[#ffc58a] font-sans font-semibold tracking-wide"
+                      className="text-[#ffc58a] font-mono font-semibold tracking-wide"
                     >
                       28 Nov 2026
                     </span>
@@ -814,7 +807,7 @@ export const SinuousTimeline: React.FC = () => {
 
                   <div className="flex items-center justify-between gap-2">
                     <h3
-                      style={{ fontSize: 'clamp(14px, 2.6cqw, 24px)' }}
+                      style={{ fontSize: 'clamp(15px, 2.6cqw, 24px)' }}
                       className="font-display font-semibold text-white uppercase tracking-wide leading-snug"
                     >
                       The Grand Finale
@@ -826,12 +819,14 @@ export const SinuousTimeline: React.FC = () => {
                     />
                   </div>
 
-                  <div
-                    style={{ fontSize: 'clamp(11px, 1.7cqw, 13px)' }}
+                  {/* Line 3: Venue */}
+                  <div className="text-xs sm:text-sm font-sans text-[#c5bddf] mt-1 break-words">
+                    Thoughtworks Technologies, Gurugram
+                  </div>
 
-                  >
-                    <span className="truncate">Thoughtworks, Gurugram </span>
-                    <span className="text-[#ffd09f] font-display text-[11px] sm:text-xs font-semibold uppercase shrink-0"> 08:00 AM–05:00 PM</span>
+                  {/* Line 4: Time in peach mono style on its own line */}
+                  <div className="text-[11px] sm:text-xs font-mono font-medium text-[#ffd09f] tracking-wider mt-1">
+                    08:00 AM – 05:00 PM · Full-Day Offline Crucible
                   </div>
                 </button>
 
@@ -839,49 +834,39 @@ export const SinuousTimeline: React.FC = () => {
                 {expandedCards['phase-3'] && (
                   <div
                     id="card-detail-phase-3"
-                    className="pt-2 mt-1.5 border-t border-white/10 space-y-1.5 animate-[staticFlash_120ms_ease-out]"
+                    className="pt-3 mt-2.5 border-t border-white/10 space-y-2 animate-[staticFlash_120ms_ease-out]"
                   >
                     <div
-                      style={{ fontSize: 'clamp(9px, 1.5cqw, 11px)' }}
-                      className="font-display text-[10px] sm:text-xs font-semibold uppercase tracking-[0.14em] text-[#ffd09f] flex items-center justify-between"
+                      style={{ fontSize: 'clamp(10px, 1.5cqw, 12px)' }}
+                      className="font-display text-xs font-semibold uppercase tracking-[0.14em] text-[#ffd09f] flex items-center justify-between"
                     >
                       <span>OFFLINE FINALE ITINERARY</span>
-                      <span className="text-[#8beaff] font-sans text-[10px] sm:text-xs font-semibold">08:00 AM – 05:00 PM</span>
+                      <span className="text-[#8beaff] font-mono text-[11px] font-semibold">
+                        08:00 AM – 05:00 PM
+                      </span>
                     </div>
 
                     {/* Moon-Dot Milestone Sequence */}
-                    <div className="space-y-1">
+                    <div className="space-y-1.5 sm:space-y-2 mt-2">
                       {FINALE_SCHEDULE.map((item, sIdx) => (
                         <div
                           key={sIdx}
-                          className="flex items-start gap-1.5 p-1 sm:p-1.5 rounded-lg border transition-all duration-200 cursor-pointer hover:-translate-y-0.5 bg-[#05030f]/60 border-white/5 hover:bg-[#6ee7f9]/10 hover:border-[#6ee7f9]/40 hover:shadow-[0_0_14px_rgba(110,231,249,0.15)]"
+                          className="group p-2 sm:p-2.5 rounded-xl border transition-all duration-200 cursor-pointer bg-[#05030f]/60 border-white/8 hover:-translate-y-0.5 hover:bg-[#6ee7f9]/10 hover:border-[#6ee7f9]/40 hover:shadow-[0_0_14px_rgba(110,231,249,0.15)] active:scale-[0.99]"
                         >
-                          {/* Moon dot */}
-                          <span
-                            className="w-1.5 h-1.5 rounded-full mt-1 shrink-0 bg-[#6ee7f9] shadow-[0_0_6px_#6ee7f9]"
-                          />
-                          <div className="min-w-0 flex-1">
-                            <div className="flex items-center justify-between gap-1 leading-tight">
-                              <span
-                                style={{ fontSize: 'clamp(10px, 1.6cqw, 13px)' }}
-                                className="font-display font-semibold uppercase truncate text-white"
-                              >
-                                {item.marker} · {item.title}
-                              </span>
-                              <span
-                                style={{ fontSize: 'clamp(9px, 1.4cqw, 11px)' }}
-                                className="text-[#d5cbea] font-sans font-medium shrink-0"
-                              >
-                                {item.time}
+                          <div className="flex items-center justify-between gap-2">
+                            <div className="flex items-center gap-2 min-w-0">
+                              <span className="w-2 h-2 rounded-full shrink-0 bg-[#6ee7f9] shadow-[0_0_8px_#6ee7f9] group-hover:bg-[#ffc58a] group-hover:shadow-[0_0_10px_#ffc58a] transition-all duration-200" />
+                              <span className="font-display font-semibold uppercase text-white group-hover:text-[#8beaff] transition-colors text-[11px] sm:text-xs tracking-wide">
+                                {item.title}
                               </span>
                             </div>
-                            <p
-                              style={{ fontSize: 'clamp(9px, 1.4cqw, 11px)' }}
-                              className="text-[#c5bddf] font-sans font-medium leading-relaxed"
-                            >
-                              {item.detail}
-                            </p>
+                            <span className="text-[10px] sm:text-xs font-mono font-medium text-[#ffd09f] tracking-wide shrink-0 bg-[#ffc58a]/10 px-2 py-0.5 rounded border border-[#ffc58a]/20">
+                              {item.time}
+                            </span>
                           </div>
+                          <p className="text-[11px] sm:text-xs font-sans text-[#c5bddf] font-normal leading-relaxed pl-4 mt-1">
+                            {item.detail}
+                          </p>
                         </div>
                       ))}
                     </div>

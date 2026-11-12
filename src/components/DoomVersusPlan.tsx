@@ -150,11 +150,11 @@ export const DoomVersusPlan: React.FC<ImpactSectionProps> = ({ onOpenRegisterMod
     <section
       id="impact"
       ref={containerRef}
-      className="py-10 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden"
+      className="pt-4 pb-12 sm:pt-6 sm:pb-16 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden"
     >
       <div ref={revealRef} className={`max-w-6xl mx-auto ${revealClass}`}>
         {/* Section Header */}
-        <div className="mb-6 sm:mb-10 text-center md:text-left">
+        <div className="mb-5 sm:mb-7 text-center md:text-left">
           <div className="flex items-center justify-center md:justify-start gap-2.5 text-sm sm:text-base font-display font-semibold tracking-[0.16em] text-[#ffc58a] uppercase mb-3">
             <span>THE PARADIGM SHIFT</span>
             <span className="text-[#a99fcf]">·</span>

@@ -19,38 +19,65 @@ export const Navbar: React.FC<NavbarProps> = () => {
   }, []);
 
   const handleNavClick = (
-  e: React.MouseEvent<HTMLAnchorElement>,
-  href: string
-) => {
-  e.preventDefault();
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    e.preventDefault();
 
-  setMobileMenuOpen(false);
+    setMobileMenuOpen(false);
 
-  // Wait until React has removed the mobile drawer
-  window.setTimeout(() => {
-    const target = document.querySelector(href) as HTMLElement | null;
-    const navHeader = document.querySelector('header');
+    // Wait until React has removed the mobile drawer
+    window.setTimeout(() => {
+      if (href === '#hero') {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        });
+        window.history.replaceState(null, '', href);
+        return;
+      }
 
-    if (!target) return;
+      const target = document.querySelector(href) as HTMLElement | null;
+      if (!target) return;
 
-    const navBottom = navHeader
-      ? navHeader.getBoundingClientRect().bottom
-      : 60;
+      const navHeader = document.querySelector('header');
+      const navBottom = navHeader
+        ? navHeader.getBoundingClientRect().bottom
+        : 60;
 
-    const targetPosition =
-      target.getBoundingClientRect().top +
-      window.scrollY -
-      navBottom -
-      16;
+      // Measure target section
+      const targetRect = target.getBoundingClientRect();
+      const targetTop = targetRect.top + window.scrollY;
+      const targetHeight = targetRect.height;
+      const windowHeight = window.innerHeight;
+      const availableHeight = windowHeight - navBottom;
 
-    window.scrollTo({
-      top: Math.max(0, targetPosition),
-      behavior: 'smooth',
-    });
+      let targetPosition: number;
 
-    window.history.replaceState(null, '', href);
-  }, 100);
-};
+      // If the section fits inside the viewport below navbar (e.g. Sponsors, Prizes),
+      // center its vertical midpoint directly with the visible screen center!
+      if (targetHeight > 0 && targetHeight < availableHeight) {
+        const targetCenter = targetTop + targetHeight / 2;
+        const visibleCenter = navBottom + availableHeight / 2;
+        targetPosition = targetCenter - visibleCenter;
+      } else {
+        // If content is taller than viewport (e.g. Mission, Timeline),
+        // position the first visible content element cleanly 14px below the navbar
+        const contentEl =
+          (target.firstElementChild as HTMLElement) || target;
+        const contentRect = contentEl.getBoundingClientRect();
+        const contentTop = contentRect.top + window.scrollY;
+        targetPosition = contentTop - navBottom - 14;
+      }
+
+      window.scrollTo({
+        top: Math.max(0, Math.round(targetPosition)),
+        behavior: 'smooth',
+      });
+
+      window.history.replaceState(null, '', href);
+    }, 100);
+  };
 
   return (
     <div className="sticky top-4 z-40 w-full px-4 sm:px-6 pointer-events-none">
@@ -73,7 +100,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
             onClick={(e) => handleNavClick(e, '#mission')}
             className="hover:text-[#ffc58a] transition-colors whitespace-nowrap focus:outline-none focus-visible:text-[#ffc58a]"
           >
-            EXORA 2.0
+            THE BUILD
           </a>
           <a
             href="#tracks"
@@ -169,7 +196,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
             onClick={(e) => handleNavClick(e, '#mission')}
             className="block py-3 rounded-xl text-sm sm:text-base font-semibold tracking-[0.13em] text-[#e2d9f5] hover:bg-white/5 hover:text-[#ffc58a] transition-all duration-200"
           >
-            EXORA 2.0
+            THE BUILD
           </a>
           <a
             href="#tracks"

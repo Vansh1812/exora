@@ -357,11 +357,11 @@ export const TracksSection: React.FC = () => {
     <section
       id="tracks"
       ref={sectionRef}
-      className="py-10 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden"
+      className="pt-4 pb-12 sm:pt-6 sm:pb-16 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden"
     >
       <div ref={revealRef} className={`max-w-5xl mx-auto ${revealClass}`}>
         {/* Section Header */}
-        <div className="mb-6 sm:mb-12 text-center md:text-left">
+        <div className="mb-5 sm:mb-7 text-center md:text-left">
           <div className="inline-flex items-center gap-2 mb-3 px-4 py-1.5 rounded-full bg-[#180d35]/90 border border-[#b18aff]/50 text-xs sm:text-sm font-display font-semibold tracking-[0.16em] text-[#ffd09f] uppercase shadow-[0_0_18px_rgba(177,138,255,0.12)]">
             
             <span>ORBITAL DOMAINS // 5 TRAJECTORIES</span>

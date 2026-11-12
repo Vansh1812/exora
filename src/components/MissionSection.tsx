@@ -18,11 +18,11 @@ export const MissionSection: React.FC = () => {
   return (
     <section
       id="mission"
-      className="py-10 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden"
+      className="pt-4 pb-12 sm:pt-6 sm:pb-16 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden"
     >
       <div ref={ref} className={`max-w-6xl mx-auto ${revealClass}`}>
         {/* Section Header */}
-        <div className="mb-10 sm:mb-12 text-center md:text-left">
+        <div className="mb-6 sm:mb-8 text-center md:text-left">
           <div className="inline-flex items-center gap-2 mb-3 px-4 py-1.5 rounded-full bg-[#180d35]/90 border border-[#b18aff]/50 text-xs sm:text-sm font-display font-semibold tracking-[0.16em] text-[#ffd09f] uppercase shadow-[0_0_18px_rgba(177,138,255,0.12)]">
             <span>THE BUILD // ARCHITECTURAL CRUCIBLE</span>
           </div>
@@ -68,45 +68,45 @@ export const MissionSection: React.FC = () => {
               </p>
 
               {/* Clean Inline Fact Metrics (Textual, No Clunky Boxes) */}
-              <div className="pt-4 border-t border-white/10 grid grid-cols-2 gap-3">
-                <div className="rounded-xl bg-white/[0.035] border border-white/10 p-3">
-                  <span className="text-[10px] font-mono tracking-widest text-[#a99fcf] font-semibold uppercase block">
+              <div className="pt-4 border-t border-white/10 grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 gap-2.5 sm:gap-3">
+                <div className="rounded-xl bg-white/[0.035] border border-white/10 p-3 min-w-0 overflow-hidden">
+                  <span className="text-[10px] font-mono tracking-widest text-[#a99fcf] font-semibold uppercase block truncate">
                     SPRINT DURATION
                   </span>
-                  <span className="text-2xl sm:text-3xl font-display font-semibold text-[#ffd09f] block mt-1">
+                  <span className="text-xl sm:text-2xl font-display font-semibold text-[#ffd09f] block mt-1 truncate">
                     24 HOURS
                   </span>
-                  <span className="text-xs font-sans text-[#c5bddf]">Continuous Build</span>
+                  <span className="text-xs font-sans text-[#c5bddf] truncate block">Continuous Build</span>
                 </div>
 
-                <div className="rounded-xl bg-white/[0.035] border border-white/10 p-3">
-                  <span className="text-[10px] font-mono tracking-widest text-[#a99fcf] font-semibold uppercase block">
+                <div className="rounded-xl bg-white/[0.035] border border-white/10 p-3 min-w-0 overflow-hidden">
+                  <span className="text-[10px] font-mono tracking-widest text-[#a99fcf] font-semibold uppercase block truncate">
                     JOURNEY FORMAT
                   </span>
-                  <span className="text-xl sm:text-2xl font-display font-semibold text-[#8beaff] block mt-1">
+                  <span className="text-lg sm:text-2xl font-display font-semibold text-[#8beaff] block mt-1 truncate">
                     3 PHASES
                   </span>
-                  <span className="text-xs font-sans text-[#c5bddf]">Online to Finale</span>
+                  <span className="text-xs font-sans text-[#c5bddf] truncate block">Online to Finale</span>
                 </div>
 
-                <div className="rounded-xl bg-white/[0.035] border border-white/10 p-3">
-                  <span className="text-[10px] font-mono tracking-widest text-[#a99fcf] font-semibold uppercase block">
+                <div className="rounded-xl bg-white/[0.035] border border-white/10 p-3 min-w-0 overflow-hidden">
+                  <span className="text-[10px] font-mono tracking-widest text-[#a99fcf] font-semibold uppercase block truncate">
                     VENUE ACCESS
                   </span>
-                  <span className="text-xl sm:text-2xl font-display font-semibold text-[#ed9aff] block mt-1">
+                  <span className="text-xs xs:text-sm sm:text-lg md:text-xl font-display font-semibold text-[#ed9aff] block mt-1 tracking-tight sm:tracking-normal truncate">
                     THOUGHTWORKS
                   </span>
-                  <span className="text-xs font-sans text-[#cfbddf]">HQ Gurugram</span>
+                  <span className="text-xs font-sans text-[#cfbddf] truncate block">HQ Gurugram</span>
                 </div>
 
-                <div className="rounded-xl bg-white/[0.035] border border-white/10 p-3">
-                  <span className="text-[10px] font-mono tracking-widest text-[#a99fcf] font-semibold uppercase block">
+                <div className="rounded-xl bg-white/[0.035] border border-white/10 p-3 min-w-0 overflow-hidden">
+                  <span className="text-[10px] font-mono tracking-widest text-[#a99fcf] font-semibold uppercase block truncate">
                     ENROLLMENT
                   </span>
-                  <span className="text-xl sm:text-2xl font-display font-semibold text-white block mt-1">
+                  <span className="text-lg sm:text-2xl font-display font-semibold text-white block mt-1 truncate">
                     100% FREE
                   </span>
-                  <span className="text-xs font-sans text-[#c5bddf]">Merit Selection</span>
+                  <span className="text-xs font-sans text-[#c5bddf] truncate block">Merit Selection</span>
                 </div>
               </div>
             </div>
