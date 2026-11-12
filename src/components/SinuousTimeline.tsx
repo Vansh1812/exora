@@ -811,8 +811,8 @@ export const SinuousTimeline: React.FC = () => {
                     style={{ fontSize: 'clamp(11px, 1.7cqw, 13px)' }}
 
                   >
-                    <span className="truncate">Thoughtworks, Gurugram</span>
-                    <span className="text-[#ffd09f] font-display text-[11px] sm:text-xs font-semibold uppercase shrink-0">08 AM–05 PM</span>
+                    <span className="truncate">Thoughtworks, Gurugram </span>
+                    <span className="text-[#ffd09f] font-display text-[11px] sm:text-xs font-semibold uppercase shrink-0"> 08:00 AM–05:00 PM</span>
                   </div>
                 </button>
 

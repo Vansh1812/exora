@@ -19,13 +19,23 @@ export const Navbar: React.FC<NavbarProps> = () => {
   }, []);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    setMobileMenuOpen(false);
-    const target = document.querySelector(href);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  e.preventDefault();
+
+  const target = document.querySelector(href);
+  setMobileMenuOpen(false);
+
+  if (target) {
+    // Wait for the mobile menu to close before scrolling
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      });
+    });
+  }
+};
 
   return (
     <div className="sticky top-4 z-40 w-full px-4 sm:px-6 pointer-events-none">
