@@ -50,9 +50,7 @@
     text-rendering: optimizeLegibility;
   }
 
-  section[id] {
-    scroll-margin-top: 5.5rem;
-  }
+  
 
   /* Display Typography (Techno rounded wide headings) */
   h1, h2, h3, h4, .font-display {

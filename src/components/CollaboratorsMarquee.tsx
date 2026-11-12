@@ -17,12 +17,11 @@ export const CollaboratorsMarquee: React.FC = () => {
   return (
     <section
       id="sponsors"
-      className="py-20 sm:py-24 border-b border-white/10 bg-transparent overflow-hidden relative"
+      className="py-10 sm:py-24 border-b border-white/10 bg-transparent overflow-hidden relative"
     >
       {/* Section Heading */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 mb-10 text-center">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 mb-6 sm:mb-10 text-center">
         <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#120a2e]/80 border border-[#8b5cf6]/40 text-xs sm:text-sm font-display font-medium tracking-[0.16em] text-[#ffd2a8] uppercase backdrop-blur-md shadow-[0_0_18px_rgba(139,92,246,0.12)]">
-          <Sparkles className="w-4 h-4 text-[#ffc58a]" />
           <span>POWERED BY OUR SPONSORS</span>
         </div>
 
@@ -47,12 +46,12 @@ export const CollaboratorsMarquee: React.FC = () => {
         }}
         aria-label="Exora 2.0 sponsors"
       >
-        <div className="animate-marquee flex w-max items-center gap-4 sm:gap-6 py-4">
+        <div className="animate-marquee flex w-max items-center gap-4 sm:gap-6 py-2 sm:py-4">
           {doubleList.map((sponsor, idx) => (
             <div
               key={`${sponsor.name}-${idx}`}
               aria-hidden={idx >= SPONSORS.length}
-              className="glass-pass-card min-w-[190px] sm:min-w-[220px] px-6 sm:px-7 py-5 sm:py-6 rounded-2xl flex items-center gap-4 shrink-0 transition-all duration-300 group cursor-default border border-white/10 hover:border-[#ffc58a]/50 hover:-translate-y-1 hover:shadow-[0_0_24px_rgba(255,197,138,0.12)]"
+              className="glass-pass-card min-w-[190px] sm:min-w-[220px] px-6 sm:px-7 py-5 sm:py-6 rounded-2xl flex items-center gap-4 shrink-0 transition-all duration-100 ease-in-out group cursor-default border border-white/10 hover:border-[#ffc58a]/50 hover:-translate-y-1 hover:shadow-[0_0_24px_rgba(255,197,138,0.12)]"
             >
               {/* Luminous Brand Accent */}
               <div className="w-3 h-3 rounded-full shrink-0 bg-[#6ee7f9] shadow-[0_0_10px_#6ee7f9] group-hover:bg-[#ffc58a] group-hover:shadow-[0_0_12px_#ffc58a] transition-all duration-300" />
@@ -72,7 +71,7 @@ export const CollaboratorsMarquee: React.FC = () => {
       </div>
 
       {/* Supporting Footer Text */}
-      <p className="mt-7 text-center px-4 text-xs sm:text-sm font-sans text-[#a99fcf] tracking-wide">
+      <p className="mt-4 sm:mt-7 text-center px-4 text-xs sm:text-sm font-sans text-[#a99fcf] tracking-wide">
         Together, building the next generation of innovation.
       </p>
     </section>

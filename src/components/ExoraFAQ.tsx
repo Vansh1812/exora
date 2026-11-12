@@ -7,28 +7,25 @@ import { ChevronDown, Sparkles } from 'lucide-react';
 export const ExoraFAQ: React.FC = () => {
   const { ref, revealClass } = useReveal<HTMLDivElement>();
 
-  const [openIds, setOpenIds] = useState<Record<string, boolean>>(() => ({
-    [EVENT_CONFIG.faqs[0].id]: true,
-  }));
+  const [openId, setOpenId] = useState<string | null>(
+  EVENT_CONFIG.faqs[0]?.id ?? null
+);
 
   const toggle = (id: string) => {
-    setOpenIds((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
-  };
+  setOpenId((prev) => (prev === id ? null : id));
+};
 
   return (
     <section
       id="faq"
-      className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden"
+      className="py-10 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden"
     >
       <div ref={ref} className={`max-w-4xl mx-auto ${revealClass}`}>
 
         {/* Section Header */}
-        <div className="mb-12 sm:mb-14 text-center md:text-left">
+        <div className="mb-6 sm:mb-14 text-center md:text-left">
           <div className="inline-flex items-center gap-3 mb-3 px-5 py-2.5 rounded-full bg-[#120a2e]/80 border border-[#8b5cf6]/50 text-sm sm:text-base font-display font-semibold tracking-[0.16em] text-[#ffd2a8] uppercase backdrop-blur-md shadow-[0_0_20px_rgba(139,92,246,0.16)]">
-            <Sparkles className="w-5 h-5 text-[#ffc58a]" />
+            
             <span>INTEL // OPERATIONAL CLARIFICATIONS</span>
           </div>
 
@@ -44,15 +41,9 @@ export const ExoraFAQ: React.FC = () => {
         </div>
 
         {/* FAQ Accordion */}
-        <div className="glass-pass-card rounded-[28px] p-5 sm:p-8 md:p-10 relative overflow-hidden transition-all duration-300 border border-white/15">
+        <div className="glass-pass-card rounded-[28px] p-3 sm:p-8 md:p-10 relative overflow-hidden transition-all duration-300 border border-white/15">
 
-          {/* Centered Top Sparkle */}
-          <div
-            className="absolute top-3 left-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-[#120a2e] border border-[#ffc58a]/60 flex items-center justify-center shadow-[0_0_12px_#ffc58a] z-20"
-            aria-hidden="true"
-          >
-            <Sparkles className="w-3.5 h-3.5 text-[#ffc58a] animate-pulse" />
-          </div>
+          
 
           {/* Bottom Gradient Glow */}
           <div
@@ -67,7 +58,7 @@ export const ExoraFAQ: React.FC = () => {
           {/* Accordion Questions */}
           <div className="divide-y divide-white/10 relative z-10">
             {EVENT_CONFIG.faqs.map((faq) => {
-              const isOpen = !!openIds[faq.id];
+              const isOpen = openId === faq.id;
 
               return (
                 <div key={faq.id} className="py-1">
@@ -76,7 +67,7 @@ export const ExoraFAQ: React.FC = () => {
                     type="button"
                     onClick={() => toggle(faq.id)}
                     aria-expanded={isOpen}
-                    className="w-full py-5 sm:py-6 text-left flex items-center justify-between gap-4 group focus:outline-none focus-visible:text-[#ffc58a] transition-colors duration-200 cursor-pointer min-h-[56px]"
+                    className="w-full py-4 sm:py-6 text-left flex items-center justify-between gap-4 group focus:outline-none focus-visible:text-[#ffc58a] transition-colors duration-200 cursor-pointer min-h-[56px]"
                   >
                     <span className="font-display font-medium text-base sm:text-lg md:text-xl text-[#f4f0ff] group-hover:text-[#ffd2a8] transition-colors tracking-wide leading-snug uppercase">
                       {faq.question}
@@ -102,7 +93,7 @@ export const ExoraFAQ: React.FC = () => {
         </div>
 
         {/* Closing Note */}
-        <p className="mt-7 text-center text-xs sm:text-sm font-sans font-medium text-[#a99fcf] tracking-wide leading-relaxed">
+        <p className="mt-4 sm:mt-7 text-center text-xs sm:text-sm font-sans font-medium text-[#a99fcf] tracking-wide leading-relaxed">
           Still have questions? Explore the event details and get ready for
           24 hours of innovation.
         </p>

@@ -357,13 +357,13 @@ export const TracksSection: React.FC = () => {
     <section
       id="tracks"
       ref={sectionRef}
-      className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden"
+      className="py-10 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden"
     >
       <div ref={revealRef} className={`max-w-5xl mx-auto ${revealClass}`}>
         {/* Section Header */}
-        <div className="mb-10 sm:mb-12 text-center md:text-left">
+        <div className="mb-6 sm:mb-12 text-center md:text-left">
           <div className="inline-flex items-center gap-2 mb-3 px-4 py-1.5 rounded-full bg-[#180d35]/90 border border-[#b18aff]/50 text-xs sm:text-sm font-display font-semibold tracking-[0.16em] text-[#ffd09f] uppercase shadow-[0_0_18px_rgba(177,138,255,0.12)]">
-            <Sparkles className="w-4 h-4 text-[#ffd09f]" />
+            
             <span>ORBITAL DOMAINS // 5 TRAJECTORIES</span>
           </div>
 
@@ -383,7 +383,7 @@ export const TracksSection: React.FC = () => {
         <div
           role="tablist"
           aria-label="Choose Your Orbit Tracks"
-          className="flex items-end justify-between sm:justify-center gap-1 sm:gap-6 md:gap-10 w-full max-w-4xl mx-auto mb-10 px-1 pt-4 pb-2"
+          className="flex items-end justify-between sm:justify-center gap-1 sm:gap-6 md:gap-10 w-full max-w-4xl mx-auto mb-6 sm:mb-10 px-1 pt-2 sm:pt-4 pb-2"
         >
           {TRACKS_DATA.map((track, idx) => {
             const isSelected = track.id === activeTrackId;
@@ -487,20 +487,9 @@ export const TracksSection: React.FC = () => {
             boxShadow: `0 24px 60px -10px rgba(5, 3, 15, 0.9), 0 0 35px ${activeTrack.accent}25`,
             borderColor: `${activeTrack.accent}45`,
           } as React.CSSProperties}
-          className="glass-pass-card rounded-[28px] p-6 pt-14 sm:p-9 sm:pt-14 md:p-10 md:pt-14 relative overflow-hidden transition-all duration-300 border border-white/14 mb-8 outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+          className="glass-pass-card rounded-[28px] p-6 pt-8 sm:p-9 sm:pt-14 md:p-10 md:pt-14 relative overflow-hidden transition-all duration-300 border border-white/14 mb-8 outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
         >
-          {/* Centered Diamond Sparkle SVG on Top */}
-          <div
-            className="absolute top-3 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#120a2e] border flex items-center justify-center shadow-lg z-20"
-            style={{
-              borderColor: activeTrack.accent,
-              boxShadow: `0 0 14px ${activeTrack.accent}`,
-            }}
-            aria-hidden="true"
-          >
-            <Sparkles className="w-3.5 h-3.5 animate-pulse" style={{ color: activeTrack.accent }} />
-          </div>
-
+        
           {/* Soft Gradient Glow Along the Bottom Edge */}
           <div
             className="absolute bottom-0 left-0 right-0 h-[2px] opacity-75"
@@ -532,38 +521,14 @@ export const TracksSection: React.FC = () => {
             }`}
           >
             {/* Top Row: Small Mono Label & Difficulty Rating */}
-            <div className="flex items-center justify-between gap-4 flex-wrap">
-              <span
-                style={{ color: activeTrack.accent }}
-                className="font-mono text-sm sm:text-base tracking-[0.16em] uppercase font-semibold"
+            {/* Track Codename */}
+            <div className="flex items-center">
+              <span style={{ color: activeTrack.accent }}
+              className="font-mono text-sm sm:text-base tracking-[0.16em] uppercase font-semibold"
               >
                 {activeTrack.codeName}
-              </span>
-
-              {/* 1 to 5 Stars in Accent Color */}
-              <div className="flex items-center gap-1.5 bg-[#05030f]/60 px-3 py-1 rounded-full border border-white/10">
-                <span className="text-xs sm:text-sm font-display font-semibold text-[#d5cbea] tracking-wider uppercase">
-                  DIFFICULTY:
                 </span>
-                <div className="flex items-center gap-1">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <span
-                      key={star}
-                      className="text-base sm:text-lg leading-none"
-                      style={{
-                        color: star <= activeTrack.difficulty ? activeTrack.accent : '#271947',
-                        textShadow:
-                          star <= activeTrack.difficulty
-                            ? `0 0 6px ${activeTrack.accent}`
-                            : 'none',
-                      }}
-                    >
-                      ★
-                    </span>
-                  ))}
                 </div>
-              </div>
-            </div>
 
             {/* Track Name in Display Font */}
             <h3 className="font-display text-3xl sm:text-5xl font-semibold text-white uppercase tracking-wide leading-tight drop-shadow-[0_0_16px_rgba(224,77,255,0.16)]">
@@ -587,10 +552,7 @@ export const TracksSection: React.FC = () => {
                     key={idx}
                     className="flex items-start gap-3 text-sm sm:text-base font-sans font-medium text-[#e5def5] leading-relaxed"
                   >
-                    <Sparkles
-                      className="w-3.5 h-3.5 shrink-0 mt-0.5"
-                      style={{ color: activeTrack.accent }}
-                    />
+                    
                     <span>{idea}</span>
                   </div>
                 ))}
@@ -609,7 +571,7 @@ export const TracksSection: React.FC = () => {
                     color: '#f4f0ff',
                   }}
                 >
-                  <Sparkles className="w-4 h-4 text-[#ffd09f] shrink-0" />
+                  
                   <span>{activeTrack.trackPerk}</span>
                 </div>
               </div>

@@ -234,7 +234,7 @@ export const MobileTimeline: React.FC<MobileTimelineProps> = ({ isSectionVisible
   return (
     <div
       ref={containerRef}
-      className="relative w-full max-w-full pb-20 select-none"
+      className="relative w-full max-w-full pb-8 select-none"
       aria-label="The Walk chronological mobile sequence"
     >
       {/* =========================================================================
@@ -355,7 +355,7 @@ export const MobileTimeline: React.FC<MobileTimelineProps> = ({ isSectionVisible
       {/* =========================================================================
           ORDERED LIST OF ROWS (Normal document flow, no position: absolute on cards)
           ========================================================================= */}
-      <ol className="relative list-none m-0 p-0 space-y-10">
+      <ol className="relative list-none m-0 p-0 space-y-6">
         {/* =======================================================================
             ROW 1: PHASE 1 (ONLINE IDEA & PPT SCREENING)
             ======================================================================= */}
@@ -401,7 +401,7 @@ export const MobileTimeline: React.FC<MobileTimelineProps> = ({ isSectionVisible
             }}
             className="ml-4 flex-1 min-w-[240px] max-w-[calc(100%-72px)]"
           >
-            <div className="glass-pass-card rounded-[24px] p-5 relative overflow-hidden transition-all duration-300 border border-white/14 bg-gradient-to-br from-[#160a33] via-[#100727] to-[#0a041a] shadow-[0_12px_32px_rgba(0,0,0,0.4)]">
+            <div className="glass-pass-card rounded-[24px] p-4 relative overflow-hidden transition-all duration-300 border border-white/14 bg-gradient-to-br from-[#160a33] via-[#100727] to-[#0a041a] shadow-[0_12px_32px_rgba(0,0,0,0.4)]">
               {/* Diamond Top-Right Icon: exactly 24px, never overlapping text */}
               <div
                 className="absolute top-4 right-4 w-6 h-6 rounded-full bg-[#120a2e] border border-[#ffc58a]/70 flex items-center justify-center shadow-[0_0_10px_rgba(255,197,138,0.4)] pointer-events-none z-10"
@@ -462,7 +462,7 @@ export const MobileTimeline: React.FC<MobileTimelineProps> = ({ isSectionVisible
               >
                 <div className="overflow-hidden min-h-0 pt-3 border-t border-white/10 mt-3 space-y-2.5">
                   <p className="text-xs font-sans text-[#c5bddf] leading-relaxed">
-                    Squad registration and mandatory project PPT submission. Top 40–50 squads advance to the 24-hour hackathon.
+                    Squad registration and mandatory project PPT submission. Top 50 squads advance to the 24-hour hackathon.
                   </p>
                   <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ffc58a]/15 border border-[#ffc58a]/40 text-[#ffc58a]">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#ffc58a]" />
@@ -524,7 +524,7 @@ export const MobileTimeline: React.FC<MobileTimelineProps> = ({ isSectionVisible
             }}
             className="ml-4 flex-1 min-w-[240px] max-w-[calc(100%-72px)]"
           >
-            <div className="glass-pass-card rounded-[24px] p-5 relative overflow-hidden transition-all duration-300 border border-white/14 bg-gradient-to-br from-[#160a33] via-[#100727] to-[#0a041a] shadow-[0_12px_32px_rgba(0,0,0,0.4)]">
+            <div className="glass-pass-card rounded-[24px] p-4 relative overflow-hidden transition-all duration-300 border border-white/14 bg-gradient-to-br from-[#160a33] via-[#100727] to-[#0a041a] shadow-[0_12px_32px_rgba(0,0,0,0.4)]">
               {/* Diamond Top-Right Icon: exactly 24px, never overlapping text */}
               <div
                 className="absolute top-4 right-4 w-6 h-6 rounded-full bg-[#120a2e] border border-[#c084fc]/70 flex items-center justify-center shadow-[0_0_10px_rgba(192,132,252,0.4)] pointer-events-none z-10"
@@ -648,7 +648,7 @@ export const MobileTimeline: React.FC<MobileTimelineProps> = ({ isSectionVisible
             }}
             className="ml-4 flex-1 min-w-[240px] max-w-[calc(100%-72px)]"
           >
-            <div className="glass-pass-card rounded-[24px] p-5 relative overflow-hidden transition-all duration-300 border-2 border-[#6ee7f9]/40 bg-gradient-to-br from-[#180a38] via-[#10072a] to-[#0a041c] shadow-[0_16px_40px_rgba(0,0,0,0.5)]">
+            <div className="glass-pass-card rounded-[24px] p-4 relative overflow-hidden transition-all duration-300 border-2 border-[#6ee7f9]/40 bg-gradient-to-br from-[#180a38] via-[#10072a] to-[#0a041c] shadow-[0_16px_40px_rgba(0,0,0,0.5)]">
               {/* Diamond Top-Right Icon: exactly 24px, never overlapping text */}
               <div
                 className="absolute top-4 right-4 w-6 h-6 rounded-full bg-[#120a2e] border border-[#6ee7f9]/80 flex items-center justify-center shadow-[0_0_12px_rgba(110,231,249,0.5)] pointer-events-none z-10"

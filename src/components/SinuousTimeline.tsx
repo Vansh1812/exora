@@ -262,13 +262,13 @@ export const SinuousTimeline: React.FC = () => {
     <section
       id="timeline"
       ref={sectionRef}
-      className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden"
+      className="py-10 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden"
     >
       <div ref={revealRef} className={`max-w-5xl mx-auto ${revealClass}`}>
         {/* Section Header */}
-        <div className="mb-12 sm:mb-16 text-center md:text-left">
+        <div className="mb-6 sm:mb-16 text-center md:text-left">
           <div className="inline-flex items-center gap-2 mb-3 px-4 py-1.5 rounded-full bg-[#180d35]/90 border border-[#b18aff]/50 text-xs sm:text-sm font-display font-semibold tracking-[0.16em] text-[#ffd09f] uppercase shadow-[0_0_18px_rgba(177,138,255,0.12)]">
-            <Sparkles className="w-4 h-4 text-[#ffd09f]" />
+            
             <span>THE WALK // CHRONOLOGICAL SEQUENCE</span>
           </div>
 
@@ -624,14 +624,6 @@ export const SinuousTimeline: React.FC = () => {
                   isNode1Lit ? 'border-white/20 shadow-[0_10px_30px_rgba(255,197,138,0.15)]' : 'border-white/5'
                 }`}
               >
-                {/* Centered Diamond Sparkle */}
-                <div
-                  className="absolute top-3 left-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-[#120a2e] border border-[#ffc58a]/70 flex items-center justify-center shadow-[0_0_12px_rgba(255,197,138,0.45)] z-20"
-                  aria-hidden="true"
-                >
-                  <Sparkles className="w-4 h-4 text-[#ffd09f] animate-pulse" />
-                </div>
-
                 {/* Compact Content Header (Always Visible) */}
                 <button
                   type="button"
@@ -680,7 +672,7 @@ export const SinuousTimeline: React.FC = () => {
                       style={{ fontSize: 'clamp(11px, 1.8cqw, 13px)' }}
                       className="font-sans text-sm sm:text-base text-[#c5bddf] leading-relaxed line-clamp-3"
                     >
-                      Squad registration and mandatory project PPT submission. Top 40–50 squads advance to the 24-hour hackathon.
+                      Squad registration and mandatory project PPT submission. Top 50 squads advance to the 24-hour hackathon.
                     </p>
                     <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ffc58a]/15 border border-[#ffc58a]/40 text-[#ffc58a]">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#ffc58a]" />
@@ -712,13 +704,7 @@ export const SinuousTimeline: React.FC = () => {
                   isNode2Lit ? 'border-white/20 shadow-[0_10px_30px_rgba(139,92,246,0.15)]' : 'border-white/5'
                 }`}
               >
-                {/* Centered Diamond Sparkle */}
-                <div
-                  className="absolute -top-5 left-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-[#120a2e] border border-[#c084fc]/70 flex items-center justify-center shadow-[0_0_12px_rgba(192,132,252,0.45)] z-20"
-                >
-                  <Sparkles className="w-4 h-4 text-[#c084fc] animate-pulse" />
-                </div>
-
+                
                 {/* Compact Content Header (Always Visible) */}
                 <button
                   type="button"
@@ -802,13 +788,7 @@ export const SinuousTimeline: React.FC = () => {
                     : 'border-white/5'
                 }`}
               >
-                {/* Centered Diamond Sparkle */}
-                <div
-                  className="absolute top-3 left-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-[#120a2e] border border-[#6ee7f9]/70 flex items-center justify-center shadow-[0_0_12px_rgba(110,231,249,0.45)] z-20"
-                >
-                  <Sparkles className="w-4 h-4 text-[#6ee7f9] animate-pulse" />
-                </div>
-
+                
                 {/* Compact Header (Always Visible) */}
                 <button
                   type="button"

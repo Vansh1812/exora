@@ -49,9 +49,9 @@ export const Hero: React.FC<HeroProps> = () => {
       />
 
       {/* Main Content Container - Fills the viewport window with colossal typography */}
-      <div className="relative z-10 max-w-6xl mx-auto flex flex-col items-center justify-center flex-1 w-full py-2 sm:py-3">
+      <div className="relative z-10 max-w-6xl mx-auto flex flex-col items-center justify-center flex-1 w-full pt-5 sm:pt-7 pb-2 sm:pb-3">
         {/* 1. Date & Venue Top Kicker Pill */}
-        <div className="inline-flex items-center justify-center gap-2 mb-3 sm:mb-4 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#120a2e]/85 border border-[#ffc58a]/25 text-[13px] sm:text-sm font-display font-semibold tracking-[0.12em] uppercase text-[#ffe0bd] backdrop-blur-md shadow-[0_0_20px_rgba(255,154,60,0.12] max-w-full">
+        <div className="inline-flex items-center justify-center gap-2 mb-3 sm:mb-4 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#120a2e]/85 border border-[#ffc58a]/25 text-[11px] sm:text-sm font-display font-semibold tracking-[0.12em] uppercase text-[#ffe0bd] backdrop-blur-md shadow-[0_0_20px_rgba(255,154,60,0.12] max-w-full">
           <span className="w-2 h-2 rounded-full bg-[#ffc58a] shadow-[0_0_8px_#ffc58a]" />
           <span>28 NOVEMBER 2026 // THOUGHTWORKS TECHNOLOGIES, GURUGRAM</span>
         </div>
@@ -108,41 +108,12 @@ export const Hero: React.FC<HeroProps> = () => {
         </div>
       </div>
 
-      {/* 6. Signature Wave Divider (Bottom of Hero) */}
-      <div className="relative w-full overflow-hidden leading-none z-10 -mb-[1px]" aria-hidden="true">
-        <svg
-          viewBox="0 0 1440 120"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="block w-full h-10 sm:h-14 md:h-16"
-          preserveAspectRatio="none"
-        >
-          <defs>
-            <linearGradient id="heroWaveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.45" />
-              <stop offset="35%" stopColor="#e04dff" stopOpacity="0.55" />
-              <stop offset="70%" stopColor="#ff9a3c" stopOpacity="0.5" />
-              <stop offset="100%" stopColor="#ff6f91" stopOpacity="0.45" />
-            </linearGradient>
-            <linearGradient id="heroWaveGradSolid" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#120a2e" stopOpacity="0.95" />
-              <stop offset="50%" stopColor="#0d0722" stopOpacity="0.95" />
-              <stop offset="100%" stopColor="#05030f" stopOpacity="0.95" />
-            </linearGradient>
-          </defs>
-
-          {/* Background glowing translucent crest */}
-          <path
-            d="M 0 60 C 320 110, 640 10, 960 70 C 1200 110, 1360 40, 1440 50 L 1440 120 L 0 120 Z"
-            fill="url(#heroWaveGrad)"
-          />
-          {/* Foreground wave curve */}
-          <path
-            d="M 0 80 C 360 30, 720 115, 1080 60 C 1260 35, 1380 75, 1440 85 L 1440 120 L 0 120 Z"
-            fill="url(#heroWaveGradSolid)"
-          />
-        </svg>
-      </div>
+      {/* 6. Minimal Divider Line */}
+      <div
+      className="relative w-full h-px bg-gradient-to-r from-transparent via-[#8b5cf6]/40 to-transparent z-10"
+      aria-hidden="true"
+      />
+      
     </section>
   );
 };

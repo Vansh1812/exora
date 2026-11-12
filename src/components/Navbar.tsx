@@ -18,23 +18,38 @@ export const Navbar: React.FC<NavbarProps> = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleNavClick = (
+  e: React.MouseEvent<HTMLAnchorElement>,
+  href: string
+) => {
   e.preventDefault();
 
-  const target = document.querySelector(href);
   setMobileMenuOpen(false);
 
-  if (target) {
-    // Wait for the mobile menu to close before scrolling
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-        });
-      });
+  // Wait until React has removed the mobile drawer
+  window.setTimeout(() => {
+    const target = document.querySelector(href) as HTMLElement | null;
+    const navHeader = document.querySelector('header');
+
+    if (!target) return;
+
+    const navBottom = navHeader
+      ? navHeader.getBoundingClientRect().bottom
+      : 60;
+
+    const targetPosition =
+      target.getBoundingClientRect().top +
+      window.scrollY -
+      navBottom -
+      16;
+
+    window.scrollTo({
+      top: Math.max(0, targetPosition),
+      behavior: 'smooth',
     });
-  }
+
+    window.history.replaceState(null, '', href);
+  }, 100);
 };
 
   return (

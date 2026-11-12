@@ -18,13 +18,12 @@ export const MissionSection: React.FC = () => {
   return (
     <section
       id="mission"
-      className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden"
+      className="py-10 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden"
     >
       <div ref={ref} className={`max-w-6xl mx-auto ${revealClass}`}>
         {/* Section Header */}
         <div className="mb-10 sm:mb-12 text-center md:text-left">
           <div className="inline-flex items-center gap-2 mb-3 px-4 py-1.5 rounded-full bg-[#180d35]/90 border border-[#b18aff]/50 text-xs sm:text-sm font-display font-semibold tracking-[0.16em] text-[#ffd09f] uppercase shadow-[0_0_18px_rgba(177,138,255,0.12)]">
-            <Sparkles className="w-4 h-4 text-[#ffd09f]"/>
             <span>THE BUILD // ARCHITECTURAL CRUCIBLE</span>
           </div>
 
@@ -41,14 +40,7 @@ export const MissionSection: React.FC = () => {
             CARD 1: MAIN MANIFESTO & 4 PILLARS (Unified Signature Glass Pass Card)
             ========================================================================= */}
         <div className="glass-pass-card rounded-[28px] p-6 sm:p-10 relative overflow-hidden transition-all border border-white/14 mb-8">
-          {/* Centered Top Diamond Sparkle */}
-          <div
-            className="absolute top-3 left-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-[#120a2e] border border-[#ffc58a]/60 flex items-center justify-center shadow-[0_0_12px_rgba(255,197,138,0.45)] z-20"
-            aria-hidden="true"
-          >
-            <Sparkles className="w-3.5 h-3.5 text-[#ffc58a] animate-pulse" />
-          </div>
-
+          
           {/* Bottom Gradient Glow */}
           <div
             className="absolute bottom-0 left-0 right-0 h-[2px] opacity-75"
@@ -76,45 +68,45 @@ export const MissionSection: React.FC = () => {
               </p>
 
               {/* Clean Inline Fact Metrics (Textual, No Clunky Boxes) */}
-              <div className="pt-4 border-t border-white/10 grid grid-cols-2 gap-4">
-                <div>
-                  <span className="text-[10px] font-mono tracking-widest text-[#a99fcf] uppercase block">
+              <div className="pt-4 border-t border-white/10 grid grid-cols-2 gap-3">
+                <div className="rounded-xl bg-white/[0.035] border border-white/10 p-3">
+                  <span className="text-[10px] font-mono tracking-widest text-[#a99fcf] font-semibold uppercase block">
                     SPRINT DURATION
                   </span>
                   <span className="text-2xl sm:text-3xl font-display font-semibold text-[#ffd09f] block mt-1">
                     24 HOURS
                   </span>
-                  <span className="text-xs font-sans text-[#a99fcf]/80">Continuous Build</span>
+                  <span className="text-xs font-sans text-[#c5bddf]">Continuous Build</span>
                 </div>
 
-                <div>
-                  <span className="text-[10px] font-mono tracking-widest text-[#a99fcf] uppercase block">
+                <div className="rounded-xl bg-white/[0.035] border border-white/10 p-3">
+                  <span className="text-[10px] font-mono tracking-widest text-[#a99fcf] font-semibold uppercase block">
                     JOURNEY FORMAT
                   </span>
                   <span className="text-xl sm:text-2xl font-display font-semibold text-[#8beaff] block mt-1">
                     3 PHASES
                   </span>
-                  <span className="text-xs font-sans text-[#a99fcf]/80">Online to Finale</span>
+                  <span className="text-xs font-sans text-[#c5bddf]">Online to Finale</span>
                 </div>
 
-                <div>
-                  <span className="text-[10px] font-mono tracking-widest text-[#a99fcf] uppercase block">
+                <div className="rounded-xl bg-white/[0.035] border border-white/10 p-3">
+                  <span className="text-[10px] font-mono tracking-widest text-[#a99fcf] font-semibold uppercase block">
                     VENUE ACCESS
                   </span>
                   <span className="text-xl sm:text-2xl font-display font-semibold text-[#ed9aff] block mt-1">
                     THOUGHTWORKS
                   </span>
-                  <span className="text-xs font-sans text-[#a99fcf]/80">HQ Gurugram</span>
+                  <span className="text-xs font-sans text-[#cfbddf]">HQ Gurugram</span>
                 </div>
 
-                <div>
-                  <span className="text-[10px] font-mono tracking-widest text-[#a99fcf] uppercase block">
+                <div className="rounded-xl bg-white/[0.035] border border-white/10 p-3">
+                  <span className="text-[10px] font-mono tracking-widest text-[#a99fcf] font-semibold uppercase block">
                     ENROLLMENT
                   </span>
                   <span className="text-xl sm:text-2xl font-display font-semibold text-white block mt-1">
                     100% FREE
                   </span>
-                  <span className="text-xs font-sans text-[#a99fcf]/80">Merit Selection</span>
+                  <span className="text-xs font-sans text-[#c5bddf]">Merit Selection</span>
                 </div>
               </div>
             </div>
@@ -192,15 +184,8 @@ export const MissionSection: React.FC = () => {
         {/* =========================================================================
             CARD 2: FINAL JUDGING PARAMETERS (Clean 6-Point Evaluation Matrix)
             ========================================================================= */}
-        <div className="glass-pass-card rounded-[28px] p-6 pt-14 sm:p-9 relative overflow-hidden transition-all border border-white/14">
-          {/* Centered Top Diamond Sparkle */}
-          <div
-            
-            aria-hidden="true"
-          className="absolute top-3 left-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-[#120a2e] border border-[#6ee7f9]/60 flex items-center justify-center shadow-[0_0_12px_rgba(110,231,249,0.45)] z-20">
-            <Sparkles className="w-3.5 h-3.5 text-[#6ee7f9] animate-pulse" />
-          </div>
-
+        <div className="glass-pass-card rounded-[28px] p-6 pt-8 sm:p-9 relative overflow-hidden transition-all border border-white/14">
+    
           {/* Bottom Gradient Glow */}
           <div
             className="absolute bottom-0 left-0 right-0 h-[2px] opacity-75"

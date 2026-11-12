@@ -150,11 +150,11 @@ export const DoomVersusPlan: React.FC<ImpactSectionProps> = ({ onOpenRegisterMod
     <section
       id="impact"
       ref={containerRef}
-      className="py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden"
+      className="py-10 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden"
     >
       <div ref={revealRef} className={`max-w-6xl mx-auto ${revealClass}`}>
         {/* Section Header */}
-        <div className="mb-10 text-center md:text-left">
+        <div className="mb-6 sm:mb-10 text-center md:text-left">
           <div className="flex items-center justify-center md:justify-start gap-2.5 text-sm sm:text-base font-display font-semibold tracking-[0.16em] text-[#ffc58a] uppercase mb-3">
             <span>THE PARADIGM SHIFT</span>
             <span className="text-[#a99fcf]">·</span>
@@ -280,7 +280,7 @@ export const DoomVersusPlan: React.FC<ImpactSectionProps> = ({ onOpenRegisterMod
         {/* =========================================================================
             MOBILE: Stacked Panels with ✗/✓ Pairs Kept Together
             ========================================================================= */}
-        <div className="md:hidden space-y-4">
+        <div className="md:hidden space-y-3">
           <div className="p-4 bg-[#120a2e]/60 border border-white/10 rounded-2xl flex items-center justify-between text-sm font-display">
             <span className="text-sm font-display font-semibold tracking-wider text-[#ffd2a8] flex items-center gap-2">
               <Sliders className="w-3.5 h-3.5 text-[#ffc58a]" />
@@ -289,7 +289,7 @@ export const DoomVersusPlan: React.FC<ImpactSectionProps> = ({ onOpenRegisterMod
             <span className="text-[#a99fcf]">4 MATCHED PAIRS</span>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-2">
             {COMPARISON_PAIRS.map((pair, idx) => (
               <div
                 key={pair.id}
@@ -329,7 +329,7 @@ export const DoomVersusPlan: React.FC<ImpactSectionProps> = ({ onOpenRegisterMod
         {/* =========================================================================
             2. STAT STRIP BELOW THE CARD
             ========================================================================= */}
-        <div className="mt-8 border border-white/10 bg-[#120a2e]/60 backdrop-blur-md rounded-2xl p-4 sm:p-5 shadow-lg">
+        <div className="mt-6 sm:mt-8 border border-white/10 bg-[#120a2e]/60 backdrop-blur-md rounded-2xl p-4 sm:p-5 shadow-lg">
           <div className="flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-6 gap-y-2 text-center text-sm sm:text-base font-display tracking-[0.12em] text-[#c5bddf] select-none uppercase">
             <span className="text-[#f4f0ff] font-medium">24 HOURS</span>
             <span className="text-white/20 hidden sm:inline">//</span>
@@ -346,7 +346,7 @@ export const DoomVersusPlan: React.FC<ImpactSectionProps> = ({ onOpenRegisterMod
         {/* =========================================================================
             3. "BEYOND THE VENUE" ROW (3 Community-Impact Points)
             ========================================================================= */}
-        <div className="mt-8 pt-8 border-t border-white/10">
+        <div className="mt-6 pt-6 sm:mt-8 sm:pt-8 border-t border-white/10">
           <div className="flex items-center gap-2 text-sm font-display tracking-[0.16em] text-[#ffd2a8] uppercase mb-5">
             <span className="w-1.5 h-1.5 rounded-full bg-[#ffc58a]" />
             <span>BEYOND THE VENUE // 3 LASTING IMPACT CHANNELS</span>
@@ -378,7 +378,7 @@ export const DoomVersusPlan: React.FC<ImpactSectionProps> = ({ onOpenRegisterMod
         {/* =========================================================================
             4. CLOSING LINE & "RESERVE YOUR ORBIT" CTA
             ========================================================================= */}
-        <div className="mt-12 text-center flex flex-col items-center justify-center p-8 bg-gradient-to-b from-[#120a2e]/90 to-[#0a051d]/90 border border-white/10 rounded-3xl shadow-[0_0_40px_rgba(139,92,246,0.15)]">
+        <div className="mt-8 sm:mt-12 text-center flex flex-col items-center justify-center p-5 sm:p-8 bg-gradient-to-b from-[#120a2e]/90 to-[#0a051d]/90 border border-white/10 rounded-3xl shadow-[0_0_40px_rgba(139,92,246,0.15)]">
           <p className="font-display text-xl sm:text-2xl md:text-3xl font-semibold text-white mb-6 tracking-wide leading-tight uppercase">
             Most hackathons end on Sunday. <span className="text-[#ffd2a8]">We build into orbit.</span>
           </p>

@@ -157,7 +157,7 @@ exora2.0/
 
 | Phase | Milestone | Date & Venue | Mode | Eliminatory? |
 | :--- | :--- | :--- | :--- | :--- |
-| **Phase 1** | PPT Idea Submission Window | 8 Nov – 22 Nov 2026 | Online | **Yes** (Top 40–50 advance) |
+| **Phase 1** | PPT Idea Submission Window | 8 Nov – 22 Nov 2026 | Online | **Yes** (Top 50 advance) |
 | **Phase 1** | Shortlist Announcement | 25 Nov 2026 | Portal | Results declared |
 | **Phase 2** | 24-Hour Hackathon Kickoff | 26 Nov 2026 | Online | **No** (All advance to Phase 3) |
 | **Phase 2** | Round 1 Mentoring | 26 Nov 2026, 4:00 PM+ | Online | Non-eliminatory technical guidance |

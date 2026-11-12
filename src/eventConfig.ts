@@ -296,7 +296,7 @@ export const EVENT_CONFIG = {
   importantNotes: [
     "PPT submission is mandatory for Phase 1 screening; deadline: 22 November 2026.",
     "Phase 1 shortlisted-team results will be declared on 25 November 2026.",
-    "Only the top 40–50 shortlisted teams proceed from Phase 1 to Phase 2.",
+    "Only the top 50 shortlisted teams proceed from Phase 1 to Phase 2.",
     "Phase 2 on 27 November (24-Hour Hackathon) is strictly non-eliminatory.",
     "Phase 3 on 28 November is an intense one-day offline crucible at Thoughtworks Gurugram (Hall open 8:00 AM–5:00 PM; check-in by 9:00 AM).",
     "Round 1 mentoring on 28 November (9:00 AM–10:00 AM) is strictly eliminatory.",

@@ -10,14 +10,14 @@ export const ExoraPrizes: React.FC = () => {
   return (
     <section
       id="rewards"
-      className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden"
+      className="py-10 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden"
     >
       <div ref={ref} className={`max-w-6xl mx-auto ${revealClass}`}>
 
         {/* Section Header */}
-        <div className="mb-12 sm:mb-14 text-center md:text-left">
+        <div className="mb-6 sm:mb-14 text-center md:text-left">
           <div className="inline-flex items-center gap-3 mb-3 px-5 py-2.5 rounded-full bg-[#120a2e]/80 border border-[#8b5cf6]/50 text-sm sm:text-base font-display font-semibold tracking-[0.16em] text-[#ffd2a8] uppercase backdrop-blur-md shadow-[0_0_20px_rgba(139,92,246,0.16)]">
-            <Sparkles className="w-5 h-5 text-[#ffc58a]" />
+            
             <span>BOUNTIES // MERIT POOL · ₹2,00,000 REWARDS</span>
           </div>
 
@@ -33,10 +33,10 @@ export const ExoraPrizes: React.FC = () => {
         </div>
 
         {/* Prize Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8 items-stretch mb-8 sm:mb-12">
 
           {/* Second Prize */}
-          <div className="glass-pass-card rounded-[28px] p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden transition-all duration-300 border border-white/15 hover:border-[#6ee7f9]/40 hover:-translate-y-1 group">
+          <div className="order-2 md:order-1 glass-pass-card rounded-[28px] p-5 sm:p-8 flex flex-col justify-between relative overflow-hidden transition-all duration-300 border border-white/15 hover:border-[#6ee7f9]/40 hover:-translate-y-1 group">
 
             <div
               className="absolute top-3 left-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-[#120a2e] border border-[#6ee7f9]/60 flex items-center justify-center shadow-[0_0_12px_#6ee7f9] z-20"
@@ -78,7 +78,7 @@ export const ExoraPrizes: React.FC = () => {
           </div>
 
           {/* First Prize */}
-          <div className="glass-pass-card rounded-[28px] p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden transition-all duration-300 border-2 border-[#ffc58a]/60 shadow-[0_0_35px_rgba(255,197,138,0.18)] hover:shadow-[0_15px_45px_rgba(255,197,138,0.3)] hover:-translate-y-1.5 group">
+          <div className="order-1 md:order-2 glass-pass-card rounded-[28px] p-5 sm:p-8 flex flex-col justify-between relative overflow-hidden transition-all duration-300 border-2 border-[#ffc58a]/60 shadow-[0_0_35px_rgba(255,197,138,0.18)] hover:shadow-[0_15px_45px_rgba(255,197,138,0.3)] hover:-translate-y-1.5 group">
 
             <div
               className="absolute top-3 left-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-[#120a2e] border border-[#ffc58a] flex items-center justify-center shadow-[0_0_14px_#ffc58a] z-20"
@@ -120,7 +120,7 @@ export const ExoraPrizes: React.FC = () => {
           </div>
 
           {/* Third Prize */}
-          <div className="glass-pass-card rounded-[28px] p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden transition-all duration-300 border border-white/15 hover:border-[#e04dff]/40 hover:-translate-y-1 group">
+          <div className="order-3 glass-pass-card rounded-[28px] p-5 sm:p-8 flex flex-col justify-between relative overflow-hidden transition-all duration-300 border border-white/15 hover:border-[#e04dff]/40 hover:-translate-y-1 group">
 
             <div
               className="absolute top-3 left-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-[#120a2e] border border-[#e04dff]/60 flex items-center justify-center shadow-[0_0_12px_#e04dff] z-20"
@@ -163,7 +163,7 @@ export const ExoraPrizes: React.FC = () => {
         </div>
 
         {/* Certificates and Registration */}
-        <div className="glass-pass-card rounded-[28px] p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden border border-white/15 hover:border-[#ffc58a]/30 transition-all duration-300">
+        <div className="glass-pass-card rounded-[28px] p-5 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6 relative overflow-hidden border border-white/15 hover:border-[#ffc58a]/30 transition-all duration-300">
 
           <div className="flex items-center gap-4 sm:gap-5">
             <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#120a2e] border border-[#ffc58a]/40 flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(255,197,138,0.2)]">
