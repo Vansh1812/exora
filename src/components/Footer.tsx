@@ -4,7 +4,11 @@ import { EVENT_CONFIG } from '../eventConfig';
 import { OrbitalLogo } from './OrbitalLogo';
 import { Sparkles, ArrowUp } from 'lucide-react';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  onOpenRegisterModal?: () => void;
+}
+
+export const Footer: React.FC<FooterProps> = () => {
   const [inView, setInView] = useState(false);
   const footerRef = useRef<HTMLElement>(null);
 
@@ -42,10 +46,21 @@ export const Footer: React.FC = () => {
     href: string
   ) => {
     e.preventDefault();
-    const target = document.querySelector(href);
-
+    if (href === '#hero') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    const target = document.querySelector(href) as HTMLElement | null;
     if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
+      const navHeader = document.querySelector('header');
+      const navHeight = navHeader ? navHeader.getBoundingClientRect().height : 56;
+      const topOffset = navHeight + 28;
+      const currentScroll = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+      const targetY = Math.max(0, target.getBoundingClientRect().top + currentScroll - topOffset);
+      window.scrollTo({
+        top: targetY,
+        behavior: 'smooth',
+      });
     }
   };
 

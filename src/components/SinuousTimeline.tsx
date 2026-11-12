@@ -1,6 +1,8 @@
 import React, { useRef, useState, useEffect, useMemo, useCallback } from 'react';
 import { useReveal } from '../hooks/useReveal';
 import { useReducedMotion } from '../hooks/useReducedMotion';
+import { useMediaQuery } from '../hooks/useMediaQuery';
+import { MobileTimeline } from './MobileTimeline';
 import { Sparkles, ChevronDown } from 'lucide-react';
 
 interface TrailPoint {
@@ -76,6 +78,7 @@ export const SinuousTimeline: React.FC = () => {
   const canvasRef = useRef<HTMLDivElement>(null);
   const pathRef = useRef<SVGPathElement>(null);
   const isReduced = useReducedMotion();
+  const isMobile = useMediaQuery('(max-width: 767px)');
   const { ref: revealRef, revealClass } = useReveal<HTMLDivElement>();
 
   const [totalLength, setTotalLength] = useState<number>(0);
@@ -102,31 +105,43 @@ export const SinuousTimeline: React.FC = () => {
     []
   );
 
-  // Measure path length and build ticks once
-  useEffect(() => {
-    const path = pathRef.current;
-    if (!path) return;
+  // Measure path length and build ticks with callback ref & effect
+  const measurePath = useCallback((pathEl: SVGPathElement | null) => {
+    if (!pathEl) return;
+    pathRef.current = pathEl;
+    try {
+      const len = pathEl.getTotalLength();
+      if (len > 0) {
+        setTotalLength(len);
 
-    const len = path.getTotalLength();
-    setTotalLength(len);
-
-    // Build orbital tick marks along the path once as a single path string
-    let ticks = '';
-    const step = 26;
-    for (let d = 30; d < len - 30; d += step) {
-      const p = path.getPointAtLength(d);
-      const pPrev = path.getPointAtLength(Math.max(0, d - 2));
-      const pNext = path.getPointAtLength(Math.min(len, d + 2));
-      const dx = pNext.x - pPrev.x;
-      const dy = pNext.y - pPrev.y;
-      const dist = Math.hypot(dx, dy) || 1;
-      const nx = -dy / dist;
-      const ny = dx / dist;
-      const tickHalf = 4.5;
-      ticks += `M ${p.x - nx * tickHalf} ${p.y - ny * tickHalf} L ${p.x + nx * tickHalf} ${p.y + ny * tickHalf} `;
+        // Build orbital tick marks along the path once as a single path string
+        let ticks = '';
+        const step = 26;
+        for (let d = 30; d < len - 30; d += step) {
+          const p = pathEl.getPointAtLength(d);
+          const pPrev = pathEl.getPointAtLength(Math.max(0, d - 2));
+          const pNext = pathEl.getPointAtLength(Math.min(len, d + 2));
+          const dx = pNext.x - pPrev.x;
+          const dy = pNext.y - pPrev.y;
+          const dist = Math.hypot(dx, dy) || 1;
+          const nx = -dy / dist;
+          const ny = dx / dist;
+          const tickHalf = 4.5;
+          ticks += `M ${p.x - nx * tickHalf} ${p.y - ny * tickHalf} L ${p.x + nx * tickHalf} ${p.y + ny * tickHalf} `;
+        }
+        setTicksPath(ticks);
+      }
+    } catch {
+      // SVG not yet attached
     }
-    setTicksPath(ticks);
-  }, [pathD]);
+  }, []);
+
+  // Ensure path is measured whenever desktop layout is active or breakpoint changes
+  useEffect(() => {
+    if (!isMobile && pathRef.current) {
+      measurePath(pathRef.current);
+    }
+  }, [pathD, isMobile, measurePath]);
 
   // Pause animations when section is off-screen
   useEffect(() => {
@@ -145,7 +160,7 @@ export const SinuousTimeline: React.FC = () => {
 
   // rAF-throttled scroll progress listener computed from the canvas's bounding rect
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined' || isMobile) return;
 
     let rafId: number | null = null;
 
@@ -158,9 +173,9 @@ export const SinuousTimeline: React.FC = () => {
 
         const rect = canvasRef.current.getBoundingClientRect();
         const vh = window.innerHeight;
-        // Progress starts when canvas is partially in view and completes near center/bottom
-        const startOffset = vh * 0.75;
-        const totalDist = rect.height + vh * 0.3;
+        // Progress starts when canvas top enters the viewport and finishes near bottom
+        const startOffset = vh * 0.8;
+        const totalDist = rect.height + vh * 0.4;
         const currentDist = startOffset - rect.top;
         const progress = Math.max(0, Math.min(1, currentDist / totalDist));
         setScrollProgress(progress);
@@ -168,13 +183,15 @@ export const SinuousTimeline: React.FC = () => {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll, { passive: true });
     handleScroll(); // Initial check
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
       if (rafId !== null) cancelAnimationFrame(rafId);
     };
-  }, []);
+  }, [isMobile]);
 
   // Walker position and rotation along the path
   const walkerData = useMemo(() => {
@@ -245,7 +262,7 @@ export const SinuousTimeline: React.FC = () => {
     <section
       id="timeline"
       ref={sectionRef}
-      className="pt-20 pb-[360px] sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden"
+      className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden"
     >
       <div ref={revealRef} className={`max-w-5xl mx-auto ${revealClass}`}>
         {/* Section Header */}
@@ -265,19 +282,21 @@ export const SinuousTimeline: React.FC = () => {
         </div>
 
         {/* =========================================================================
-            THE ORBITAL DESIGN CANVAS (Exactly 900 x 1400 on EVERY screen)
-            Scales proportionally like an image using aspect-ratio and container query units
+            RESPONSIVE BRANCH: Mobile Flow Layout (<= 767px) vs Desktop Canvas (>= 768px)
             ========================================================================= */}
-        <div
-          ref={canvasRef}
-          style={{
-            containerType: 'inline-size',
-            aspectRatio: '900 / 1400',
-            width: '100%',
-            maxWidth: '900px',
-          }}
-          className="relative mx-auto select-none"
-        >
+        {isMobile ? (
+          <MobileTimeline isSectionVisible={isSectionVisible} />
+        ) : (
+          <div
+            ref={canvasRef}
+            style={{
+              containerType: 'inline-size',
+              aspectRatio: '900 / 1400',
+              width: '100%',
+              maxWidth: '900px',
+            }}
+            className="relative mx-auto select-none"
+          >
           {/* =====================================================================
               1. THE SVG LAYER (viewBox 0 0 900 1400)
               Draws path, ticks, planets, connector lines, and walker
@@ -353,17 +372,33 @@ export const SinuousTimeline: React.FC = () => {
               />
             )}
 
-            {/* Hidden measurement path */}
-            <path ref={pathRef} d={pathD} fill="none" stroke="none" />
+            {/* Hidden measurement path with callback ref */}
+            <path ref={measurePath} d={pathD} fill="none" stroke="none" />
 
-            {/* Path Layer 2A: Duplicated Wider Low-Opacity Stroke for Glow (NO blur filter!) */}
+            {/* Path Layer 2A: Duplicated Wider Luminous Glow Stroke */}
             {totalLength > 0 && (
               <path
                 d={pathD}
                 stroke="url(#orbitalPathGrad)"
-                strokeWidth="14"
+                strokeWidth="20"
                 strokeLinecap="round"
-                opacity="0.22"
+                opacity="0.32"
+                strokeDasharray={`${drawnDistance} ${totalLength}`}
+                style={{
+                  transition: isReduced ? 'none' : 'stroke-dasharray 0.08s linear',
+                  filter: 'drop-shadow(0 0 10px rgba(224, 77, 255, 0.5)) drop-shadow(0 0 20px rgba(255, 154, 60, 0.4))',
+                }}
+              />
+            )}
+
+            {/* Path Layer 2B: Mid-glow beam */}
+            {totalLength > 0 && (
+              <path
+                d={pathD}
+                stroke="url(#orbitalPathGrad)"
+                strokeWidth="8"
+                strokeLinecap="round"
+                opacity="0.55"
                 strokeDasharray={`${drawnDistance} ${totalLength}`}
                 style={{
                   transition: isReduced ? 'none' : 'stroke-dasharray 0.08s linear',
@@ -371,7 +406,7 @@ export const SinuousTimeline: React.FC = () => {
               />
             )}
 
-            {/* Path Layer 2B: Solid Drawn Progress Path up to Walker */}
+            {/* Path Layer 2C: Solid Drawn Progress Path up to Walker */}
             {totalLength > 0 && (
               <path
                 d={pathD}
@@ -513,15 +548,18 @@ export const SinuousTimeline: React.FC = () => {
                 =================================================================== */}
             {totalLength > 0 && (
               <g id="orbital-walker-system">
-                {/* Short Fading Trail of 5 to 6 Tiny Cyan Dots */}
+                {/* Short Fading Trail of 5 to 6 Luminous Cyan Dots */}
                 {walkerData.trail.map((pt, tIdx) => (
                   <circle
                     key={tIdx}
                     cx={pt.x}
                     cy={pt.y}
-                    r={2.5 - tIdx * 0.3}
+                    r={3 - tIdx * 0.35}
                     fill="#6ee7f9"
-                    opacity={pt.opacity * 0.75}
+                    opacity={pt.opacity * 0.85}
+                    style={{
+                      filter: 'drop-shadow(0 0 6px rgba(110, 231, 249, 0.8))',
+                    }}
                   />
                 ))}
 
@@ -533,13 +571,14 @@ export const SinuousTimeline: React.FC = () => {
                     transition: isReduced ? 'none' : 'transform 0.05s linear',
                   }}
                 >
-                  {/* Soft footstep glow on the line */}
-                  <ellipse cx="0" cy="0" rx="12" ry="4" fill="#6ee7f9" opacity="0.65" />
+                  {/* Radiant footstep aura on the line */}
+                  <ellipse cx="0" cy="0" rx="16" ry="6" fill="#6ee7f9" opacity="0.7" style={{ filter: 'drop-shadow(0 0 10px #6ee7f9)' }} />
+                  <ellipse cx="0" cy="0" rx="8" ry="3" fill="#ffffff" opacity="0.9" />
 
                   {/* Cyan Traveler Silhouette (approx 26px tall) */}
-                  <g transform="translate(0, 0)">
+                  <g transform="translate(0, 0)" style={{ filter: 'drop-shadow(0 0 8px #6ee7f9)' }}>
                     {/* Head */}
-                    <circle cx="1.5" cy="-21" r="2.6" fill="#6ee7f9" />
+                    <circle cx="1.5" cy="-21" r="2.8" fill="#6ee7f9" />
                     {/* Torso */}
                     <path d="M -0.5 -18 C -0.5 -18.5, 3.5 -18.5, 3.5 -18 L 3 -10 L -1 -10 Z" fill="#6ee7f9" />
                     {/* Front Arm */}
@@ -835,23 +874,17 @@ export const SinuousTimeline: React.FC = () => {
                       {FINALE_SCHEDULE.map((item, sIdx) => (
                         <div
                           key={sIdx}
-                          className="flex items-start gap-1.5 p-1 sm:p-1.5 rounded-lg border transition-all duration-200 hover:-translate-y-0.5 bg-[#05030f]/60 border-white/5 hover:bg-[#6ee7f9]/10 hover:border-[#6ee7f9]/40 hover:shadow-[0_0_14px_rgba(110,231,249,0.15)]"
+                          className="flex items-start gap-1.5 p-1 sm:p-1.5 rounded-lg border transition-all duration-200 cursor-pointer hover:-translate-y-0.5 bg-[#05030f]/60 border-white/5 hover:bg-[#6ee7f9]/10 hover:border-[#6ee7f9]/40 hover:shadow-[0_0_14px_rgba(110,231,249,0.15)]"
                         >
                           {/* Moon dot */}
                           <span
-                            className={`w-1.5 h-1.5 rounded-full mt-1 shrink-0 ${
-                              item.isEliminatory
-                                ? 'bg-[#ff6f91] shadow-[0_0_6px_#ff6f91]'
-                                : 'bg-[#6ee7f9] shadow-[0_0_6px_#6ee7f9]'
-                            }`}
+                            className="w-1.5 h-1.5 rounded-full mt-1 shrink-0 bg-[#6ee7f9] shadow-[0_0_6px_#6ee7f9]"
                           />
                           <div className="min-w-0 flex-1">
                             <div className="flex items-center justify-between gap-1 leading-tight">
                               <span
                                 style={{ fontSize: 'clamp(10px, 1.6cqw, 13px)' }}
-                                className={`font-display font-semibold uppercase truncate ${
-                                  item.isEliminatory ? 'text-[#ffd09f]' : 'text-white'
-                                }`}
+                                className="font-display font-semibold uppercase truncate text-white"
                               >
                                 {item.marker} · {item.title}
                               </span>
@@ -877,7 +910,8 @@ export const SinuousTimeline: React.FC = () => {
               </div>
             </li>
           </ol>
-        </div>
+          </div>
+        )}
       </div>
     </section>
   );

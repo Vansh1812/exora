@@ -23,9 +23,17 @@ interface HeroProps {
 export const Hero: React.FC<HeroProps> = () => {
   const handleScrollToTimeline = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    const timeline = document.querySelector('#timeline');
+    const timeline = document.querySelector('#timeline') as HTMLElement | null;
     if (timeline) {
-      timeline.scrollIntoView({ behavior: 'smooth' });
+      const navHeader = document.querySelector('header');
+      const navHeight = navHeader ? navHeader.getBoundingClientRect().height : 56;
+      const topOffset = navHeight + 28;
+      const currentScroll = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+      const targetY = Math.max(0, timeline.getBoundingClientRect().top + currentScroll - topOffset);
+      window.scrollTo({
+        top: targetY,
+        behavior: 'smooth',
+      });
     }
   };
 

@@ -88,6 +88,13 @@ export const Navbar: React.FC<NavbarProps> = () => {
           >
             PATRONS
           </a>
+          <a
+            href="#rewards"
+            onClick={(e) => handleNavClick(e, '#rewards')}
+            className="hover:text-[#ffc58a] transition-colors whitespace-nowrap focus:outline-none focus-visible:text-[#ffc58a]"
+          >
+            PRIZE MONEY
+          </a>
         </nav>
 
         {/* Right: Register Primary Pill Button + Mobile Hamburger Toggle */}
@@ -176,6 +183,13 @@ export const Navbar: React.FC<NavbarProps> = () => {
             className="block py-3 rounded-xl text-sm sm:text-base font-semibold tracking-[0.13em] text-[#e2d9f5] hover:bg-white/5 hover:text-[#ffc58a] transition-all duration-200"
           >
             PATRONS & COLLABORATORS
+          </a>
+          <a
+            href="#rewards"
+            onClick={(e) => handleNavClick(e, '#rewards')}
+            className="block py-3 rounded-xl text-sm sm:text-base font-semibold tracking-[0.13em] text-[#e2d9f5] hover:bg-white/5 hover:text-[#ffc58a] transition-all duration-200"
+          >
+            PRIZE MONEY
           </a>
 
           <div className="pt-3 border-t border-white/10">
