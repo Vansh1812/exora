@@ -487,7 +487,7 @@ export const TracksSection: React.FC = () => {
             boxShadow: `0 24px 60px -10px rgba(5, 3, 15, 0.9), 0 0 35px ${activeTrack.accent}25`,
             borderColor: `${activeTrack.accent}45`,
           } as React.CSSProperties}
-          className="glass-pass-card rounded-[28px] p-6 sm:p-9 md:p-10 relative overflow-hidden transition-all duration-300 border border-white/14 mb-8 outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+          className="glass-pass-card rounded-[28px] p-6 pt-14 sm:p-9 sm:pt-14 md:p-10 md:pt-14 relative overflow-hidden transition-all duration-300 border border-white/14 mb-8 outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
         >
           {/* Centered Diamond Sparkle SVG on Top */}
           <div

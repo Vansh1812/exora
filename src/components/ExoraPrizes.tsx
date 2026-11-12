@@ -16,9 +16,9 @@ export const ExoraPrizes: React.FC = () => {
 
         {/* Section Header */}
         <div className="mb-12 sm:mb-14 text-center md:text-left">
-          <div className="inline-flex items-center gap-2.5 mb-3 px-4 py-2 rounded-full bg-[#120a2e]/80 border border-[#8b5cf6]/40 text-xs sm:text-sm font-display font-medium tracking-[0.16em] text-[#ffd2a8] uppercase backdrop-blur-md shadow-[0_0_18px_rgba(139,92,246,0.12)]">
-            <Sparkles className="w-4 h-4 text-[#ffc58a]" />
-            <span>BOUNTIES // MERIT POOL · ₹25,000+ REWARDS</span>
+          <div className="inline-flex items-center gap-3 mb-3 px-5 py-2.5 rounded-full bg-[#120a2e]/80 border border-[#8b5cf6]/50 text-sm sm:text-base font-display font-semibold tracking-[0.16em] text-[#ffd2a8] uppercase backdrop-blur-md shadow-[0_0_20px_rgba(139,92,246,0.16)]">
+            <Sparkles className="w-5 h-5 text-[#ffc58a]" />
+            <span>BOUNTIES // MERIT POOL · ₹2,00,000 REWARDS</span>
           </div>
 
           <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-semibold text-[#f4f0ff] tracking-[0.06em] uppercase leading-tight">
@@ -73,7 +73,7 @@ export const ExoraPrizes: React.FC = () => {
             </div>
 
             <div className="pt-4 mt-7 border-t border-white/10 text-xs font-mono font-medium tracking-wider text-[#bdb3dc]">
-              CASH BOUNTY + CITATION
+              EXORA 2.0 FIRST RUNNER-UP
             </div>
           </div>
 
@@ -157,7 +157,7 @@ export const ExoraPrizes: React.FC = () => {
             </div>
 
             <div className="pt-4 mt-7 border-t border-white/10 text-xs font-mono font-medium tracking-wider text-[#bdb3dc]">
-              CASH BOUNTY + CITATION
+              EXORA 2.0 SECOND RUNNER-UP
             </div>
           </div>
         </div>

@@ -106,24 +106,8 @@ export const Footer: React.FC = () => {
         aria-hidden="true"
       />
 
-      {/* 5. Colossal Holographic EXORA 2.0 Wireframe Watermark */}
-      <div
-        className="absolute inset-x-0 bottom-4 pointer-events-none select-none overflow-hidden h-40 sm:h-56 md:h-72 flex items-end justify-center z-0"
-        aria-hidden="true"
-      >
-        <div
-          className="font-display text-[110px] sm:text-[180px] md:text-[230px] uppercase font-normal tracking-[0.08em] text-transparent leading-none whitespace-nowrap"
-          style={{
-            WebkitTextStroke: '1.5px rgba(139, 92, 246, 0.22)',
-            textShadow: '0 0 40px rgba(139, 92, 246, 0.15)',
-          }}
-        >
-          EXORA 2.0
-        </div>
-      </div>
-
       {/* Main Content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-10 sm:pb-12">
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-5 sm:px-6 lg:px-8 pt-14 sm:pt-20 pb-10 sm:pb-12 overflow-x-clip">
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-12 sm:pb-14 border-b border-white/10">
 
@@ -282,7 +266,7 @@ export const Footer: React.FC = () => {
 
                 {/* LinkedIn */}
                 <a
-                  href="https://www.linkedin.com/company/gdg-abesec/posts/?feedView=all"
+                  href="https://www.linkedin.com/company/gdg-abesec"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="GDG ABESEC LinkedIn"
@@ -349,9 +333,10 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-5 font-sans text-sm text-[#a99fcf] text-center sm:text-left">
+        <div className="relative z-10 pt-5 flex flex-col items-center gap-2.5 font-sans text-sm text-[#a99fcf] text-center">
 
-          <div className="flex items-center gap-2.5 flex-wrap justify-center sm:justify-start">
+          {/* Copyright Row */}
+          <div className="flex items-center gap-2.5 flex-wrap justify-center">
             <span className="w-2 h-2 rounded-full bg-[#6ee7f9] shadow-[0_0_8px_#6ee7f9]" />
 
             <span className="font-display font-medium tracking-wider text-xs sm:text-sm">
@@ -365,11 +350,27 @@ export const Footer: React.FC = () => {
             </span>
           </div>
 
+          {/* EXORA 2.0 Watermark */}
+          <div
+            className="w-full flex items-center justify-center overflow-hidden py-0 pointer-events-none select-none"
+            aria-hidden="true"
+          >
+            <div
+              className="font-display text-[clamp(3.8rem,17vw,120px)] sm:text-[180px] md:text-[210px] uppercase font-normal tracking-[0.04em] text-transparent leading-none whitespace-nowrap"
+              style={{
+                WebkitTextStroke: '1.5px rgba(139, 92, 246, 0.22)',
+                textShadow: '0 0 40px rgba(139, 92, 246, 0.15)',
+              }}
+            >
+              EXORA 2.0
+            </div>
+          </div>
+
           {/* Back to Top */}
           <button
             type="button"
             onClick={handleScrollToTop}
-            className="group inline-flex items-center justify-center min-h-[46px] px-5 py-2.5 rounded-full border border-white/10 bg-[#120a2e]/70 text-[#bdb3dc] hover:text-white hover:border-[#8b5cf6]/60 hover:bg-[#8b5cf6]/10 transition-all duration-300 cursor-pointer focus:outline-none focus:border-[#8b5cf6]"
+            className="group inline-flex items-center justify-center min-h-[42px] px-5 py-2 rounded-full border border-[#8b5cf6]/40 bg-[#120a2e]/90 backdrop-blur-md text-[#e2d9f5] hover:text-[#ffc58a] hover:border-[#ffc58a]/60 hover:-translate-y-1 transition-all duration-300 cursor-pointer focus:outline-none focus:border-[#ffc58a]"
             aria-label="Return to top"
           >
             <span className="flex items-center gap-2 font-display text-xs sm:text-sm font-medium tracking-wider uppercase">

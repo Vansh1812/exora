@@ -155,13 +155,13 @@ export const DoomVersusPlan: React.FC<ImpactSectionProps> = ({ onOpenRegisterMod
       <div ref={revealRef} className={`max-w-6xl mx-auto ${revealClass}`}>
         {/* Section Header */}
         <div className="mb-10 text-center md:text-left">
-          <div className="flex items-center justify-center md:justify-start gap-2 text-xs font-display tracking-[0.2em] text-[#ffc58a] uppercase mb-2">
+          <div className="flex items-center justify-center md:justify-start gap-2.5 text-sm sm:text-base font-display font-semibold tracking-[0.16em] text-[#ffc58a] uppercase mb-3">
             <span>THE PARADIGM SHIFT</span>
             <span className="text-[#a99fcf]">·</span>
             <span className="text-[#6ee7f9]">BEFORE VS WITH EXORA</span>
           </div>
 
-          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-semibold text-white tracking-[0.04em] uppercase leading-tight">
+          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-semibold text-white tracking-[0.05em] uppercase leading-tight">
             Before vs With Exora
           </h2>
           <p className="mt-3 text-sm sm:text-base font-sans font-medium text-[#c5bddf] max-w-2xl leading-[1.8]">
@@ -170,11 +170,11 @@ export const DoomVersusPlan: React.FC<ImpactSectionProps> = ({ onOpenRegisterMod
         </div>
 
         {/* Accessible Keyboard & Draggable Status Bar */}
-        <div className="hidden md:flex mb-6 flex-wrap items-center justify-between gap-4 p-3.5 bg-[#120a2e]/60 border border-white/10 rounded-2xl text-sm font-display">
-          <div className="flex items-center gap-2 text-[#a99fcf]">
+        <div className="hidden md:flex mb-6 flex-wrap items-center justify-between gap-4 p-4 sm:p-5 bg-[#120a2e]/70 border border-white/10 rounded-2xl text-sm sm:text-base font-display font-medium">
+          <div className="flex items-center gap-2.5 text-[#c5bddf] font-medium tracking-wide">
             <Sliders className="w-4 h-4 text-[#ffc58a]" />
             <span>
-              REALITY DIVIDER // <strong className="text-[#6ee7f9]">{sliderPos}% WITH EXORA</strong> (Drag anywhere or use arrows)
+              REALITY DIVIDER // <strong className="text-[#6ee7f9] font-bold tracking-wide">{sliderPos}% WITH EXORA</strong> (Drag anywhere or use arrows)
             </span>
           </div>
 
@@ -230,7 +230,7 @@ export const DoomVersusPlan: React.FC<ImpactSectionProps> = ({ onOpenRegisterMod
               </div>
             </div>
 
-            <div className="mt-8 text-right text-xs font-display text-[#6ee7f9] tracking-widest uppercase">
+            <div className="mt-8 text-right text-xs sm:text-sm font-display font-semibold text-[#6ee7f9] tracking-[0.14em] uppercase leading-relaxed">
               STATUS: EXORA 2.0 ORBITAL TRAJECTORY VERIFIED
             </div>
           </div>
@@ -260,7 +260,7 @@ export const DoomVersusPlan: React.FC<ImpactSectionProps> = ({ onOpenRegisterMod
               </div>
             </div>
 
-            <div className="mt-8 text-xs font-display text-[#a99fcf]/90 tracking-widest uppercase">
+            <div className="mt-8 text-xs sm:text-sm font-display font-semibold text-[#bdb3dc] tracking-[0.14em] uppercase leading-relaxed">
               CONVENTIONAL ILLUSION // WE LEAVE THIS BEHIND
             </div>
           </div>
@@ -282,7 +282,7 @@ export const DoomVersusPlan: React.FC<ImpactSectionProps> = ({ onOpenRegisterMod
             ========================================================================= */}
         <div className="md:hidden space-y-4">
           <div className="p-4 bg-[#120a2e]/60 border border-white/10 rounded-2xl flex items-center justify-between text-sm font-display">
-            <span className="text-[#ffc58a] font-medium flex items-center gap-2">
+            <span className="text-sm font-display font-semibold tracking-wider text-[#ffd2a8] flex items-center gap-2">
               <Sliders className="w-3.5 h-3.5 text-[#ffc58a]" />
               THE PARADIGM SHIFT
             </span>

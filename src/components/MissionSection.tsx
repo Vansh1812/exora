@@ -192,7 +192,7 @@ export const MissionSection: React.FC = () => {
         {/* =========================================================================
             CARD 2: FINAL JUDGING PARAMETERS (Clean 6-Point Evaluation Matrix)
             ========================================================================= */}
-        <div className="glass-pass-card rounded-[28px] p-6 sm:p-9 relative overflow-hidden transition-all border border-white/14">
+        <div className="glass-pass-card rounded-[28px] p-6 pt-14 sm:p-9 relative overflow-hidden transition-all border border-white/14">
           {/* Centered Top Diamond Sparkle */}
           <div
             

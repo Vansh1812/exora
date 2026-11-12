@@ -129,41 +129,41 @@ export const Navbar: React.FC<NavbarProps> = () => {
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
         <div className="pointer-events-auto md:hidden mt-2 max-w-sm mx-auto rounded-3xl border border-white/15 bg-[#120a2e]/95 backdrop-blur-xl p-5 space-y-2 text-center font-display text-xs uppercase tracking-[0.16em] text-[#a99fcf] shadow-[0_20px_50px_rgba(5,3,15,0.9)]">
-          <div className="pb-2 border-b border-white/10 text-[10px] text-[#ffc58a] tracking-[0.2em]">
+          <div className="pb-3 border-b border-white/10 text-xs sm:text-sm font-semibold text-[#ffc58a] tracking-[0.2em]">
             ORBITAL NAVIGATION
           </div>
           <a
             href="#mission"
             onClick={(e) => handleNavClick(e, '#mission')}
-            className="block py-2.5 rounded-xl hover:bg-white/5 hover:text-[#ffc58a] transition-colors"
+            className="block py-3 rounded-xl text-sm sm:text-base font-semibold tracking-[0.13em] text-[#e2d9f5] hover:bg-white/5 hover:text-[#ffc58a] transition-all duration-200"
           >
             EXORA 2.0
           </a>
           <a
             href="#tracks"
             onClick={(e) => handleNavClick(e, '#tracks')}
-            className="block py-2.5 rounded-xl hover:bg-white/5 hover:text-[#ffc58a] transition-colors"
+            className="block py-3 rounded-xl text-sm sm:text-base font-semibold tracking-[0.13em] text-[#e2d9f5] hover:bg-white/5 hover:text-[#ffc58a] transition-all duration-200"
           >
             CHOOSE YOUR ORBIT
           </a>
           <a
             href="#timeline"
             onClick={(e) => handleNavClick(e, '#timeline')}
-            className="block py-2.5 rounded-xl hover:bg-white/5 hover:text-[#ffc58a] transition-colors"
+            className="block py-3 rounded-xl text-sm sm:text-base font-semibold tracking-[0.13em] text-[#e2d9f5] hover:bg-white/5 hover:text-[#ffc58a] transition-all duration-200"
           >
             THE WALK TIMELINE
           </a>
           <a
             href="#impact"
             onClick={(e) => handleNavClick(e, '#impact')}
-            className="block py-2.5 rounded-xl hover:bg-white/5 hover:text-[#ffc58a] transition-colors"
+            className="block py-3 rounded-xl text-sm sm:text-base font-semibold tracking-[0.13em] text-[#e2d9f5] hover:bg-white/5 hover:text-[#ffc58a] transition-all duration-200"
           >
             BEFORE VS WITH EXORA
           </a>
           <a
             href="#sponsors"
             onClick={(e) => handleNavClick(e, '#sponsors')}
-            className="block py-2.5 rounded-xl hover:bg-white/5 hover:text-[#ffc58a] transition-colors"
+            className="block py-3 rounded-xl text-sm sm:text-base font-semibold tracking-[0.13em] text-[#e2d9f5] hover:bg-white/5 hover:text-[#ffc58a] transition-all duration-200"
           >
             PATRONS & COLLABORATORS
           </a>
@@ -174,7 +174,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMobileMenuOpen(false)}
-              className="block w-full py-3 text-center rounded-full text-xs font-display font-medium uppercase tracking-[0.14em] text-[#05030f] bg-gradient-to-r from-[#ffc58a] to-[#ff9a3c] shadow-[0_0_20px_rgba(255,154,60,0.35)] transition-all cursor-pointer"
+              className="block w-full py-3.5 text-center rounded-full text-sm font-display font-bold uppercase tracking-[0.15em] text-[#1a0b08] bg-gradient-to-r from-[#ffd09f] via-[#ffb66f] to-[#ff9638] border border-[#ffe0bd]/70 shadow-[0_0_12px_rgba(255,197,138,0.35),0_0_28px_rgba(255,154,60,0.3)] hover:shadow-[0_0_18px_rgba(255,197,138,0.55),0_0_35px_rgba(255,154,60,0.4)] transition-all duration-300 cursor-pointer active:scale-[0.98]"
             >
               REGISTER FOR EXORA 2.0
             </a>

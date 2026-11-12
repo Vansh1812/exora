@@ -245,7 +245,7 @@ export const SinuousTimeline: React.FC = () => {
     <section
       id="timeline"
       ref={sectionRef}
-      className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden"
+      className="pt-20 pb-[360px] sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden"
     >
       <div ref={revealRef} className={`max-w-5xl mx-auto ${revealClass}`}>
         {/* Section Header */}
@@ -313,7 +313,7 @@ export const SinuousTimeline: React.FC = () => {
                 <stop offset="75%" stopColor="#8b5cf6" />
                 <stop offset="100%" stopColor="#4c1d95" />
               </radialGradient>
-
+                  
               <radialGradient id="finalePlanetGrad" cx="35%" cy="35%" r="65%">
                 <stop offset="0%" stopColor="#ffe4ff" />
                 <stop offset="30%" stopColor="#e04dff" />
@@ -558,7 +558,7 @@ export const SinuousTimeline: React.FC = () => {
 
           {/* =====================================================================
               2. THE CARDS LAYER (Semantic Ordered List <ol> / <li>)
-              Positioned with percentage coordinates matching planet nodes in viewBox
+              Positioned with percentage coordinates matching planet nodes
               Uses container query units (cqw) with minimum 11px font sizes
               ===================================================================== */}
           <ol
@@ -658,15 +658,14 @@ export const SinuousTimeline: React.FC = () => {
                 CARD 2: PHASE 2 (Left of Node 2, at left: 12%, top: 40%, width: 44%)
                 ----------------------------------------------------------------- */}
             <li
-              aria-current={activeStepIndex === 1 ? 'step' : undefined}
-              style={{
-                left: '12%',
-                top: '40%',
-                width: '44%',
-                transition: 'opacity 0.4s ease-out',
-                opacity: isNode2Lit ? 1 : 0.45,
-              }}
-              className="absolute z-20"
+            aria-current={activeStepIndex === 1 ? 'step' : undefined}
+            style={{
+              left: '12%',
+              width: '44%',
+              transition: 'opacity 0.4s ease-out',
+              opacity: isNode2Lit ? 1 : 0.45,
+            }}
+            className="absolute z-20 top-[43%] sm:top-[40%]"
             >
               <div
                 style={{ padding: 'clamp(10px, 2.2cqw, 20px)' }}
@@ -687,7 +686,7 @@ export const SinuousTimeline: React.FC = () => {
                   onClick={() => toggleCard('phase-2')}
                   aria-expanded={expandedCards['phase-2']}
                   aria-controls="card-detail-phase-2"
-                  className="w-full text-left outline-none min-h-[44px] pt -5 flex flex-col justify-center"
+                  className="w-full text-left outline-none min-h-[44px] flex flex-col justify-center"
                 >
                   <div className="flex items-center justify-between gap-1 mb-1">
                     <span
@@ -750,12 +749,11 @@ export const SinuousTimeline: React.FC = () => {
               aria-current={activeStepIndex === 2 ? 'step' : undefined}
               style={{
                 left: '34%',
-                top: '71%',
                 width: '48%',
                 transition: 'opacity 0.4s ease-out',
                 opacity: isNode3Lit ? 1 : 0.45,
               }}
-              className="absolute z-20"
+              className="absolute z-20 top-[82%] sm:top-[74%]"
             >
               <div
                 style={{ padding: 'clamp(10px, 2.2cqw, 20px)' }}
@@ -811,7 +809,7 @@ export const SinuousTimeline: React.FC = () => {
 
                   <div
                     style={{ fontSize: 'clamp(11px, 1.7cqw, 13px)' }}
-                    
+
                   >
                     <span className="truncate">Thoughtworks, Gurugram</span>
                     <span className="text-[#ffd09f] font-display text-[11px] sm:text-xs font-semibold uppercase shrink-0">08 AM–05 PM</span>
