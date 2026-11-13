@@ -55,14 +55,15 @@
   }
   /* Display Typography (Techno rounded wide headings) */
   h1, h2, h3, h4, .font-display {
-    font-family: var(--font-display);
-    font-weight: 400;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
 
   body {
     font-family: var(--font-body);
+    font-weight: 400;
     background-color: var(--bg);
     color: var(--text);
     line-height: 1.6;
@@ -70,12 +71,17 @@
   }
 
   p, li {
-    line-height: 1.65;
-  }
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.65;
+}
 
-  code, kbd, samp, pre, .font-mono {
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
-  }
+  button, input, textarea, select {
+  font-family: var(--font-body);
+}
+code, kbd, samp, pre, .font-mono {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+}
 
   /* Text selection with cosmic violet glow */
   ::selection {

@@ -9,6 +9,9 @@ const SPONSORS = [
   { name: 'Adaptation AI', tagline: 'Official Sponsor' },
   { name: 'Fetch.ai', tagline: 'Official Sponsor' },
   { name: 'ASI: One', tagline: 'Official Sponsor' },
+  { name: '.xyz', tagline: 'Official Sponsor' },
+  { name: 'Interview Buddy', tagline: 'Official Sponsor' },
+  { name: 'Render', tagline: 'Official Sponsor' },
 ];
 
 export const CollaboratorsMarquee: React.FC = () => {
@@ -58,7 +61,7 @@ export const CollaboratorsMarquee: React.FC = () => {
                 <div className="w-3 h-3 rounded-full shrink-0 bg-[#6ee7f9] shadow-[0_0_10px_#6ee7f9] group-hover:bg-[#ffc58a] group-hover:shadow-[0_0_12px_#ffc58a] transition-all duration-300" />
 
                 <div className="min-w-0">
-                  <h3 className="font-display text-base sm:text-lg font-semibold text-white group-hover:text-[#ffd2a8] transition-colors tracking-wide whitespace-nowrap">
+                  <h3 className="font-display text-base sm:text-lg font-semibold text-white group-hover:text-[#ffd2a8] transition-colors tracking-wide whitespace-nowrap normal-case">
                     {sponsor.name}
                   </h3>
 
