@@ -40,9 +40,9 @@ export const Hero: React.FC<HeroProps> = () => {
   return (
     <section
       id="hero"
-      className="relative flex flex-col items-center justify-between text-center overflow-hidden pt-8 sm:pt-14 pb-8 sm:pb-12 px-4 sm:px-6 lg:px-8"
+      className="relative flex flex-col items-center justify-between text-center overflow-visible pt-8 sm:pt-14 pb-8 sm:pb-12 px-4 sm:px-6 lg:px-8"
     >
-      {/* Background Ambient Celestial Glow */}
+      {/* Background Ambient Celestial Glow (unclipped so background remains uniform behind navbar) */}
       <div
         className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] sm:w-[1000px] h-[500px] sm:h-[700px] rounded-full pointer-events-none blur-[140px] opacity-25 bg-gradient-to-b from-[#8b5cf6] via-[#e04dff] to-[#ff9a3c]"
         aria-hidden="true"
@@ -107,13 +107,6 @@ export const Hero: React.FC<HeroProps> = () => {
           </a>
         </div>
       </div>
-
-      {/* 6. Signature Clean Divider with Separation */}
-      <div
-        className="relative w-full max-w-4xl mx-auto h-px bg-gradient-to-r from-transparent via-[#8b5cf6]/40 to-transparent z-10 mt-4 sm:mt-6"
-        aria-hidden="true"
-      />
-      
     </section>
   );
 };

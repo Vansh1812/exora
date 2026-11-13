@@ -1,8 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { useScrollProgress } from '../hooks/useScrollProgress';
+import React, { useState, useRef, useEffect, memo } from 'react';
 import { useReducedMotion } from '../hooks/useReducedMotion';
-import { useReveal } from '../hooks/useReveal';
-import { Sliders, Sparkles, AlertTriangle, ArrowRight, CheckCircle2, XCircle, Globe, Terminal, Award } from 'lucide-react';
+import { ArrowRight, ArrowLeftRight, CheckCircle2, XCircle, Globe, Terminal, Award } from 'lucide-react';
 import { EVENT_CONFIG } from '../eventConfig';
 
 interface ImpactSectionProps {
@@ -56,105 +54,145 @@ const BEYOND_THE_VENUE_POINTS = [
   },
 ];
 
-export const DoomVersusPlan: React.FC<ImpactSectionProps> = ({ onOpenRegisterModal }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const splitBoxRef = useRef<HTMLDivElement>(null);
-  const scrollProgress = useScrollProgress(containerRef);
+const BEFORE_CHIP_LABEL = 'BEFORE EXORA // THE USUAL PARADE';
+const AFTER_CHIP_LABEL = 'WITH EXORA // CODE THAT ENDURES';
+const STATUS_LEFT_LINE = 'CONVENTIONAL ILLUSION // WE LEAVE THIS BEHIND';
+const STATUS_RIGHT_LINE = 'STATUS: EXORA 2.0 ORBITAL TRAJECTORY VERIFIED';
+
+const BEFORE_PANEL_HEADING = 'The Usual Parade';
+const AFTER_PANEL_HEADING = 'Code That Endures';
+
+interface ComparisonRowProps {
+  text: string;
+  index: number;
+  hasEntered: boolean;
+  isReduced: boolean;
+}
+
+const BeforeRow: React.FC<ComparisonRowProps> = memo(({ text, index, hasEntered, isReduced }) => {
+  const rowDelayStyle: React.CSSProperties | undefined = isReduced
+    ? undefined
+    : { transitionDelay: `${160 + index * 80}ms` };
+
+  return (
+    <li
+      style={rowDelayStyle}
+      className={`py-3.5 border-b border-white/[0.06] last:border-b-0 flex items-start gap-3 transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none ${
+        hasEntered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
+      }`}
+    >
+      <XCircle className="w-[18px] h-[18px] text-[#ff7a8a] shrink-0 mt-[3px]" aria-hidden="true" />
+      <span className="min-w-0 flex-1 text-sm sm:text-base font-sans text-[#d4cde0]/80 leading-relaxed break-words">
+        <span className="sr-only">Before: </span>
+        {text}
+      </span>
+    </li>
+  );
+});
+BeforeRow.displayName = 'BeforeRow';
+
+const WithExoraRow: React.FC<ComparisonRowProps> = memo(({ text, index, hasEntered, isReduced }) => {
+  const rowDelayStyle: React.CSSProperties | undefined = isReduced
+    ? undefined
+    : { transitionDelay: `${160 + index * 80}ms` };
+
+  return (
+    <li
+      style={rowDelayStyle}
+      className={`py-3.5 border-b border-white/[0.08] last:border-b-0 flex items-start gap-3 md:flex-row-reverse md:text-right transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none ${
+        hasEntered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
+      }`}
+    >
+      <CheckCircle2 className="w-[18px] h-[18px] text-[#6ee7f9] shrink-0 mt-[3px]" aria-hidden="true" />
+      <span className="min-w-0 flex-1 text-sm sm:text-base font-sans font-medium text-white leading-relaxed break-words">
+        <span className="sr-only">With Exora: </span>
+        {text}
+      </span>
+    </li>
+  );
+});
+WithExoraRow.displayName = 'WithExoraRow';
+
+const SwapHandleVisual: React.FC<{ isPulsing: boolean }> = memo(({ isPulsing }) => (
+  <div className="relative flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
+    {/* One-shot soft glow pulse halo (animates opacity and transform only) */}
+    <span
+      className={`absolute -inset-3 rounded-full transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none ${
+        isPulsing ? 'opacity-100 scale-125' : 'opacity-0 scale-90'
+      }`}
+      style={{
+        background:
+          'radial-gradient(circle, rgba(255, 197, 138, 0.45) 0%, rgba(224, 77, 255, 0.25) 50%, transparent 75%)',
+      }}
+    />
+    <div
+      className={`relative w-10 h-10 md:w-11 md:h-11 rounded-full bg-[#120a2e] border border-[#ffc58a]/50 flex items-center justify-center shadow-[0_0_18px_rgba(255,197,138,0.22)] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none ${
+        isPulsing ? 'scale-110' : 'scale-100'
+      }`}
+    >
+      <ArrowLeftRight className="w-4 h-4 text-[#ffc58a]" aria-hidden="true" />
+    </div>
+  </div>
+));
+SwapHandleVisual.displayName = 'SwapHandleVisual';
+
+export const DoomVersusPlan: React.FC<ImpactSectionProps> = () => {
   const isReduced = useReducedMotion();
-  const { ref: revealRef, revealClass } = useReveal<HTMLDivElement>();
-
-  // Slider position (0 to 100). Defaults to 50%
-  const [sliderPos, setSliderPos] = useState(50);
-  const [isManualOverride, setIsManualOverride] = useState(false);
-  const [isDragging, setIsDragging] = useState(false);
+  const splitRef = useRef<HTMLDivElement>(null);
+  const [hasEntered, setHasEntered] = useState<boolean>(isReduced);
+  const [swapPulsing, setSwapPulsing] = useState<boolean>(false);
 
   useEffect(() => {
-    if (!isManualOverride && !isReduced && !isDragging) {
-      const mapped = Math.min(85, Math.max(15, (scrollProgress - 0.2) * (100 / 0.6)));
-      setSliderPos(Math.round(mapped));
+    if (isReduced) {
+      setHasEntered(true);
+      setSwapPulsing(false);
+      return;
     }
-  }, [scrollProgress, isManualOverride, isReduced, isDragging]);
 
-  const updateSliderFromClientX = (clientX: number) => {
-    if (!splitBoxRef.current) return;
-    const rect = splitBoxRef.current.getBoundingClientRect();
-    const offsetX = clientX - rect.left;
-    const pct = Math.max(0, Math.min(100, (offsetX / rect.width) * 100));
-    setSliderPos(Math.round(pct));
-    setIsManualOverride(true);
-  };
+    const el = splitRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') {
+      setHasEntered(true);
+      return;
+    }
 
-  const handleMouseDown = (e: React.MouseEvent) => {
-    setIsDragging(true);
-    updateSliderFromClientX(e.clientX);
-  };
+    let pulseStartTimer: number | undefined;
+    let pulseEndTimer: number | undefined;
 
-  useEffect(() => {
-    if (!isDragging) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasEntered(true);
+          observer.unobserve(entry.target);
 
-    const handleMouseMove = (e: MouseEvent) => {
-      updateSliderFromClientX(e.clientX);
-    };
+          pulseStartTimer = window.setTimeout(() => {
+            setSwapPulsing(true);
+          }, 420);
 
-    const handleMouseUp = () => {
-      setIsDragging(false);
-    };
+          pulseEndTimer = window.setTimeout(() => {
+            setSwapPulsing(false);
+          }, 960);
+        }
+      },
+      { threshold: 0.15 }
+    );
 
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mouseup', handleMouseUp);
+    observer.observe(el);
+
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseup', handleMouseUp);
+      observer.disconnect();
+      if (pulseStartTimer) window.clearTimeout(pulseStartTimer);
+      if (pulseEndTimer) window.clearTimeout(pulseEndTimer);
     };
-  }, [isDragging]);
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    if (e.touches[0]) {
-      setIsDragging(true);
-      updateSliderFromClientX(e.touches[0].clientX);
-    }
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (e.touches[0]) {
-      updateSliderFromClientX(e.touches[0].clientX);
-    }
-  };
-
-  const handleTouchEnd = () => {
-    setIsDragging(false);
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    setIsManualOverride(true);
-    if (e.key === 'ArrowLeft') {
-      setSliderPos((prev) => Math.max(0, prev - 5));
-    } else if (e.key === 'ArrowRight') {
-      setSliderPos((prev) => Math.min(100, prev + 5));
-    }
-  };
-
-  const handleRangeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsManualOverride(true);
-    setSliderPos(Number(e.target.value));
-  };
-
-  const handleRegisterClick = (e: React.MouseEvent) => {
-    if (onOpenRegisterModal) {
-      e.preventDefault();
-      onOpenRegisterModal();
-    }
-  };
+  }, [isReduced]);
 
   return (
     <section
       id="impact"
-      ref={containerRef}
       className="pt-4 pb-12 sm:pt-6 sm:pb-16 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden"
     >
-      <div ref={revealRef} className={`max-w-6xl mx-auto ${revealClass}`}>
+      <div className="max-w-6xl mx-auto">
         {/* Section Header */}
-        <div className="mb-5 sm:mb-7 text-center md:text-left">
+        <div className="mb-6 sm:mb-8 text-center md:text-left">
           <div className="flex items-center justify-center md:justify-start gap-2.5 text-sm sm:text-base font-display font-semibold tracking-[0.16em] text-[#ffc58a] uppercase mb-3">
             <span>THE PARADIGM SHIFT</span>
             <span className="text-[#a99fcf]">·</span>
@@ -165,164 +203,134 @@ export const DoomVersusPlan: React.FC<ImpactSectionProps> = ({ onOpenRegisterMod
             Before vs With Exora
           </h2>
           <p className="mt-3 text-sm sm:text-base font-sans font-medium text-[#c5bddf] max-w-2xl leading-[1.8]">
-            Drag the divider to compare conventional hackathon illusions with Exora 2.0&apos;s production-grade engineering crucible across worlds.
+            See how conventional hackathon illusions transform inside Exora 2.0&apos;s production-grade engineering crucible across worlds.
           </p>
         </div>
 
-        {/* Accessible Keyboard & Draggable Status Bar */}
-        <div className="hidden md:flex mb-6 flex-wrap items-center justify-between gap-4 p-4 sm:p-5 bg-[#120a2e]/70 border border-white/10 rounded-2xl text-sm sm:text-base font-display font-medium">
-          <div className="flex items-center gap-2.5 text-[#c5bddf] font-medium tracking-wide">
-            <Sliders className="w-4 h-4 text-[#ffc58a]" />
-            <span>
-              REALITY DIVIDER // <strong className="text-[#6ee7f9] font-bold tracking-wide">{sliderPos}% WITH EXORA</strong> (Drag anywhere or use arrows)
-            </span>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <label htmlFor="wipe-slider" className="text-[#a99fcf] text-[11px] uppercase tracking-wider">
-              Slider:
-            </label>
-            <input
-              id="wipe-slider"
-              type="range"
-              min="0"
-              max="100"
-              value={sliderPos}
-              onChange={handleRangeChange}
-              onKeyDown={handleKeyDown}
-              aria-label="Compare conventional hackathons with our plan"
-              aria-valuemin={0}
-              aria-valuemax={100}
-              aria-valuenow={sliderPos}
-              className="accent-[#ff9a3c] cursor-pointer h-1.5 w-32 sm:w-48 bg-[#05030f] rounded-lg"
-            />
-          </div>
-        </div>
-
         {/* =========================================================================
-            DESKTOP: Draggable Comparison Split Box with Clipping Mask
+            1. STATIC TWO-PANEL SPLIT CONTAINER (50/50 Subgrid >= 768px, Stacked < 768px)
             ========================================================================= */}
         <div
-          ref={splitBoxRef}
-          onMouseDown={handleMouseDown}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
-          className="hidden md:block relative min-h-[490px] border border-white/15 rounded-3xl overflow-hidden shadow-2xl cursor-ew-resize select-none"
+          ref={splitRef}
+          className="relative rounded-[28px] border border-white/[0.14] overflow-hidden shadow-[0_24px_60px_-15px_rgba(5,3,15,0.9),0_0_40px_rgba(139,92,246,0.14)] grid grid-cols-1 md:grid-cols-2 md:grid-rows-[auto_auto_auto_auto_auto_auto_auto]"
         >
-          {/* Base Layer: WITH EXORA (Right Side - Violet & Peach Glow) */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#120a2e] via-[#1a0e3f] to-[#0d0624] p-8 sm:p-10 flex flex-col justify-between pointer-events-none">
-            <div className="max-w-md ml-auto text-right space-y-5">
-              <div className="inline-flex items-center gap-2 text-sm font-display font-medium tracking-wider text-[#ffc58a] uppercase bg-[#120a2e] border border-[#ffc58a]/40 px-3.5 py-1 rounded-full shadow-[0_0_15px_rgba(255,197,138,0.2)]">
-                <Sparkles className="w-3.5 h-3.5 text-[#ffc58a]" />
-                <span>WITH EXORA // CODE THAT ENDURES</span>
-              </div>
-              <h3 className="font-display text-2xl sm:text-3xl font-semibold text-white uppercase tracking-wide leading-tight">
-                Shipped Systems & Real Mastery
-              </h3>
-              <div className="space-y-5 text-xs sm:text-sm font-sans text-[#f4f0ff]/95 text-right">
-                {COMPARISON_PAIRS.map((pair) => (
-                  <div key={pair.id} className="flex items-center justify-end gap-2.5">
-                    <span className="text-sm sm:text-base leading-relaxed">{pair.withExora}</span>
-                    <span className="text-[#6ee7f9] font-bold text-base shrink-0">✓</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-8 text-right text-xs sm:text-sm font-display font-semibold text-[#6ee7f9] tracking-[0.14em] uppercase leading-relaxed">
-              STATUS: EXORA 2.0 ORBITAL TRAJECTORY VERIFIED
-            </div>
-          </div>
-
-          {/* Top Layer: BEFORE EXORA (Left Side - Dim, Desaturated, High Contrast, ✗ items) with clip-path */}
+          {/* LEFT PANEL (BEFORE EXORA — dim, desaturated coral accents, left-aligned) */}
           <div
-            className="absolute inset-0 bg-[#07050e] p-8 sm:p-10 flex flex-col justify-between transition-all duration-75 pointer-events-none"
-            style={{
-              clipPath: `polygon(0 0, ${sliderPos}% 0, ${sliderPos}% 100%, 0 100%)`,
-            }}
+            className={`md:col-start-1 md:row-start-1 md:row-span-7 grid grid-cols-1 md:grid-rows-subgrid p-5 sm:p-8 md:pr-11 bg-[linear-gradient(180deg,rgba(24,13,26,0.9)_0%,rgba(12,6,18,0.96)_100%)] text-left transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none ${
+              hasEntered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}
           >
-            <div className="max-w-md space-y-5">
-              <div className="inline-flex items-center gap-2 text-sm font-display font-medium tracking-wider text-[#ff8585] uppercase bg-[#180a0a] border border-[#f87171]/40 px-3.5 py-1 rounded-full">
-                <AlertTriangle className="w-3.5 h-3.5 text-[#f87171]" />
-                <span>BEFORE EXORA // THE USUAL PARADE</span>
-              </div>
-              <h3 className="font-display text-2xl sm:text-3xl font-semibold text-[#ff8585] uppercase tracking-wide leading-tight">
-                Fragile Toys & Hollow Illusions
-              </h3>
-              <div className="space-y-5 text-xs sm:text-sm font-sans text-[#cbd5e1]">
-                {COMPARISON_PAIRS.map((pair) => (
-                  <div key={pair.id} className="flex items-center gap-2.5">
-                    <span className="text-[#f87171] font-bold text-base shrink-0">✗</span>
-                    <span className="text-sm sm:text-base leading-relaxed">{pair.before}</span>
-                  </div>
-                ))}
-              </div>
+            {/* Row 1: Chip Label */}
+            <div className="mb-3 flex justify-start">
+              <span className="inline-block px-3.5 py-1 rounded-full bg-[#180a0a]/90 border border-[#f87171]/35 font-display text-xs font-medium tracking-wider text-[#ff9b9b] uppercase leading-snug">
+                {BEFORE_CHIP_LABEL}
+              </span>
             </div>
 
-            <div className="mt-8 text-xs sm:text-sm font-display font-semibold text-[#bdb3dc] tracking-[0.14em] uppercase leading-relaxed">
-              CONVENTIONAL ILLUSION // WE LEAVE THIS BEHIND
+            {/* Row 2: Panel Heading */}
+            <h3 className="font-display text-2xl sm:text-3xl font-semibold text-[#ede8f6] uppercase tracking-wide pb-4 mb-1 border-b border-white/10">
+              {BEFORE_PANEL_HEADING}
+            </h3>
+
+            {/* Rows 3-6: Four Matched Pairs List */}
+            <ul
+              className="md:row-span-4 grid grid-cols-1 md:grid-rows-subgrid list-none p-0 m-0"
+              aria-label="Conventional hackathon challenges before Exora"
+            >
+              {COMPARISON_PAIRS.map((pair, idx) => (
+                <BeforeRow
+                  key={pair.id}
+                  text={pair.before}
+                  index={idx}
+                  hasEntered={hasEntered}
+                  isReduced={isReduced}
+                />
+              ))}
+            </ul>
+
+            {/* Row 7: Status Line */}
+            <div className="pt-5 font-mono text-xs sm:text-[13px] tracking-[0.12em] text-[#c5bddf]/90 uppercase break-words">
+              {STATUS_LEFT_LINE}
             </div>
           </div>
 
-          {/* Interactive Dividing Line with Draggable Handle */}
+          {/* MOBILE HORIZONTAL DIVIDER (< 768px only) */}
           <div
-            className="absolute top-0 bottom-0 w-[2.5px] bg-gradient-to-b from-[#ffc58a] via-[#e04dff] to-[#6ee7f9] shadow-[0_0_16px_#ff9a3c] z-30 pointer-events-none"
-            style={{ left: `${sliderPos}%` }}
+            className="md:hidden relative flex items-center justify-center py-0 bg-[#120a2e]"
+            aria-hidden="true"
           >
-            {/* Center Handle Badge with pulsing glow */}
-            <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-9 h-9 rounded-full bg-[#120a2e] border-2 border-[#ffc58a] flex items-center justify-center shadow-[0_0_16px_#ff9a3c]">
-              <span className="text-xs font-display text-[#ffc58a] font-bold">⇄</span>
+            <div className="w-full h-[2px] bg-gradient-to-r from-[#a99fcf]/50 via-[#e04dff]/75 to-[#ffc58a]/90" />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <SwapHandleVisual isPulsing={swapPulsing} />
             </div>
           </div>
-        </div>
 
-        {/* =========================================================================
-            MOBILE: Stacked Panels with ✗/✓ Pairs Kept Together
-            ========================================================================= */}
-        <div className="md:hidden space-y-3">
-          <div className="p-4 bg-[#120a2e]/60 border border-white/10 rounded-2xl flex items-center justify-between text-sm font-display">
-            <span className="text-sm font-display font-semibold tracking-wider text-[#ffd2a8] flex items-center gap-2">
-              <Sliders className="w-3.5 h-3.5 text-[#ffc58a]" />
-              THE PARADIGM SHIFT
-            </span>
-            <span className="text-[#a99fcf]">4 MATCHED PAIRS</span>
+          {/* DESKTOP CENTER VERTICAL DIVIDER (>= 768px only, purely decorative) */}
+          <div
+            className="hidden md:flex pointer-events-none absolute inset-y-0 left-1/2 -translate-x-1/2 z-20 flex-col items-center justify-center"
+            aria-hidden="true"
+          >
+            <div className="w-[2px] h-full bg-gradient-to-b from-[#a99fcf]/50 via-[#e04dff]/75 to-[#ffc58a]/90" />
+            <div className="absolute top-1/2 -translate-y-1/2">
+              <SwapHandleVisual isPulsing={swapPulsing} />
+            </div>
           </div>
 
-          <div className="space-y-2">
-            {COMPARISON_PAIRS.map((pair, idx) => (
-              <div
-                key={pair.id}
-                className="glass-pass-card rounded-2xl p-4 space-y-3"
-              >
-                <div className="text-xs font-display text-[#a99fcf] uppercase tracking-wider flex items-center justify-between border-b border-white/5 pb-1.5">
-                  <span>ORBIT 0{idx + 1}</span>
-                  <span className="text-[#ffc58a]">REALITY CHECK</span>
-                </div>
+          {/* RIGHT PANEL (WITH EXORA — glowing violet & peach, cyan checks, left on phone / right on >= 768px) */}
+          <div
+            className={`relative md:col-start-2 md:row-start-1 md:row-span-7 grid grid-cols-1 md:grid-rows-subgrid p-5 sm:p-8 md:pl-11 bg-[linear-gradient(180deg,rgba(28,14,68,0.94)_0%,rgba(12,6,32,0.97)_100%)] text-left md:text-right transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none ${
+              hasEntered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}
+          >
+            {/* Ambient Violet-to-Peach Glow (absolute, out of grid flow) */}
+            <div
+              className="pointer-events-none absolute inset-0"
+              style={{
+                background:
+                  'radial-gradient(ellipse 90% 70% at 80% 35%, rgba(255, 197, 138, 0.13) 0%, rgba(139, 92, 246, 0.16) 45%, transparent 80%)',
+              }}
+              aria-hidden="true"
+            />
+            <div
+              className="pointer-events-none absolute inset-x-0 bottom-0 h-[2px] opacity-85"
+              style={{
+                background: 'linear-gradient(90deg, #8b5cf6 0%, #e04dff 50%, #ffc58a 100%)',
+              }}
+              aria-hidden="true"
+            />
 
-                {/* Left ✗ Item (Conventional) */}
-                <div className="flex items-start gap-2.5 bg-[#180808]/80 border border-[#f87171]/25 p-3 rounded-xl">
-                  <XCircle className="w-4 h-4 text-[#f87171] shrink-0 mt-0.5" />
-                  <div className="text-sm font-sans text-[#dbe3ee] leading-relaxed">
-                    <span className="text-xs uppercase font-display text-[#f87171] block mb-0.5">
-                      Conventional:
-                    </span>
-                    {pair.before}
-                  </div>
-                </div>
+            {/* Row 1: Chip Label */}
+            <div className="relative z-10 mb-3 flex justify-start md:justify-end">
+              <span className="inline-block px-3.5 py-1 rounded-full bg-[#120a2e] border border-[#ffc58a]/40 font-display text-xs font-medium tracking-wider text-[#ffc58a] uppercase leading-snug shadow-[0_0_15px_rgba(255,197,138,0.18)]">
+                {AFTER_CHIP_LABEL}
+              </span>
+            </div>
 
-                {/* Right ✓ Item (With Exora) */}
-                <div className="flex items-start gap-2.5 bg-[#190c38]/80 border border-[#8b5cf6]/30 p-3 rounded-xl">
-                  <CheckCircle2 className="w-4 h-4 text-[#6ee7f9] shrink-0 mt-0.5" />
-                  <div className="text-sm font-sans text-white leading-relaxed">
-                    <span className="text-xs uppercase font-display text-[#6ee7f9] block mb-0.5">
-                      With Exora 2.0:
-                    </span>
-                    {pair.withExora}
-                  </div>
-                </div>
-              </div>
-            ))}
+            {/* Row 2: Panel Heading */}
+            <h3 className="relative z-10 font-display text-2xl sm:text-3xl font-semibold text-white uppercase tracking-wide pb-4 mb-1 border-b border-white/10">
+              {AFTER_PANEL_HEADING}
+            </h3>
+
+            {/* Rows 3-6: Four Matched Pairs List */}
+            <ul
+              className="relative z-10 md:row-span-4 grid grid-cols-1 md:grid-rows-subgrid list-none p-0 m-0"
+              aria-label="Production engineering outcomes with Exora 2.0"
+            >
+              {COMPARISON_PAIRS.map((pair, idx) => (
+                <WithExoraRow
+                  key={pair.id}
+                  text={pair.withExora}
+                  index={idx}
+                  hasEntered={hasEntered}
+                  isReduced={isReduced}
+                />
+              ))}
+            </ul>
+
+            {/* Row 7: Status Line */}
+            <div className="relative z-10 pt-5 font-mono text-xs sm:text-[13px] tracking-[0.12em] text-[#6ee7f9] font-semibold uppercase break-words">
+              {STATUS_RIGHT_LINE}
+            </div>
           </div>
         </div>
 

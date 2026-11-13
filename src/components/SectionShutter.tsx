@@ -33,10 +33,14 @@ export const SectionShutter: React.FC = () => {
   }, [isReduced]);
 
   return (
-    <div ref={ref} className="relative w-full h-[1px] bg-[#1f2e26] overflow-hidden" aria-hidden="true">
+    <div
+      ref={ref}
+      className="relative w-full h-[1px] bg-gradient-to-r from-transparent via-[#8b5cf6]/20 to-transparent overflow-hidden"
+      aria-hidden="true"
+    >
       {/* Sweeping Shutter Line */}
       <div
-        className={`absolute top-0 bottom-0 w-32 bg-gradient-to-r from-transparent via-[#c9a227] to-transparent ${
+        className={`absolute top-0 bottom-0 w-32 bg-gradient-to-r from-transparent via-[#ffc58a]/60 to-transparent ${
           hasWiped
             ? 'left-full transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]'
             : '-left-32'
