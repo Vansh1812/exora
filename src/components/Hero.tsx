@@ -40,7 +40,7 @@ export const Hero: React.FC<HeroProps> = () => {
   return (
     <section
       id="hero"
-      className="relative flex flex-col items-center justify-between text-center overflow-visible -mt-6 pt-2 sm:mt-0 sm:pt-6 pb-4 sm:pb-6 px-4 sm:px-6 lg:px-8"
+      className="relative flex flex-col items-center justify-center text-center overflow-visible pt-8 sm:pt-14 pb-8 sm:pb-10 px-4 sm:px-6 lg:px-8"
     >
       {/* Background Ambient Celestial Glow (unclipped so background remains uniform behind navbar) */}
       <div
@@ -52,7 +52,7 @@ export const Hero: React.FC<HeroProps> = () => {
       <div className="relative z-10 max-w-6xl mx-auto flex flex-col items-center justify-center flex-1 w-full pt-0 pb-1">
         {/* 1. Date & Venue Top Kicker Pill */}
         <div className="inline-flex items-center justify-center gap-2 mb-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#120a2e]/85 border border-[#ffc58a]/25 text-[11px] sm:text-sm font-display font-semibold tracking-[0.12em] uppercase text-[#ffe0bd] backdrop-blur-md shadow-[0_0_20px_rgba(255,154,60,0.12)] max-w-full">
-          <span className="w-2 h-2 rounded-full bg-[#ffc58a] shadow-[0_0_8px_#ffc58a]" />
+          <span className="w-2 h-2 rounded-full bg-[#ffc58a] shadow-[0_0_8px_#ffc58a] shrink-0" />
           <span>28 NOVEMBER 2026 // THOUGHTWORKS TECHNOLOGIES, GURUGRAM</span>
         </div>
 

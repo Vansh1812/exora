@@ -18,7 +18,7 @@ export const MissionSection: React.FC = () => {
   return (
     <section
       id="mission"
-      className="pt-4 pb-12 sm:pt-6 sm:pb-16 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden"
+      className="pt-6 pb-12 sm:pt-8 sm:pb-16 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden"
     >
       <div ref={ref} className={`max-w-6xl mx-auto ${revealClass}`}>
         {/* Section Header */}
