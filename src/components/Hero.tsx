@@ -40,7 +40,7 @@ export const Hero: React.FC<HeroProps> = () => {
   return (
     <section
       id="hero"
-      className="relative flex flex-col items-center justify-center text-center overflow-visiblemin-h-[110svh] sm:min-h-0 pt-8 sm:pt-14 pb-8 sm:pb-10 px-4 sm:px-6 lg:px-8"
+      className="relative flex flex-col items-center justify-center text-center overflow-visible min-h-[calc(100svh-4.75rem)] sm:min-h-0 pt-5 sm:pt-12 pb-8 sm:pb-10 px-4 sm:px-6 lg:px-8"
     >
       {/* Background Ambient Celestial Glow (unclipped so background remains uniform behind navbar) */}
       <div
@@ -48,21 +48,21 @@ export const Hero: React.FC<HeroProps> = () => {
         aria-hidden="true"
       />
 
-      {/* Main Content Container - Fills the viewport window with colossal typography */}
-      <div className="relative z-10 max-w-6xl mx-auto flex flex-col items-center justify-center flex-1 w-full pt-0 pb-1">
+      {/* Main Content Container - Centered vertically with balanced rhythm */}
+      <div className="relative z-10 max-w-6xl mx-auto flex flex-col items-center justify-center w-full">
         {/* 1. Date & Venue Top Kicker Pill */}
-        <div className="inline-flex items-center justify-center gap-2 mb-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#120a2e]/85 border border-[#ffc58a]/25 text-[11px] sm:text-sm font-display font-semibold tracking-[0.12em] uppercase text-[#ffe0bd] backdrop-blur-md shadow-[0_0_20px_rgba(255,154,60,0.12)] max-w-full">
+        <div className="inline-flex items-center justify-center gap-2.5 mb-5 sm:mb-6 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#120a2e]/85 border border-[#ffc58a]/25 text-[11px] sm:text-sm font-display font-semibold tracking-[0.12em] uppercase text-[#ffe0bd] leading-snug backdrop-blur-md shadow-[0_0_20px_rgba(255,154,60,0.12)] max-w-full">
           <span className="w-2 h-2 rounded-full bg-[#ffc58a] shadow-[0_0_8px_#ffc58a] shrink-0" />
           <span>28 NOVEMBER 2026 // THOUGHTWORKS TECHNOLOGIES, GURUGRAM</span>
         </div>
 
         {/* 2. Signature Walker Line (Celestial signature from Figma) */}
-        <div className="w-full max-w-2xl px-2 sm:px-6 my-1">
+        <div className="w-full max-w-2xl px-1 sm:px-6 mb-4 sm:mb-5">
           <WalkerLine progress={0.42} showMoons={true} />
         </div>
 
         {/* 3. Colossal Two-Line Title Occupying the Viewport Window */}
-        <h1 className="flex flex-col items-center justify-center text-center select-none my-1 sm:my-2 w-full">
+        <h1 className="flex flex-col items-center justify-center text-center select-none w-full">
           {/* Line 1: Solid "EXORA 2.0" */}
           <span className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[8rem] xl:text-[9rem] font-normal tracking-[0.04em] text-[#f4f0ff] uppercase leading-none drop-shadow-[0_4px_35px_rgba(224,77,255,0.35)]">
             EXORA <span className="text-[#6ee7f9] font-light">2.0</span>
@@ -75,19 +75,19 @@ export const Hero: React.FC<HeroProps> = () => {
               color: 'transparent',
               textShadow: '0 0 30px rgba(224, 77, 255, 0.65), 0 0 60px rgba(255, 154, 60, 0.35)',
             }}
-            className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light uppercase tracking-[0.10em] leading-none mt-2 sm:mt-3"
+            className="font-display text-[clamp(1.55rem,7vw,2.25rem)] sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light uppercase tracking-[0.08em] sm:tracking-[0.10em] leading-none mt-3 sm:mt-4"
           >
             UNVEIL THE BUILD
           </span>
         </h1>
 
-        {/* 4. Cosmic Theme One-Liner (Replaced generic technical text with theme) */}
-        <p className="font-sans text-sm sm:text-base md:text-lg text-[#d5cbea] max-w-2xl mx-auto mt-1 mb-4 leading-relaxed font-normal tracking-wide px-2">
+        {/* 4. Cosmic Theme One-Liner */}
+        <p className="font-sans text-sm sm:text-base md:text-lg text-[#d5cbea] max-w-2xl mx-auto mt-4 sm:mt-5 mb-7 sm:mb-8 leading-relaxed font-normal tracking-wide px-2">
           The Walk Between Worlds · A 24-Hour Orbital Crucible by Google Developer Groups
         </p>
 
         {/* 5. Two Prominent Celestial CTAs Centered */}
-        <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mb-3 sm:mb-4 w-full sm:w-auto px-4">
+        <div className="flex flex-col sm:flex-row items-center gap-3.5 sm:gap-5 w-full sm:w-auto px-2 sm:px-4">
           <a
             href={EVENT_CONFIG.registrationUrl}
             target="_blank"
