@@ -40,7 +40,7 @@ export const Hero: React.FC<HeroProps> = () => {
   return (
     <section
       id="hero"
-      className="relative flex flex-col items-center justify-center text-center overflow-visible pt-8 sm:pt-14 pb-8 sm:pb-10 px-4 sm:px-6 lg:px-8"
+      className="relative flex flex-col items-center justify-center text-center overflow-visiblemin-h-[110svh] sm:min-h-0 pt-8 sm:pt-14 pb-8 sm:pb-10 px-4 sm:px-6 lg:px-8"
     >
       {/* Background Ambient Celestial Glow (unclipped so background remains uniform behind navbar) */}
       <div
