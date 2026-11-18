@@ -175,10 +175,9 @@ export const MobileTimeline: React.FC<MobileTimelineProps> = ({ isSectionVisible
         if (!containerRef.current) return;
         const rect = containerRef.current.getBoundingClientRect();
         const vh = window.innerHeight;
-        const startOffset = vh * 0.75;
-        const totalDist = rect.height + vh * 0.3;
-        const currentDist = startOffset - rect.top;
-        const progress = Math.max(0, Math.min(1, currentDist / totalDist));
+        const totalDist = rect.height + vh;
+        const scrolled = vh - rect.top;
+        const progress = Math.max(0, Math.min(1, scrolled / totalDist));
         setScrollProgress(progress);
       });
     };

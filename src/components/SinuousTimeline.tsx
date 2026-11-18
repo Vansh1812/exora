@@ -173,11 +173,10 @@ export const SinuousTimeline: React.FC = () => {
 
         const rect = canvasRef.current.getBoundingClientRect();
         const vh = window.innerHeight;
-        // Progress starts when canvas top enters the viewport and finishes near bottom
-        const startOffset = vh * 0.8;
-        const totalDist = rect.height + vh * 0.4;
-        const currentDist = startOffset - rect.top;
-        const progress = Math.max(0, Math.min(1, currentDist / totalDist));
+        // Perfect synchronization across the entire section height
+        const totalDist = rect.height + vh;
+        const scrolled = vh - rect.top;
+        const progress = Math.max(0, Math.min(1, scrolled / totalDist));
         setScrollProgress(progress);
       });
     };
